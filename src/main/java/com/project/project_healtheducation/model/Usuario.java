@@ -1,34 +1,33 @@
 package com.project.project_healtheducation.model;
 
-public abstract class User {
-    private String id;
+public abstract class Usuario {
+    private int id;
     private String name;
     private String email;
     private String password;
     private UserType type;//ALUNO, PROFESSOR, PSICOLOGO
     private int age;
 
-    public User(UserType tipo, String email, String name, String id, int age) {
+    public Usuario(UserType tipo, String email, String name, int id, int age) {
         this.type = tipo;
         this.email = email;
         this.name = name;
         this.id = id;
         this.age = age;
     }
-    public User(UserType tipo, String email, String name, String id, String password, int age) {
-        this.type = tipo;
+    public Usuario(String email, String name, int id, String password) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.id = id;
-        this.age = age;
+
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,7 +59,10 @@ public abstract class User {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public String getPassword(){
+        return this.password;
+    }
+    public void setPassword(String newPassword){
+        this.password = newPassword;
     }
 }

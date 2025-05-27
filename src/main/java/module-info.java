@@ -9,6 +9,8 @@ module com.project.project_healtheducation {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
+    requires jbcrypt;
 
     opens com.project.project_healtheducation to javafx.fxml;
     exports com.project.project_healtheducation;
