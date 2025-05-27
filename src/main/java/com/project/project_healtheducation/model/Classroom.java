@@ -12,4 +12,16 @@ public class Classroom {
         this.quantidade = quantidade;
         this.alunosTurma = alunosTurma;
     }
+
+    public String getNomeTurma() {
+        return nomeTurma;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public ArrayList<Student> getAlunosTurma() {
+        return alunosTurma;
+    }
 }

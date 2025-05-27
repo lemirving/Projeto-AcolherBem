@@ -24,16 +24,4 @@ public class EmotionalStatus {
     public int getNivel() {
         return nivel;
     }
-
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
 }

@@ -29,16 +29,8 @@ public class Student extends User{
         return anoEscolar;
     }
 
-    public void setAnoEscolar(String anoEscolar) {
-        this.anoEscolar = anoEscolar;
-    }
-
     public String getTurma() {
         return turma;
-    }
-
-    public void setTurma(String turma) {
-        this.turma = turma;
     }
 
     public ArrayList<EmotionalStatus> getRegistrosEmocionais() {
