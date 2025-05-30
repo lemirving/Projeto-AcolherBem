@@ -18,21 +18,17 @@ public class LoginController {
 
     private boolean validarLogin(){
 
-        String nome = textNome.getText();
+        String email = textNome.getText();
         String senha = textSenha.getText();
 
-        if(nome.isEmpty() || senha.isEmpty()){
+        if(email.isEmpty() || senha.isEmpty()){
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setHeaderText(null);
             alerta.setContentText("Os campos devem ser preenchidos");
             alerta.showAndWait();
 
             return false;
-        }else{
-            System.out.println(nome);
-            System.out.println(senha);
         }
-
         return true;
     }
 
@@ -49,9 +45,8 @@ public class LoginController {
     @FXML
     protected void irParaHome(ActionEvent event){
         try{
-            if(validarLogin()){
+            if(validarLogin())
                 ChangeScreen.setScreen(event, "/com/project/project_healtheducation/Home.fxml");
-            }
         }catch (IOException e){
             e.printStackTrace();
         }
