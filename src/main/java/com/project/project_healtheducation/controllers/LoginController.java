@@ -16,6 +16,7 @@ public class LoginController {
     @FXML
     PasswordField textSenha;
 
+
     private boolean validarLogin(){
 
         String email = textNome.getText();
@@ -29,6 +30,37 @@ public class LoginController {
 
             return false;
         }
+
+        // Consulta ao banco de dados
+
+//        String sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
+//
+//        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:schoolApp.db");
+//             PreparedStatement stmt = conn.prepareStatement(sql)) {
+//
+//            stmt.setString(1, email);
+//            stmt.setString(2, senha);
+//
+//            ResultSet rs = stmt.executeQuery();
+//
+//            if (rs.next()) {
+//                return true; // Login válido
+//            } else {
+//                Alert alerta = new Alert(Alert.AlertType.ERROR);
+//                alerta.setHeaderText(null);
+//                alerta.setContentText("Email ou senha incorretos.");
+//                alerta.showAndWait();
+//                return false;
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            Alert alerta = new Alert(Alert.AlertType.ERROR);
+//            alerta.setHeaderText(null);
+//            alerta.setContentText("Erro ao acessar o banco de dados.");
+//            alerta.showAndWait();
+//            return false;
+//        }
         return true;
     }
 
