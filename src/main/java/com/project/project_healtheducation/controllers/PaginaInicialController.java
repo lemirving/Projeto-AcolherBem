@@ -3,20 +3,24 @@ package com.project.project_healtheducation.controllers;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 
-public class HelloController {
+public class PaginaInicialController {
 
     @FXML
-    protected void onHelloButtonClick(ActionEvent event) {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setHeaderText(null);
+    protected void loginScreen(ActionEvent event) {
         try{
             ChangeScreen.setScreen(event, "/com/project/project_healtheducation/login.fxml");
-//            alert.setContentText("Mudou de tela");
-//            alert.showAndWait();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void cadastroScreen(ActionEvent event){
+        try{
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/cadastro.fxml");
         }catch (IOException e){
             e.printStackTrace();
         }
