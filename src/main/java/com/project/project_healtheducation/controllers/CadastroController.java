@@ -4,10 +4,13 @@ import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class CadastroController {
 
@@ -74,5 +77,29 @@ public class CadastroController {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private ChoiceBox<String> choiceBox;
+
+    @FXML
+    protected void verificarChoiceBox(){
+        String valorSelecionado = choiceBox.getValue();
+
+
+        if(valorSelecionado != null){
+            if(valorSelecionado.equals("Aluno")){
+                System.out.println("Selecionou aluno");
+            }
+            else if(valorSelecionado.equals("Professor")){
+                System.out.println("Selecionou professor");
+            }else if(valorSelecionado.equals("Psicólogo")){
+                System.out.println("selecionou Psicólogo");
+            }else{
+                System.out.println("Valor não encontrado");
+            }
+        }
+
+        verificarChoiceBox();
     }
 }
