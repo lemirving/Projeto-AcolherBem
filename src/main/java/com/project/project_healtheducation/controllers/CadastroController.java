@@ -3,14 +3,9 @@ package com.project.project_healtheducation.controllers;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CadastroController {
 
@@ -22,6 +17,21 @@ public class CadastroController {
     private PasswordField textSenha;
     @FXML
     private PasswordField textSenhaConfirm;
+
+    @FXML private RadioButton radioAluno;
+    @FXML private RadioButton radioProfessor;
+    @FXML private RadioButton radioPsicologo;
+
+    private ToggleGroup groupRadios;
+
+
+    @FXML
+    private void initialize(){
+        groupRadios = new ToggleGroup();
+        radioAluno.setToggleGroup(groupRadios);
+        radioProfessor.setToggleGroup(groupRadios);
+        radioPsicologo.setToggleGroup(groupRadios);
+    }
 
 
     private boolean validarCadastro(){
@@ -57,6 +67,12 @@ public class CadastroController {
             return false;
         }
 
+        if(groupRadios.getSelectedToggle() == null){
+            alerta.setContentText("Nenhuma opção selecionada! Por favor, selecione uma opção");
+            alerta.showAndWait();
+            return false;
+        }
+
         return true;
     }
 
@@ -73,33 +89,10 @@ public class CadastroController {
     protected void irParaHome(ActionEvent event) {
         try{
             if(validarCadastro())
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/Home.fxml");
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    @FXML
-    private ChoiceBox<String> choiceBox;
-
-    @FXML
-    protected void verificarChoiceBox(){
-        String valorSelecionado = choiceBox.getValue();
-
-
-        if(valorSelecionado != null){
-            if(valorSelecionado.equals("Aluno")){
-                System.out.println("Selecionou aluno");
-            }
-            else if(valorSelecionado.equals("Professor")){
-                System.out.println("Selecionou professor");
-            }else if(valorSelecionado.equals("Psicólogo")){
-                System.out.println("selecionou Psicólogo");
-            }else{
-                System.out.println("Valor não encontrado");
-            }
-        }
-
-        verificarChoiceBox();
-    }
 }

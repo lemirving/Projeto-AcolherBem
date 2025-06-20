@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.collections.FXCollections?>
 
-<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@com/project/project_healtheducation/style/cadastro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
     <children>
         <VBox fx:id="cadastroContainer" alignment="CENTER" prefHeight="473.0" prefWidth="705.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,21 +29,17 @@
                     <HBox alignment="CENTER">
                         <PasswordField fx:id="textSenhaConfirm" />
                     </HBox>
-                    <Text>Selecione o que você é</Text>
-               <ChoiceBox prefWidth="150.0" fx:id="choiceBox">
-                   <items>
-                       <FXCollections fx:factory="observableArrayList">
-                           <String fx:id="" fx:value="Aluno" />
-                           <String fx:value="Professor" />
-                           <String fx:value="Psicólogo" />
-                       </FXCollections>
-                   </items>
-               </ChoiceBox>
+                    <Text styleClass="textRadio">Selecione o que você é</Text>
+                    <HBox alignment="CENTER" spacing="18">
+                   <RadioButton mnemonicParsing="false" text="Aluno" fx:id="radioAluno"/>
+                   <RadioButton mnemonicParsing="false" text="Professor" fx:id="radioProfessor"/>
+                   <RadioButton mnemonicParsing="false" text="Psicológo" fx:id="radioPsicologo"/>
+                    </HBox>
+
                 </VBox>
             </VBox>
               <Button onAction="#irParaHome" prefHeight="26.0" prefWidth="102.0" styleClass="btnCadastar">Cadastrar</Button>
-            <Label/>
-    <Button onAction="#verificarChoiceBox">Verifique</Button>
+            <Label />
         </VBox>
         <VBox alignment="CENTER" prefHeight="39.0" prefWidth="70.0">
             <Button onAction="#voltarInicio" styleClass="btnVoltar" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">Voltar</Button>

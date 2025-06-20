@@ -78,7 +78,7 @@ public class LoginController {
     protected void irParaHome(ActionEvent event){
         try{
             if(validarLogin())
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/Home.fxml");
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
         }catch (IOException e){
             e.printStackTrace();
         }

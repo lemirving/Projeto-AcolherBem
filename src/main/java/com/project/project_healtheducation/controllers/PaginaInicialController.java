@@ -8,8 +8,7 @@ import java.io.IOException;
 
 public class PaginaInicialController {
 
-    @FXML
-    protected void loginScreen(ActionEvent event) {
+    @FXML protected void loginScreen(ActionEvent event) {
         try{
             ChangeScreen.setScreen(event, "/com/project/project_healtheducation/login.fxml");
         }catch (IOException e){
@@ -17,8 +16,7 @@ public class PaginaInicialController {
         }
     }
 
-    @FXML
-    protected void cadastroScreen(ActionEvent event){
+    @FXML protected void cadastroScreen(ActionEvent event){
         try{
             ChangeScreen.setScreen(event, "/com/project/project_healtheducation/cadastro.fxml");
         }catch (IOException e){
@@ -27,4 +25,7 @@ public class PaginaInicialController {
     }
 
 
+    public void RegistrarSentimentoScreen(ActionEvent event) throws IOException{
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/RegistrarEmocaoAluno.fxml");
+    }
 }
