@@ -3,11 +3,10 @@ package com.project.project_healtheducation.controllers;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class RegistroEmocoesController {
 
@@ -30,16 +29,29 @@ public class RegistroEmocoesController {
         int valor = (int) sliderSentimento.getValue();
         String descricao = getDescricaoSentimento(valor);
 
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setHeaderText("Sua emoção");
-        alerta.setContentText("Sentimento registrado: " + descricao);
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setHeaderText(null);
+        alerta.setContentText("Deseja registrar essa emoção?");
+        ButtonType sim = new ButtonType("Sim");
+        ButtonType nao = new ButtonType("Não");
+
+        alerta.getButtonTypes().setAll(sim, nao);
+
+
+        Optional<ButtonType> opcao = alerta.showAndWait();
+        if(opcao .isPresent() && opcao.get() == sim){
+            System.out.println("Sua emoção: " + descricao);
+        }else{
+            System.out.println("Cancelou");
+        }
         // SALVAR NO BANCO DE DADOS
     }
 
     private String getDescricaoSentimento(int valor) {
         if(valor <= 1) return "Depremido";
-        if(valor <= 3) return "Muito triste";
-        if(valor <= 4) return "Triste";
+        if(valor <= 2) return "Muito triste";
+        if(valor <= 3) return "Triste";
+        if(valor <= 4) return "desanimado";
         if(valor <= 5) return "Neutro";
         if(valor <= 6) return "OK";
         if(valor <= 7) return "Bem";
