@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@com/project/project_healtheducation/style/registrarEmocoes.css"
+            fx:controller="com.project.project_healtheducation.controllers.RegistroEmocoesController"
+            >
+
+    <children>
+        <VBox alignment="CENTER" spacing="20"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              styleClass="formContainer">
+
+            <Label text="Como você está se sentindo hoje?"
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+            <VBox alignment="CENTER" spacing="10">
+
+                <HBox alignment="CENTER" spacing="300">
+                    <Label text="😢 Tristeza" />
+                    <Label text="😀 Alegria" />
+                </HBox>
+
+                <Slider fx:id="sliderSentimento"
+                        min="0" max="10" value="5"
+                        majorTickUnit="1" blockIncrement="1"
+                        showTickLabels="true" showTickMarks="true"
+                         />
+
+                <Label fx:id="labelSentimentoEscolhido"
+                       text="Estado atual: Neutro"
+                       style="-fx-font-size: 14px;" />
+
+                <Button text="Registrar Sentimento"
+                        styleClass="btnRegistrar"
+                        onAction="#registrarSentimento"
+                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
+
+            </VBox>
+        </VBox>
+        <VBox alignment="CENTER" prefHeight="39.0" prefWidth="70.0">
+            <Button onAction="#voltar" styleClass="btnVoltar" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">Voltar</Button>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #d1e3ef, #cbf1f4); /* Rosa pastel suave */
+    -fx-font-family: sans-serif;
+}
+
+.botaoPrincipal{
+    -fx-cursor: hand;
+    -fx-background-color: #3B3B98;
+    -fx-text-fill: rgb(255, 253, 253);
+    -fx-font-size: 14px;
+    -fx-background-radius: 12px;
+    -fx-padding: 10 20 10 20;
+}

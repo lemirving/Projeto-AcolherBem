@@ -16,4 +16,6 @@ module com.project.project_healtheducation {
     exports com.project.project_healtheducation;
     exports com.project.project_healtheducation.controllers;
     opens com.project.project_healtheducation.controllers to javafx.fxml;
+    exports com.project.project_healtheducation.utils;
+    opens com.project.project_healtheducation.utils to javafx.fxml;
 }

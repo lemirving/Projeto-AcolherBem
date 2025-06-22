@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@com/project/project_healtheducation/style/HomeAluno.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
+
+    <children>
+        <VBox alignment="CENTER" spacing="20" styleClass="formContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                  <!-- Saudação -->
+            <Label style="-fx-font-size: 19px; -fx-font-weight: bold;" text="Olá, aluno! Bem-vindo ao seu espaço de bem-estar" />
+         <Label text="Aqui você tem liberdade para se expressar!" />
+         <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+            <children>
+               <VBox alignment="CENTER" spacing="16" >
+                  <children>
+                         <Button layoutX="243.0" layoutY="44.0" onAction="#RegistrarSentimentoScreen" styleClass="botaoPrincipal" text="Registrar Sentimento" />
+                         <Button layoutX="183.0" layoutY="88.0" styleClass="botaoPrincipal" text="Ver calendário das suas emoções" />
+                         <Button layoutX="209.0" layoutY="154.0" styleClass="botaoPrincipal" text="Ver contato de psicólogos" />
+                  </children>
+               </VBox>
+            </children>
+         </FlowPane>
+
+            <!-- Acesso rápido -->
+            <HBox alignment="CENTER" spacing="20" />
+
+            <VBox alignment="TOP_LEFT" spacing="10" />
+
+            <!-- Espaço final (opcional) -->
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #555;" text="Lembre-se: você não está sozinho(a). Busque ajuda!" wrapText="true" />
+
+        </VBox>
+    </children>
+</AnchorPane>

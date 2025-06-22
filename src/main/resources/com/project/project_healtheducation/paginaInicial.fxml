@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane stylesheets="@com/project/project_healtheducation/style/paginaInicial.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="473.0" prefWidth="705.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+            <Text fill="#41bc18" strokeType="OUTSIDE" strokeWidth="0.0" text="MentalCareEdu">
+                <font>
+                    <Font size="22.0" />
+                </font>
+            </Text>
+            <Text fill="#5b5959" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textmsg" text="Cuide da sua mente. Conquiste seus sonhos com os estudos." />
+            <VBox alignment="CENTER" spacing="15">
+            <Button onAction="#loginScreen" styleClass="btnHome" text="Login" />
+            <Button styleClass="btnHome" text="Cadastre-se" onAction="#cadastroScreen"/>
+            </VBox>
+        </VBox>
+    </children>
+</AnchorPane>
