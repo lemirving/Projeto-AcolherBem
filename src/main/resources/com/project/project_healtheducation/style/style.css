@@ -1,0 +1,58 @@
+.root_pane{
+  -fx-background-color: #e9eaec;
+
+}
+.grafici_anchorPane{
+  -fx-background-color: #3c6ccb;
+
+}
+.main_anchorPane{
+  -fx-background-color: white;
+
+}
+.humorEmoji_anchorPane{
+-fx-background-color: yellow
+}
+.menu_bar{
+  -fx-position: fixed;
+  -fx-top: 0;
+  -fx-left: 0;
+
+  -fx-background-color: #2c3e50;
+  -fx-color: blue;
+
+  -fx-box-sizing: border-box;
+  -fx-overflow-y: auto;
+  -fx-z-index: 1000;
+}
+.side_bar{
+  -fx-position: fixed;
+  -fx-top: 0;
+  -fx-left: 0;
+
+  -fx-background-color: #476585;
+  -fx-color: blue;
+
+  -fx-box-sizing: border-box;
+  -fx-overflow-y: auto;
+  -fx-z-index: 1000;
+}
+.hbox_menuBar{
+  -fx-position: fixed;
+  -fx-top: 0;
+  -fx-left: 0;
+
+  -fx-background-color: white;
+  -fx-color: blue;
+
+  -fx-box-sizing: border-box;
+  -fx-overflow-y: auto;
+  -fx-z-index: 1000;
+}
+.pane_menuBar {
+  -fx-background-color: white;
+
+}
+.hamburgerBtn_pane {
+    -fx-background-color: blue;
+}

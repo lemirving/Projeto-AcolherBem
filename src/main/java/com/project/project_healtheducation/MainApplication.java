@@ -1,24 +1,20 @@
 package com.project.project_healtheducation;
 
-import com.project.project_healtheducation.dao.*;
 import com.project.project_healtheducation.db.dbSetup;
-import com.project.project_healtheducation.model.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 
 public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("paginaInicial.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 550, 500);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/project/project_healtheducation/telaProfessores.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1220, 800);
         stage.setTitle("MentalHeathCare");
         stage.setScene(scene);
         stage.show();

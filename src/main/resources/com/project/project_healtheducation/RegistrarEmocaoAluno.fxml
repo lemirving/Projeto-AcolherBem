@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/17.0.12"
             xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@com/project/project_healtheducation/style/registrarEmocoes.css"
+            stylesheets="@style/registrarEmocoes.css"
             fx:controller="com.project.project_healtheducation.controllers.RegistroEmocoesController"
             >
 
