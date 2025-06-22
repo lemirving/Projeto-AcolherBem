@@ -11,6 +11,7 @@ module com.project.project_healtheducation {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires jbcrypt;
+    requires com.jfoenix;
 
     opens com.project.project_healtheducation to javafx.fxml;
     exports com.project.project_healtheducation;
@@ -18,4 +19,6 @@ module com.project.project_healtheducation {
     opens com.project.project_healtheducation.controllers to javafx.fxml;
     exports com.project.project_healtheducation.utils;
     opens com.project.project_healtheducation.utils to javafx.fxml;
+    exports com.project.project_healtheducation.controllers.home;
+    opens com.project.project_healtheducation.controllers.home to javafx.fxml;
 }

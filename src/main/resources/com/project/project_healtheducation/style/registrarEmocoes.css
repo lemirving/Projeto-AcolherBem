@@ -1,3 +1,7 @@
+.root{
+    -fx-background-color: linear-gradient(to bottom,rgb(237, 2rgb(239, 246, 246)), #cbf1f4);
+}
+
 #sliderSentimento {
     -fx-pref-width: 200px; /* Reduz a largura total */
     -fx-padding: 0 10 0 10; /* Espaçamento interno opcional */

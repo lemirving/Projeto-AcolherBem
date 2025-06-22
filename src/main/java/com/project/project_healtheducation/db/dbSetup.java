@@ -19,98 +19,84 @@ public class dbSetup {
 
             statement.execute("PRAGMA foreign_keys = ON;");
 
-
-            String sqlCreateTable = "CREATE TABLE IF NOT EXISTS user (" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "name TEXT NOT NULL," +
-                    "email TEXT NOT NULL UNIQUE," +
-                    "senha TEXT NOT NULL," +
-                    "type TEXT NOT NULL," +
-                    "age INTEGER NOT NULL" +
-                    ");";
-
-
-            String sqlPsicologoTables = "CREATE TABLE IF NOT EXISTS psicologo (" +
-                    "id_user INTEGER PRIMARY KEY," +
-                    "identificacao TEXT NOT NULL," +
-                    "FOREIGN KEY (id_user) REFERENCES user(id)" +
-                    ");";
-
-
-            String sqlProfessorTables = "CREATE TABLE IF NOT EXISTS professor (" +
-                    "id_user INTEGER PRIMARY KEY," +
-                    "especialidade TEXT NOT NULL," +
-                    "FOREIGN KEY (id_user) REFERENCES user(id)" +
-                    ");";
-
-
+            // Tabela turma
             String sqlTurmaTable = "CREATE TABLE IF NOT EXISTS turma (" +
                     "nome TEXT PRIMARY KEY," +
                     "quantidade INTEGER NOT NULL" +
                     ");";
 
-
-            String sqlTurmaProfessorTable = "CREATE TABLE IF NOT EXISTS turma_professor (" +
-                    "id_professor INTEGER NOT NULL," +
-                    "nome_turma TEXT NOT NULL," +
-                    "PRIMARY KEY (id_professor, nome_turma)," +
-                    "FOREIGN KEY (id_professor) REFERENCES professor(id_user) ON DELETE CASCADE," +
-                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE" +
-                    ");";
-
-
-            String sqlAlunoTables = "CREATE TABLE IF NOT EXISTS aluno (" +
-                    "id_user INTEGER PRIMARY KEY," +
-                    "ano_escolar TEXT NOT NULL," +
-                    "FOREIGN KEY (id_user) REFERENCES user(id)" +
-                    ");";
-
-
-            String sqlAlunoTurmaTable = "CREATE TABLE IF NOT EXISTS aluno_turma (" +
-                    "id_user INTEGER NOT NULL," +
-                    "nome_turma TEXT NOT NULL," +
-                    "PRIMARY KEY (id_user, nome_turma)," +
-                    "FOREIGN KEY (id_user) REFERENCES aluno(id_user) ON DELETE CASCADE," +
-                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE" +
-                    ");";
-
-
-            String sqlEmocoesTables = "CREATE TABLE IF NOT EXISTS emocao (" +
+            // Tabela aluno
+            String sqlAlunoTable = "CREATE TABLE IF NOT EXISTS aluno (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "id_user INTEGER NOT NULL," +
+                    "nome TEXT NOT NULL," +
+                    "email TEXT NOT NULL UNIQUE," +
+                    "senha TEXT NOT NULL," +
+                    "idade INTEGER NOT NULL," +
+                    "ano_escolar TEXT NOT NULL," +
+                    "nome_turma TEXT NOT NULL," +
+                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE SET NULL ON UPDATE CASCADE" +
+                    ");";
+
+            // Tabela professor
+            String sqlProfessorTable = "CREATE TABLE IF NOT EXISTS professor (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "nome TEXT NOT NULL," +
+                    "email TEXT NOT NULL UNIQUE," +
+                    "senha TEXT NOT NULL," +
+                    "idade INTEGER NOT NULL," +
+                    "especialidade TEXT NOT NULL" +
+                    ");";
+
+            // Tabela psicologo
+            String sqlPsicologoTable = "CREATE TABLE IF NOT EXISTS psicologo (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "nome TEXT NOT NULL," +
+                    "email TEXT NOT NULL UNIQUE," +
+                    "senha TEXT NOT NULL," +
+                    "idade INTEGER NOT NULL," +
+                    "identificacao TEXT NOT NULL" +
+                    ");";
+
+            // Tabela emoção
+            String sqlEmocaoTable = "CREATE TABLE IF NOT EXISTS emocao (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "id_aluno INTEGER NOT NULL," +
                     "data TEXT NOT NULL," +
                     "descricao TEXT NOT NULL," +
                     "nivel INTEGER NOT NULL," +
-                    "FOREIGN KEY (id_user) REFERENCES aluno(id_user) ON DELETE CASCADE ON UPDATE CASCADE" +
+                    "FOREIGN KEY (id_aluno) REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";
 
-
-            String sqlDesempenhoTable = "CREATE TABLE IF NOT EXISTS desempenho (" +
-                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    "id_user INTEGER NOT NULL," +
-                    "materia TEXT NOT NULL," +
-                    "periodo_atual TEXT NOT NULL," +
-                    "nota REAL NOT NULL," +
-                    "observacao TEXT NOT NULL," +
-                    "data TEXT NOT NULL," +
-                    "FOREIGN KEY (id_user) REFERENCES aluno(id_user) ON DELETE CASCADE ON UPDATE CASCADE" +
+            // Tabela associação professor <-> turma
+            String sqlTurmaProfessorTable = "CREATE TABLE IF NOT EXISTS turma_professor (" +
+                    "nome_turma TEXT NOT NULL," +
+                    "id_professor INTEGER NOT NULL," +
+                    "PRIMARY KEY (nome_turma, id_professor)," +
+                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE," +
+                    "FOREIGN KEY (id_professor) REFERENCES professor(id) ON DELETE CASCADE" +
                     ");";
 
+            String sqlTurmaPsicologoTable = " CREATE TABLE IF NOT EXISTS turma_psicologo ("+
+                    "nome_turma TEXT NOT NULL,"+
+                    "id_psicologo INTEGER NOT NULL,"+
+                    "PRIMARY KEY (nome_turma, id_psicologo),"+
+                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE,"+
+                    "FOREIGN KEY (id_psicologo) REFERENCES psicologo(id) ON DELETE CASCADE"+
+            ");";
 
-            statement.execute(sqlCreateTable);
-            statement.execute(sqlPsicologoTables);
-            statement.execute(sqlProfessorTables);
+            // Executa todas as criações
             statement.execute(sqlTurmaTable);
+            statement.execute(sqlAlunoTable);
+            statement.execute(sqlProfessorTable);
+            statement.execute(sqlPsicologoTable);
+            statement.execute(sqlEmocaoTable);
             statement.execute(sqlTurmaProfessorTable);
-            statement.execute(sqlAlunoTables);
-            statement.execute(sqlAlunoTurmaTable);
-            statement.execute(sqlEmocoesTables);
-            statement.execute(sqlDesempenhoTable);
+            statement.execute(sqlTurmaPsicologoTable);
 
             if (bancoNovo) {
-                System.out.println("Banco criado");
+                System.out.println("Banco criado com nova estrutura.");
             } else {
-                System.out.println("Banco já existente acessado");
+                System.out.println("Banco já existente acessado com nova estrutura.");
             }
 
         } catch (SQLException e) {

@@ -12,25 +12,41 @@ import java.io.IOException;
 public class LoginController {
 
     @FXML
-    TextField textNome;
+    TextField textEmail;
     @FXML
     PasswordField textSenha;
 
 
-    private boolean validarLogin(){
-
-        String email = textNome.getText();
+    private boolean validarLogin() {
+        String email = textEmail.getText();
         String senha = textSenha.getText();
 
-        if(email.isEmpty() || senha.isEmpty()){
+        // Verifica se algum campo está vazio
+        if (email.isEmpty() || senha.isEmpty()) {
             Alert alerta = new Alert(Alert.AlertType.WARNING);
             alerta.setHeaderText(null);
-            alerta.setContentText("Os campos devem ser preenchidos");
+            alerta.setContentText("Todos os campos devem ser preenchidos.");
             alerta.showAndWait();
-
             return false;
         }
 
+        // Verifica formato básico do e-mail
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setHeaderText(null);
+            alerta.setContentText("Digite um e-mail válido.");
+            alerta.showAndWait();
+            return false;
+        }
+
+        // Verifica se a senha tem pelo menos 4 caracteres
+        if (senha.length() < 4) {
+            Alert alerta = new Alert(Alert.AlertType.WARNING);
+            alerta.setHeaderText(null);
+            alerta.setContentText("A senha deve ter pelo menos 4 caracteres.");
+            alerta.showAndWait();
+            return false;
+        }
         // Consulta ao banco de dados
 
 //        String sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
@@ -61,8 +77,12 @@ public class LoginController {
 //            alerta.showAndWait();
 //            return false;
 //        }
+
         return true;
     }
+
+
+
 
     @FXML
     protected void voltarInicio(ActionEvent event){
@@ -75,12 +95,8 @@ public class LoginController {
     }
 
     @FXML
-    protected void irParaHome(ActionEvent event){
-        try{
-            if(validarLogin())
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    protected void irParaHome(ActionEvent event) throws IOException{
+        if(validarLogin())
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
     }
 }

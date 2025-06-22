@@ -2,67 +2,67 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Aluno extends Usuario {
+public class Aluno {
+    private int id;
+    private String nome;
+    private String email;
+    private String senha;
+    private int idade;
     private String anoEscolar;
-    private String turma;
+    private String nomeTurma;
+
     private ArrayList<StatusEmocional> registrosEmocionais = new ArrayList<>();
-    private ArrayList<DesempenhoAluno> desempenho = new ArrayList<>();
 
-    public Aluno(UserType tipo, String email, String name, int id, int age, String anoEscolar, String turma, ArrayList<StatusEmocional> registrosEmocionais, ArrayList<DesempenhoAluno> desempenho) {
-        super(tipo, email, name, id, age);
-        this.anoEscolar = anoEscolar;
-        this.turma = turma;
+    public Aluno() {}
+
+    public Aluno( String nome, int id,String nomeTurma,
+                 String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
         this.registrosEmocionais = registrosEmocionais;
-        this.desempenho = desempenho;
-    }
-
-    public Aluno(String email, String name, int id, String password, String anoEscolar, String turma, ArrayList<StatusEmocional> registrosEmocionais, ArrayList<DesempenhoAluno> desempenho) {
-        super(email, name, id, password);
+        this.nomeTurma = nomeTurma;
         this.anoEscolar = anoEscolar;
-        this.turma = turma;
+        this.idade = idade;
+        this.senha = senha;
+        this.email = email;
+        this.nome = nome;
+        this.id = id;
+    }
+    public Aluno( String nome,String nomeTurma,
+                  String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
         this.registrosEmocionais = registrosEmocionais;
-        this.desempenho = desempenho;
-    }
-
-    public Aluno(String email, String name, int id, String password, String anoEscolar, String turma) {
-        super(email,name,id,password);
+        this.nomeTurma = nomeTurma;
         this.anoEscolar = anoEscolar;
-        this.turma = turma;
+        this.idade = idade;
+        this.senha = senha;
+        this.email = email;
+        this.nome = nome;
     }
 
-    public String getAnoEscolar() {
-        return anoEscolar;
+    // Getters e Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
+
+    public int getIdade() { return idade; }
+    public void setIdade(int idade) { this.idade = idade; }
+
+    public String getAnoEscolar() { return anoEscolar; }
+
+    public String getNomeTurma() {
+        return nomeTurma;
     }
 
-    public void setAnoEscolar(String anoEscolar) {
-        this.anoEscolar = anoEscolar;
+    public void setNomeTurma(String nomeTurma) {
+        this.nomeTurma = nomeTurma;
     }
 
-    public String getTurma() {
-        return turma;
-    }
+    public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar;}
 
-    public void setTurma(String turma) {
-        this.turma = turma;
-    }
-
-    public ArrayList<StatusEmocional> getRegistrosEmocionais() {
-        return registrosEmocionais;
-    }
-
-    public void setRegistrosEmocionais(ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-    }
-
-    public ArrayList<DesempenhoAluno> getDesempenho() {
-        return desempenho;
-    }
-
-    public void setDesempenho(ArrayList<DesempenhoAluno> desempenho) {
-        this.desempenho = desempenho;
-    }
-
-    public void addRegistroEmocional(StatusEmocional registroNovo){
-        this.registrosEmocionais.add(registroNovo);
-    }
 }

@@ -28,4 +28,9 @@ public class PaginaInicialController {
     public void RegistrarSentimentoScreen(ActionEvent event) throws IOException{
         ChangeScreen.setScreen(event, "/com/project/project_healtheducation/RegistrarEmocaoAluno.fxml");
     }
+
+    @FXML
+    protected void btnSairApp(){
+        System.exit(1);
+    }
 }

@@ -1,36 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@com/project/project_healtheducation/style/HomeAluno.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
-
-    <children>
-        <VBox alignment="CENTER" spacing="20" styleClass="formContainer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-                  <!-- Saudação -->
-            <Label style="-fx-font-size: 19px; -fx-font-weight: bold;" text="Olá, aluno! Bem-vindo ao seu espaço de bem-estar" />
-         <Label text="Aqui você tem liberdade para se expressar!" />
-         <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+<BorderPane fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.home.HomeAlunoController">
+    <top>
+        <AnchorPane fx:id="menu_bar" prefHeight="48.0" prefWidth="1220.0" style="-fx-background-color: #3f72d9;" styleClass="menu_bar">
             <children>
-               <VBox alignment="CENTER" spacing="16" >
-                  <children>
-                         <Button layoutX="243.0" layoutY="44.0" onAction="#RegistrarSentimentoScreen" styleClass="botaoPrincipal" text="Registrar Sentimento" />
-                         <Button layoutX="183.0" layoutY="88.0" styleClass="botaoPrincipal" text="Ver calendário das suas emoções" />
-                         <Button layoutX="209.0" layoutY="154.0" styleClass="botaoPrincipal" text="Ver contato de psicólogos" />
-                  </children>
-               </VBox>
+                <HBox alignment="TOP_RIGHT" spacing="20" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
+                    <JFXButton onAction="#registrarEmocoesScreen" prefHeight="31.0" prefWidth="114.0" style="-fx-background-color: #4ab3f0; -fx-cursor: hand; -fx-text-fill: #000000;" text="Registrar Emoções" />
+                </HBox>
             </children>
-         </FlowPane>
+        </AnchorPane>
+    </top>
+    <left>
+        <AnchorPane fx:id="side_bar" prefHeight="690.0" prefWidth="265.0" styleClass="side_bar" stylesheets="@style/style.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox layoutX="75.0" prefHeight="690.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Perfil" />
+                        <JFXButton onAction="#btnTelaInicial" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
+                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Configuraçoes" />
+                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Sair" />
+                    </children>
+                </VBox>
+            </children></AnchorPane>
 
-            <!-- Acesso rápido -->
-            <HBox alignment="CENTER" spacing="20" />
+    </left>
+    <center>
+        <AnchorPane fx:id="main_anchorPane" style="-fx-background-color: #84f0ea;" styleClass="main_anchorPane" BorderPane.alignment="CENTER">
+            <children>
 
-            <VBox alignment="TOP_LEFT" spacing="10" />
+                <!-- Área amarela (humorEmoji) fixa no topo -->
+                <AnchorPane fx:id="humorEmoji_anchorPane" prefHeight="100.0" style="-fx-background-color: yellow;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label layoutX="282.0" layoutY="36.0" text="Olá, [Nome do Aluno]! Como você se sente hoje?">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
 
-            <!-- Espaço final (opcional) -->
-            <Label style="-fx-font-size: 14px; -fx-text-fill: #555;" text="Lembre-se: você não está sozinho(a). Busque ajuda!" wrapText="true" />
+                <!-- Área azul (gráfico) ocupa o restante abaixo -->
+                <AnchorPane fx:id="grafici_anchorPane" style="-fx-background-color: #3f72d9;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                    <children>
+                        <LineChart fx:id="chartEmocoes" title="Histórico de Emoções" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                            <xAxis>
+                                <CategoryAxis label="Data" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Sentimento (0-10)" />
+                            </yAxis>
+                        </LineChart>
+                    </children>
+                </AnchorPane>
 
-        </VBox>
-    </children>
-</AnchorPane>
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>
