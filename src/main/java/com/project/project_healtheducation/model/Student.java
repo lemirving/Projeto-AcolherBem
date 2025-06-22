@@ -1,15 +1,18 @@
 package com.project.project_healtheducation.model;
 
+import com.project.project_healtheducation.manager.EmotionalStatusManager;
+import com.project.project_healtheducation.manager.StudentPerformanceManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends User{
+public class Student extends Usuario{
     private String anoEscolar;
     private String turma;
-    private ArrayList<EmotionalStatus> registrosEmocionais = new ArrayList<>();
-    private ArrayList<StudentPerformance> desempenho = new ArrayList<>();
+    private ArrayList<EmotionalStatusManager> registrosEmocionais = new ArrayList<>();
+    private ArrayList<StudentPerformanceManager> desempenho = new ArrayList<>();
 
-    public Student(UserType tipo, String email, String name, String id, int age, String anoEscolar, String turma, ArrayList<EmotionalStatus> registrosEmocionais, ArrayList<StudentPerformance> desempenho) {
+    public Student(UserType tipo, String email, String name, int id, int age, String anoEscolar, String turma, ArrayList<EmotionalStatusManager> registrosEmocionais, ArrayList<StudentPerformanceManager> desempenho) {
         super(tipo, email, name, id, age);
         this.anoEscolar = anoEscolar;
         this.turma = turma;
@@ -17,7 +20,7 @@ public class Student extends User{
         this.desempenho = desempenho;
     }
 
-    public Student(UserType tipo, String email, String name, String id, String password, int age, String anoEscolar, String turma, ArrayList<EmotionalStatus> registrosEmocionais, ArrayList<StudentPerformance> desempenho) {
+    public Student(UserType tipo, String email, String name, int id, String password, int age, String anoEscolar, String turma, ArrayList<EmotionalStatusManager> registrosEmocionais, ArrayList<StudentPerformanceManager> desempenho) {
         super(tipo, email, name, id, password, age);
         this.anoEscolar = anoEscolar;
         this.turma = turma;
@@ -33,23 +36,23 @@ public class Student extends User{
         return turma;
     }
 
-    public ArrayList<EmotionalStatus> getRegistrosEmocionais() {
+    public ArrayList<EmotionalStatusManager> getRegistrosEmocionais() {
         return registrosEmocionais;
     }
 
-    public void setRegistrosEmocionais(ArrayList<EmotionalStatus> registrosEmocionais) {
+    public void setRegistrosEmocionais(ArrayList<EmotionalStatusManager> registrosEmocionais) {
         this.registrosEmocionais = registrosEmocionais;
     }
 
-    public ArrayList<StudentPerformance> getDesempenho() {
+    public ArrayList<StudentPerformanceManager> getDesempenho() {
         return desempenho;
     }
 
-    public void setDesempenho(ArrayList<StudentPerformance> desempenho) {
+    public void setDesempenho(ArrayList<StudentPerformanceManager> desempenho) {
         this.desempenho = desempenho;
     }
 
-    public void addRegistroEmocional(EmotionalStatus registroNovo){
+    public void addRegistroEmocional(EmotionalStatusManager registroNovo){
         this.registrosEmocionais.add(registroNovo);
     }
 }
