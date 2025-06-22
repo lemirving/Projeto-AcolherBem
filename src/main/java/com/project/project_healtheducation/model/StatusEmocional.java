@@ -2,12 +2,12 @@ package com.project.project_healtheducation.model;
 
 import java.time.LocalDate;
 
-public class EmotionalStatus {
+public class StatusEmocional {
     private LocalDate data;
     private String descricao;
     private int nivel;
 
-    public EmotionalStatus(LocalDate data, String descricao, int nivel) {
+    public StatusEmocional(LocalDate data, String descricao, int nivel) {
         this.data = data;
         this.descricao = descricao;
         this.nivel = nivel;

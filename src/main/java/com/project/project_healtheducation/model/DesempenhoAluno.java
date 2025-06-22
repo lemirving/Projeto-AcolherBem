@@ -2,7 +2,7 @@ package com.project.project_healtheducation.model;
 
 import java.time.LocalDate;
 
-public class StudentPerformance {
+public class DesempenhoAluno {
 
     private String materia;
     private String periodoAtual;
@@ -10,7 +10,7 @@ public class StudentPerformance {
     private String observacoes;
     private LocalDate data;
 
-    public StudentPerformance(String materia, double nota, String observacoes, LocalDate data, String periodoAtual) {
+    public DesempenhoAluno(String materia, double nota, String observacoes, LocalDate data, String periodoAtual) {
         this.materia = materia;
         this.nota = nota;
         this.observacoes = observacoes;
