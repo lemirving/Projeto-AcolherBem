@@ -10,32 +10,11 @@ public class Aluno {
     private int idade;
     private String anoEscolar;
     private String nomeTurma;
+    private String tipo;
 
     private ArrayList<StatusEmocional> registrosEmocionais = new ArrayList<>();
 
     public Aluno() {}
-
-    public Aluno( String nome, int id,String nomeTurma,
-                 String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-        this.nomeTurma = nomeTurma;
-        this.anoEscolar = anoEscolar;
-        this.idade = idade;
-        this.senha = senha;
-        this.email = email;
-        this.nome = nome;
-        this.id = id;
-    }
-    public Aluno( String nome,String nomeTurma,
-                  String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-        this.nomeTurma = nomeTurma;
-        this.anoEscolar = anoEscolar;
-        this.idade = idade;
-        this.senha = senha;
-        this.email = email;
-        this.nome = nome;
-    }
 
     // Getters e Setters
     public int getId() { return id; }
@@ -54,15 +33,16 @@ public class Aluno {
     public void setIdade(int idade) { this.idade = idade; }
 
     public String getAnoEscolar() { return anoEscolar; }
+    public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar; }
 
-    public String getNomeTurma() {
-        return nomeTurma;
+    public String getNomeTurma() { return nomeTurma; }
+    public void setNomeTurma(String nomeTurma) { this.nomeTurma = nomeTurma; }
+
+    public ArrayList<StatusEmocional> getRegistrosEmocionais() { return registrosEmocionais; }
+    public void setRegistrosEmocionais(ArrayList<StatusEmocional> registrosEmocionais) {
+        this.registrosEmocionais = registrosEmocionais;
     }
 
-    public void setNomeTurma(String nomeTurma) {
-        this.nomeTurma = nomeTurma;
-    }
-
-    public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar;}
-
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 }

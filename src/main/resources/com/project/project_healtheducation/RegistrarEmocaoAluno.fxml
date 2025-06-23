@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.RegistroEmocoesController">
+<BorderPane prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.RegistroEmocoesController">
 
     <!-- TOPO -->
     <top>
         <AnchorPane fx:id="menu_bar" prefHeight="114.0" styleClass="menu_bar" BorderPane.alignment="CENTER">
             <children>
-                <Pane fx:id="pane_menuBar" prefHeight="200.0" prefWidth="200.0" styleClass="pane_menuBar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+                <Pane fx:id="pane_menuBar" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #79dcf2;" styleClass="pane_menuBar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                     <children>
                         <Pane fx:id="pane_menuBar1" layoutX="1063.0" layoutY="11.0" prefHeight="43.0" prefWidth="143.0" styleClass="grafici_anchorPane" />
-                        <JFXButton layoutX="95.0" layoutY="15.0" onAction="#voltar" prefHeight="34.0" prefWidth="75.0" text="Voltar" />
+                        <JFXButton layoutX="95.0" layoutY="15.0" onAction="#voltar" prefHeight="34.0" prefWidth="75.0" style="-fx-background-color: #68d5d9;" text="Voltar" textFill="#080505" />
                     </children>
                 </Pane>
             </children>
@@ -32,11 +25,11 @@
     <left>
         <AnchorPane fx:id="side_bar" prefWidth="265.0" styleClass="side_bar" BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="CENTER" prefHeight="690.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <VBox alignment="CENTER" prefHeight="690.0" prefWidth="265.0" style="-fx-background-color: #0e77e8;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Perfil" />
-                        <JFXButton onAction="#btnTelaInicial" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
-                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Configurações" />
+                        <JFXButton prefHeight="80.0" prefWidth="265.0" style="-fx-background-color: #2685eb;" text="Perfil" />
+                        <JFXButton onAction="#btnTelaInicial" prefHeight="80.0" prefWidth="265.0" style="-fx-background-color: #2685eb;" text="Tela Inicial" />
+                        <JFXButton prefHeight="80.0" prefWidth="265.0" style="-fx-background-color: #2685eb;" text="Configurações" />
                     </children>
                 </VBox>
             </children>
@@ -45,7 +38,7 @@
 
     <!-- CENTRO: Formulário -->
     <center>
-        <AnchorPane fx:id="main_anchorPane" prefHeight="682.0" prefWidth="954.0" styleClass="main_anchorPane" BorderPane.alignment="CENTER">
+        <AnchorPane fx:id="main_anchorPane" prefHeight="682.0" prefWidth="954.0" style="-fx-background-color: #79dcf2;" styleClass="main_anchorPane" BorderPane.alignment="CENTER">
             <children>
                 <VBox fx:id="formContainer" alignment="CENTER" layoutX="50.0" layoutY="50.0" prefWidth="800.0" spacing="20" />
 
@@ -61,17 +54,17 @@
 
                      <Button onAction="#registrarSentimento" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" styleClass="btnRegistrar" text="Registrar Sentimento" />
                  </VBox>
-                 <Label layoutX="335.0" layoutY="216.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Como você está se sentindo hoje?" textFill="#84c456" />
-            <Label layoutX="394.0" layoutY="50.0" prefHeight="33.0" prefWidth="177.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Registro de emoções" textFill="#4791c9">
+                 <Label layoutX="335.0" layoutY="216.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Como você está se sentindo hoje?" textFill="#373a5b" />
+            <Label layoutX="376.0" layoutY="33.0" prefHeight="34.0" prefWidth="214.0" style="-fx-font-size: 20px; -fx-font-weight: bold" text="Registro de emoções" textFill="#4ad461">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font></Label>
-            <Label layoutX="387.0" layoutY="135.0" text="Sinta-se livre para se expressar!">
+            <Label layoutX="393.0" layoutY="92.0" text="Sinta-se livre para se expressar!">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
-            <JFXTextArea layoutX="217.0" layoutY="485.0" prefHeight="90.0" prefWidth="532.0" />
+            <JFXTextArea layoutX="217.0" layoutY="485.0" prefHeight="90.0" prefWidth="532.0" style="-fx-background-color: #ffffff; -fx-background-radius: 3;" />
             <JFXButton layoutX="432.0" layoutY="588.0" text="Enviar o texto" />
             <Label layoutX="259.0" layoutY="444.0" text="Caso queira se aprofundar nos seus sentimentos, escreva no campo abaixo(opcional)">
                <font>
