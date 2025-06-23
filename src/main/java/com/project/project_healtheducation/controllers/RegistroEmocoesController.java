@@ -63,7 +63,7 @@ public class RegistroEmocoesController {
     @FXML
     protected void voltar(ActionEvent event){
         try{
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
 
         }catch (IOException e){
             e.printStackTrace();

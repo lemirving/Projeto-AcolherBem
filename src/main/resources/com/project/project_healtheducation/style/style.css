@@ -56,3 +56,20 @@
 .hamburgerBtn_pane {
     -fx-background-color: blue;
 }
+.test-border {
+    -fx-border-color: red;
+    -fx-border-width: 3px;
+}
+.label-descricao {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.descricao-textarea {
+    -fx-font-size: 13px;
+    -fx-padding: 8px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-background-color: white;
+}

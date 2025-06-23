@@ -67,7 +67,7 @@ public class LoginController {
     @FXML
     protected void voltarInicio(ActionEvent event){
         try{
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
 
         }catch (IOException e){
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class LoginController {
     protected void irParaHome(ActionEvent event){
         try{
             if(validarLogin())
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
         }catch (IOException e){
             e.printStackTrace();
         }
