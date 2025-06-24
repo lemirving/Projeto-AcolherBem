@@ -1,11 +1,47 @@
-#cadastroContainer {
-    -fx-background-color: linear-gradient(to bottom, #b8dffc,rgb(235, 234, 197));
-
-}
-#text{
-    -fx-font-size: 20px;
+.formContainer {
+    -fx-spacing: 10;
+    -fx-pref-width: 100%;
+    -fx-padding: 10 0 0 0;
 }
 
-.textRadio{
-    -fx-font-size: 15px;
+.textRadio {
+    -fx-font-size: 14px;
+    -fx-text-fill: #444;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 0;
+}
+
+.text-field, .password-field {
+    -fx-pref-width: 100%;
+    -fx-background-radius: 8;
+    -fx-padding: 8;
+    -fx-background-color: #ffffffdd;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 8;
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-padding: 8 20;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.btnCadastar {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.btnCadastar:hover {
+    -fx-background-color: #45a049;
+}
+
+.btnVoltar {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-underline: true;
+    -fx-font-size: 13px;
 }

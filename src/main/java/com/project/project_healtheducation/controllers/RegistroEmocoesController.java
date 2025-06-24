@@ -69,4 +69,9 @@ public class RegistroEmocoesController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    protected void btnTelaInicial(ActionEvent event) throws IOException{
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
+    }
 }

@@ -3,6 +3,38 @@ git.root {
     -fx-font-family: sans-serif;
 }
 
+.btnHome {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 5, 0.5, 0, 2);
+}
+
+.btnHome:hover {
+    -fx-background-color: #43A047;
+}
+
+.btnSair {
+    -fx-background-color: #e53935;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.btnSair:hover {
+    -fx-background-color: #c62828;
+}
+
+.root_pane {
+    -fx-background-color: linear-gradient(to bottom, #80b8e0, #d1ecff);
+}
+
+
 .label {
     -fx-text-fill: #3B3B98; /* Azul profundo */
 }
