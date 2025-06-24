@@ -1,7 +1,9 @@
 package com.project.project_healtheducation.controllers;
 
 import com.project.project_healtheducation.dao.AlunoDAO;
+import com.project.project_healtheducation.dao.ProfessorDAO;
 import com.project.project_healtheducation.model.Aluno;
+import com.project.project_healtheducation.model.Professor;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,12 +32,11 @@ public class CadastroController extends AlunoDAO {
         radioPsicologo.setToggleGroup(groupRadios);
     }
 
-    private Aluno obterDadosFormulario() {
+    private Aluno obterDadosFormularioAluno() {
         Aluno aluno = new Aluno();
         aluno.setNome(textNome.getText());
         aluno.setEmail(textEmail.getText());
         aluno.setSenha(textSenha.getText());
-
 
         RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
         if (selecionado != null) {
@@ -43,6 +44,20 @@ public class CadastroController extends AlunoDAO {
         }
 
         return aluno;
+    }
+
+    private Professor obterDadosFormularioProfessor() {
+        Professor professor = new Professor();
+        professor.setNome(textNome.getText());
+        professor.setEmail(textEmail.getText());
+        professor.setSenha(textSenha.getText());
+
+        RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
+        if (selecionado != null) {
+            professor.setTipo(selecionado.getText());
+        }
+
+        return professor;
     }
 
     private boolean validarCadastro() {
@@ -88,40 +103,45 @@ public class CadastroController extends AlunoDAO {
     }
 
     private boolean inserirUsuario() {
-        if (validarCadastro()) {
-            Aluno aluno = obterDadosFormulario();
+        if (!validarCadastro()) return false;
 
-            if (!"Aluno".equalsIgnoreCase(aluno.getTipo())) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setContentText("Este formulário permite apenas o cadastro de Alunos.");
-                alert.showAndWait();
+        String tipo = ((RadioButton) groupRadios.getSelectedToggle()).getText();
+
+        if (tipo.equalsIgnoreCase("Aluno")) {
+            Aluno aluno = obterDadosFormularioAluno();
+            if (buscarPorEmail(aluno.getEmail()) != null) {
+                mostrarAlerta("Este e-mail já está cadastrado.");
                 return false;
             }
+            return inserirAluno(aluno);
 
-            if(buscarPorEmail(aluno.getEmail()) != null){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setContentText("Este email já foi cadastrado!");
-                alert.showAndWait();
+        } else if (tipo.equalsIgnoreCase("Professor")) {
+            Professor professor = obterDadosFormularioProfessor();
+            ProfessorDAO dao = new ProfessorDAO();
+
+            if (dao.buscarProfessorPorEmail(professor.getEmail()) != null) {
+                mostrarAlerta("Este e-mail já está cadastrado.");
                 return false;
             }
+            return dao.inserirProfessor(professor);
 
-            boolean sucesso = inserirAluno(aluno);
-            if (sucesso) return true;
+        } else {
+            mostrarAlerta("Cadastro para psicólogo ainda não implementado.");
+            return false;
         }
+    }
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+    private void mostrarAlerta(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
-        alert.setContentText("Erro ao cadastrar usuário.");
+        alert.setContentText(msg);
         alert.showAndWait();
-        return false;
     }
 
     @FXML
     protected void voltarInicio(ActionEvent event) {
         try {
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

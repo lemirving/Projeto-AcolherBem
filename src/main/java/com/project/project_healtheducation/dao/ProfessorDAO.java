@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ProfessorDAO {
 
     public boolean inserirProfessor(Professor professor) {
-        String sql = "INSERT INTO professor (nome, email, senha, idade, especialidade) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO professor (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -21,8 +21,7 @@ public class ProfessorDAO {
             stmt.setString(1, professor.getNome());
             stmt.setString(2, professor.getEmail());
             stmt.setString(3, senhaCriptografada);
-            stmt.setInt(4, professor.getIdade());
-            stmt.setString(5, professor.getEspecialidade());
+            stmt.setString(4, professor.getTipo());
 
             int linhasAfetadas = stmt.executeUpdate();
 

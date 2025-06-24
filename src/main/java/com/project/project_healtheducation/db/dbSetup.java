@@ -43,8 +43,9 @@ public class dbSetup {
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
-                    "idade INTEGER NOT NULL," +
-                    "especialidade TEXT NOT NULL" +
+                    "tipo TEXT NOT NULL" +
+//                    "idade INTEGER NOT NULL," +
+//                    "especialidade TEXT NOT NULL" +
                     ");";
 
             // Tabela psicologo

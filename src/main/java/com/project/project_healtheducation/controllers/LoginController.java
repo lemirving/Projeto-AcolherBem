@@ -57,7 +57,6 @@ public class LoginController {
         return true;
     }
 
-    // Método auxiliar para reduzir repetição
     private void mostrarAlerta(String mensagem) {
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
@@ -68,8 +67,7 @@ public class LoginController {
 
     @FXML
     protected void voltarInicio(ActionEvent event) throws IOException{
-        if(validarLogin()   )
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
 
     }
 
