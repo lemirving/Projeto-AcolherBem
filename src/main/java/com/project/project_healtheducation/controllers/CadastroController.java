@@ -77,22 +77,14 @@ public class CadastroController {
     }
 
     @FXML
-    protected void voltarInicio(ActionEvent event) {
-        try{
+    protected void voltarInicio(ActionEvent event) throws IOException {
             ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+
     }
 
     @FXML
-    protected void irParaHome(ActionEvent event) {
-        try{
-            if(validarCadastro())
+    protected void irParaHome(ActionEvent event) throws IOException{
                 ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
     }
 
 }

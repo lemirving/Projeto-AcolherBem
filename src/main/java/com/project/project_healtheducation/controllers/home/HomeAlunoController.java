@@ -10,16 +10,16 @@ public class HomeAlunoController {
 
     @FXML
     protected void btnTelaInicial(ActionEvent event) throws IOException {
-        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
     }
     @FXML
     protected void registrarEmocoesScreen(ActionEvent event) throws IOException{
-        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/RegistrarEmocaoAluno.fxml");
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
     }
 
     @FXML
     protected void btnVoltarPaginaInicio(ActionEvent event) throws IOException{
-        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
     }
 
 }

@@ -1,4 +1,4 @@
-package com.project.project_healtheducation.controllers;
+package com.project.project_healtheducation.controllers.home;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class homeProfessorController {
+public class HomeProfessorController {
 
     @FXML
     private JFXButton btnPerfil;
