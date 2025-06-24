@@ -73,9 +73,9 @@ public class homeProfessorController {
     @FXML
     private void handleListaTurmas(ActionEvent event){
         try {
-            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/telaListaTurmas.fxml");
+            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/janelaTurma.fxml");
             if (resource == null) {
-                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/telaListaTurmas.fxml");
+                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/janelaTurma.fxml");
             }
             FXMLLoader loader = new FXMLLoader(resource);
             AnchorPane tela = loader.load();
