@@ -28,9 +28,9 @@ public class MainApplication extends Application {
 //        AlunoDAO dao = new AlunoDAO();
 //        dao.inserirAluno(aluno);
 //
-        Professor prof = new Professor("Jose","jose@gmail","12345",40,"Ed. Física",new ArrayList<>());
-        ProfessorDAO daoProf = new ProfessorDAO();
-        daoProf.inserirProfessor(prof);
+//        Professor prof = new Professor("Jose","jose@gmail.com","12345",40,"Ed. Física",new ArrayList<>());
+//        ProfessorDAO daoProf = new ProfessorDAO();
+//        daoProf.inserirProfessor(prof);
 //
 //        Psicologo psicologo = new Psicologo("Maria","maria@gmail","1234",28,"7662uva",new ArrayList<>());
 //        PsicologoDAO daoPsico = new PsicologoDAO();

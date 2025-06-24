@@ -8,6 +8,7 @@ public class Aluno {
     private String email;
     private String senha;
     private int idade;
+    private String tipo;
     private String anoEscolar;
     private String nomeTurma;
 
@@ -65,4 +66,11 @@ public class Aluno {
 
     public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar;}
 
+    public String setTipo(String tipo) {
+        return this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
 }

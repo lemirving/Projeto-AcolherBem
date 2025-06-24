@@ -52,6 +52,8 @@ public class LoginController {
             return false;
         }
 
+        System.out.println(sucesso);
+
         return true;
     }
 
@@ -67,13 +69,13 @@ public class LoginController {
     @FXML
     protected void voltarInicio(ActionEvent event) throws IOException{
         if(validarLogin()   )
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
 
     }
 
     @FXML
     protected void irParaHome(ActionEvent event) throws IOException{
         if(validarLogin())
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/HomeAluno.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
     }
 }
