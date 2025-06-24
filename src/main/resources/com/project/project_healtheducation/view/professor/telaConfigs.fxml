@@ -8,7 +8,9 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="TelaProfessores"
+            fx:controller="com.project.project_healtheducation.controllers.TelaConfigsController"
             prefHeight="400.0" prefWidth="600.0">
+
+    <Label text="Tela e configuração"/>
 
 </AnchorPane>

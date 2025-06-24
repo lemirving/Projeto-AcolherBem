@@ -10,7 +10,7 @@ public class PaginaInicialController {
 
     @FXML protected void loginScreen(ActionEvent event) {
         try{
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/login.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/login.fxml");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -18,7 +18,7 @@ public class PaginaInicialController {
 
     @FXML protected void cadastroScreen(ActionEvent event){
         try{
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/cadastro.fxml");
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/cadastro.fxml");
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -26,7 +26,7 @@ public class PaginaInicialController {
 
 
     public void RegistrarSentimentoScreen(ActionEvent event) throws IOException{
-        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/RegistrarEmocaoAluno.fxml");
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
     }
 
     @FXML
