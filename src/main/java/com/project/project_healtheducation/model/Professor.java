@@ -10,6 +10,7 @@ public class Professor {
     private String senha;
     private int idade;
     private String especialidade;
+    private String tipo;
     private ArrayList<Turma> turmasLecionadas = new ArrayList<>();
 
     public Professor(){
@@ -105,5 +106,9 @@ public class Professor {
 
     public void removerTurma(Turma turmaRemovida){
         this.turmasLecionadas.remove(turmaRemovida);
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 }

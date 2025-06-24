@@ -15,6 +15,8 @@ public class CadastroController extends AlunoDAO {
     @FXML private TextField textEmail;
     @FXML private PasswordField textSenha;
     @FXML private PasswordField textSenhaConfirm;
+    @FXML private Label labelAnoTurma;
+    @FXML private TextField textAnoTurma;
 
     @FXML private RadioButton radioAluno;
     @FXML private RadioButton radioProfessor;
@@ -28,6 +30,18 @@ public class CadastroController extends AlunoDAO {
         radioAluno.setToggleGroup(groupRadios);
         radioProfessor.setToggleGroup(groupRadios);
         radioPsicologo.setToggleGroup(groupRadios);
+
+        labelAnoTurma.setVisible(false);
+        textAnoTurma.setVisible(false);
+
+        groupRadios.selectedToggleProperty().addListener((obs, antigo, novo) -> {
+            if (novo != null) {
+                RadioButton selecionado = (RadioButton) novo;
+                boolean isAluno = selecionado.getText().equalsIgnoreCase("Aluno");
+                labelAnoTurma.setVisible(isAluno);
+                textAnoTurma.setVisible(isAluno);
+            }
+        });
     }
 
     private Aluno obterDadosFormulario() {
@@ -35,6 +49,7 @@ public class CadastroController extends AlunoDAO {
         aluno.setNome(textNome.getText());
         aluno.setEmail(textEmail.getText());
         aluno.setSenha(textSenha.getText());
+        aluno.setNomeTurma(textAnoTurma.getText());
 
         RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
         if (selecionado != null) {
@@ -49,11 +64,12 @@ public class CadastroController extends AlunoDAO {
         String email = textEmail.getText();
         String senha = textSenha.getText();
         String senhaConfirm = textSenhaConfirm.getText();
+        String nomeTurma = textAnoTurma.getText();
 
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
 
-        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty()) {
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty() || nomeTurma.isEmpty()) {
             alerta.setContentText("Todos os campos devem ser preenchidos.");
             alerta.showAndWait();
             return false;
@@ -90,13 +106,13 @@ public class CadastroController extends AlunoDAO {
         if (validarCadastro()) {
             Aluno aluno = obterDadosFormulario();
 
-            if (!"Aluno".equalsIgnoreCase(aluno.getTipo())) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setContentText("Este formulário permite apenas o cadastro de Alunos.");
-                alert.showAndWait();
-                return false;
-            }
+//            if (!"Aluno".equalsIgnoreCase(aluno.getTipo())) {
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setHeaderText(null);
+//                alert.setContentText("Este formulário permite apenas o cadastro de Alunos.");
+//                alert.showAndWait();
+//                return false;
+//            }
 
             boolean sucesso = inserirAluno(aluno);
 

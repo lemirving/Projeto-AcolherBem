@@ -30,9 +30,9 @@ public class dbSetup {
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
-                    "senha TEXT NOT NULL"+
+                    "senha TEXT NOT NULL,"+
 //                    "idade INTEGER NOT NULL," +
-//                    "nome_turma TEXT NOT NULL," +
+                    "nome_turma TEXT NOT NULL" +
 //                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE SET NULL ON UPDATE CASCADE" +
                     ");";
 
