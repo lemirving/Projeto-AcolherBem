@@ -41,8 +41,8 @@
 
           <!-- Botão editar -->
           <JFXButton fx:id="editarBtn" layoutX="33.0" layoutY="385.0" styleClass="botao-editar" text="Editar Perfil" />
-          <Label layoutX="40.0" layoutY="218.0" styleClass="label-descricao" text="Descrição:" />
-         <TextArea layoutX="35.0" layoutY="234.0" prefHeight="139.0" prefWidth="309.0" styleClass="descricao-textarea" />
+          <Label layoutX="40.0" layoutY="218.0" styleClass="label-emocao" text="Descrição:" />
+         <TextArea layoutX="35.0" layoutY="234.0" prefHeight="139.0" prefWidth="309.0" styleClass="emocao-textarea" />
       </children>
    </AnchorPane>
 

@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="958.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaListaTurmaController">
+<AnchorPane prefHeight="500.0" prefWidth="958.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TabelaAlunosController">
    <children>
       <HBox prefHeight="500.0" prefWidth="958.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane prefHeight="500.0" prefWidth="956.0" HBox.hgrow="SOMETIMES">
+            <ScrollPane prefHeight="500.0" prefWidth="923.0" HBox.hgrow="SOMETIMES">
                <content>
                   <GridPane prefHeight="0.0" prefWidth="0.0">
                     <columnConstraints>
@@ -20,7 +20,7 @@
                   </GridPane>
                </content>
                <padding>
-                  <Insets left="200.0" />
+                  <Insets left="1.0" />
                </padding>
             </ScrollPane>
          </children></HBox>

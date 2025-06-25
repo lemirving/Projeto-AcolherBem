@@ -46,7 +46,7 @@ public class TesteDAO {
 //        // Listar emoções do aluno
 ////        ArrayList<StatusEmocional> emocoes = emocaoDAO.listarEmocoesPorAluno(aluno.getId());
 ////        for (StatusEmocional e : emocoes) {
-////            System.out.println("Emoção: " + e.getDescricao() + " - Nível: " + e.getNivel());
+////            System.out.println("Emoção: " + e.getEmocao() + " - Nível: " + e.getNivel());
 //        }
     }
 

@@ -1,12 +1,15 @@
 package com.project.project_healtheducation;
 
+import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.db.dbSetup;
+import com.project.project_healtheducation.model.Aluno;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MainApplication extends Application {
@@ -21,10 +24,10 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-//        Aluno aluno = new Aluno("Irving", "2B", "9ano", 15, "12345", "irving@gmail.com", new ArrayList<>());
-//        AlunoDAO dao = new AlunoDAO();
-//        dao.inserirAluno(aluno);
-//
+        Aluno aluno = new Aluno("Irving","irving@gmail.com","123456",12,"2B","aluno","1002424");
+        AlunoDAO dao = new AlunoDAO();
+        dao.inserirAluno(aluno);
+
 //        Professor prof = new Professor("Jose","jose@gmail","12345",40,"Ed. Física",new ArrayList<>());
 //        ProfessorDAO daoProf = new ProfessorDAO();
 //        daoProf.inserirProfessor(prof);

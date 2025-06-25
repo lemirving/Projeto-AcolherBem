@@ -30,10 +30,10 @@ public class dbSetup {
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
-                    "senha TEXT NOT NULL"+
+                    "senha TEXT NOT NULL,"+
+                    "matricula TEXT NOT NULL,"+
 //                    "idade INTEGER NOT NULL," +
 //                    "nome_turma TEXT NOT NULL," +
-//                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE SET NULL ON UPDATE CASCADE" +
                     ");";
 
             // Tabela professor
@@ -43,7 +43,6 @@ public class dbSetup {
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
                     "idade INTEGER NOT NULL," +
-                    "especialidade TEXT NOT NULL" +
                     ");";
 
             // Tabela psicologo
@@ -53,7 +52,6 @@ public class dbSetup {
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
                     "idade INTEGER NOT NULL," +
-                    "identificacao TEXT NOT NULL" +
                     ");";
 
             // Tabela emoção
@@ -61,7 +59,7 @@ public class dbSetup {
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "id_aluno INTEGER NOT NULL," +
                     "data TEXT NOT NULL," +
-                    "descricao TEXT NOT NULL," +
+                    "emocao TEXT NOT NULL," +
                     "nivel INTEGER NOT NULL," +
                     "FOREIGN KEY (id_aluno) REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";

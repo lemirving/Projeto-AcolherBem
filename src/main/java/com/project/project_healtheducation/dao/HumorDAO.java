@@ -6,7 +6,7 @@ import com.project.project_healtheducation.model.Humor;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class StatusEmocionalDAO {
+public class HumorDAO {
 
     public boolean inserirEmocao(Humor emocao) {
         String sql = "INSERT INTO emocao (id_aluno, data, descricao, nivel) VALUES (?, ?, ?, ?)";

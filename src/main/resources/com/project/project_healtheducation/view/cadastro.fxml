@@ -10,19 +10,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-size: cover; -fx-background-color: #e4eff0; -fx-background-repeat: no-repeat;" stylesheets="@style/cadastro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
+<AnchorPane prefHeight="800.0" prefWidth="1220.0" style="-fx-background-size: cover; -fx-background-color: #e4eff0; -fx-background-repeat: no-repeat;" stylesheets="@style/cadastro.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
 
     <children>
-        <VBox fx:id="cadastroContainer" alignment="CENTER" maxWidth="500" spacing="20" style="-fx-background-color: #e3f8ff; -fx-padding: 30; -fx-background-radius: 12;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
+        <VBox fx:id="cadastroContainer" alignment="CENTER" layoutX="216.0" layoutY="50.0" maxWidth="500" prefHeight="539.0" prefWidth="368.0" spacing="20" style="-fx-background-color: #e3f8ff; -fx-padding: 30; -fx-background-radius: 12;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="100.0">
 
             <Text fx:id="text" fill="#30475e" style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Cadastre-se" />
 
-            <VBox alignment="CENTER_LEFT" spacing="10" styleClass="formContainer">
+            <VBox alignment="CENTER_LEFT" prefHeight="340.0" prefWidth="440.0" spacing="10" styleClass="formContainer">
                 <Label text="Nome:" />
                 <TextField fx:id="textNome" promptText="Digite seu nome completo" />
 
                 <Label text="Email:" />
                 <TextField fx:id="textEmail" promptText="Digite seu e-mail" />
+            <Label text="Matricula:" />
+            <TextField fx:id="textMatricula" promptText="Digite sua matrícula" />
 
                 <Label text="Senha:" />
                 <PasswordField fx:id="textSenha" promptText="Digite sua senha" />

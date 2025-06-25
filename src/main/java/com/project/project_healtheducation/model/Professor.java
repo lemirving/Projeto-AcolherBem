@@ -9,19 +9,17 @@ public class Professor {
     private String email;
     private String senha;
     private int idade;
-    private String especialidade;
     private ArrayList<Turma> turmasLecionadas = new ArrayList<>();
 
-    public Professor(){
+    public Professor(int id, String nome, String email, int idade, ArrayList<Turma> turmasLecionadas){
 
     }
 
-    public Professor(String nome, String email, String senha, int idade, String especialidade, ArrayList<Turma> turmasLecionadas) {
+    public Professor(String nome, String email, String senha, int idade,ArrayList<Turma> turmasLecionadas) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.idade = idade;
-        this.especialidade = especialidade;
         this.turmasLecionadas = turmasLecionadas;
     }
 
@@ -31,7 +29,6 @@ public class Professor {
         this.email = email;
         this.senha = senha;
         this.idade = idade;
-        this.especialidade = especialidade;
         this.turmasLecionadas = turmasLecionadas;
     }
     public Professor(int id, String nome, String email, int idade, String especialidade, ArrayList<Turma> turmasLecionadas) {
@@ -39,7 +36,6 @@ public class Professor {
         this.nome = nome;
         this.email = email;
         this.idade = idade;
-        this.especialidade = especialidade;
         this.turmasLecionadas = turmasLecionadas;
     }
 
@@ -83,17 +79,10 @@ public class Professor {
         this.idade = idade;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
-
     public void setTurmasLecionadas(ArrayList<Turma> turmasLecionadas) {
         this.turmasLecionadas = turmasLecionadas;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
-    }
 
     public ArrayList<Turma> getTurmasLecionadas() {
         return turmasLecionadas;

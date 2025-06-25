@@ -2,17 +2,17 @@ package com.project.project_healtheducation.model;
 
 import java.time.LocalDate;
 
-public class StatusEmocional {
+public class Humor {
     private int id;
     private int idAluno; //
     private LocalDate data;
-    private String emocao;
+    private String nomeHumor;
     private int nivel;
 
-    public StatusEmocional(int idAluno, LocalDate data, String descricao, int nivel) {
+    public Humor(int idAluno, LocalDate data, String humor, int nivel) {
         this.idAluno = idAluno;
         this.data = data;
-        this.emocao = descricao;
+        this.nomeHumor = humor;
         this.nivel = nivel;
     }
 
@@ -24,11 +24,11 @@ public class StatusEmocional {
         this.id = id;
     }
 
-    public StatusEmocional(int id, int idAluno, LocalDate data, String descricao, int nivel) {
+    public Humor(int id, int idAluno, LocalDate data, String descricao, int nivel) {
         this.id = id;
         this.idAluno = idAluno;
         this.data = data;
-        this.emocao = descricao;
+        this.nomeHumor = descricao;
         this.nivel = nivel;
     }
 
@@ -44,8 +44,12 @@ public class StatusEmocional {
         return data;
     }
 
-    public String getEmocao() {
-        return emocao;
+    public String getNomeHumor() {
+        return nomeHumor;
+    }
+
+    public void setNomeHumor(String nomeHumor) {
+        this.nomeHumor = nomeHumor;
     }
 
     public int getNivel() {
@@ -54,10 +58,6 @@ public class StatusEmocional {
 
     public void setData(LocalDate data) {
         this.data = data;
-    }
-
-    public void setEmocao(String emocao) {
-        this.emocao = emocao;
     }
 
     public void setNivel(int nivel) {

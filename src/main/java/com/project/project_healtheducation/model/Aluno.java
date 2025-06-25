@@ -8,13 +8,35 @@ public class Aluno {
     private String email;
     private String senha;
     private int idade;
-    private String anoEscolar;
     private String nomeTurma;
     private String tipo;
+    private String matricula;
+    private String humorAtual;
 
-    private ArrayList<StatusEmocional> registrosEmocionais = new ArrayList<>();
+    public Aluno(String nome, String email, String senha, int idade, String nomeTurma, String tipo, String matricula) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.idade = idade;
+        this.nomeTurma = nomeTurma;
+        this.tipo = tipo;
+        this.matricula = matricula;
+    }
+
+    public void setHumorAtual(String humorAtual) {
+        this.humorAtual = humorAtual;
+    }
+
+    private ArrayList<Humor> humores = new ArrayList<>();
 
     public Aluno() {}
+    public Aluno(String nome, String email, String matricula){
+        this.nome = nome;
+        this.email = email;
+        this.matricula = matricula;
+    }
+
+
 
     // Getters e Setters
     public int getId() { return id; }
@@ -32,15 +54,29 @@ public class Aluno {
     public int getIdade() { return idade; }
     public void setIdade(int idade) { this.idade = idade; }
 
-    public String getAnoEscolar() { return anoEscolar; }
-    public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar; }
 
-    public String getNomeTurma() { return nomeTurma; }
+    public String getNomeTurma() {
+        return nomeTurma;
+    }
     public void setNomeTurma(String nomeTurma) { this.nomeTurma = nomeTurma; }
 
-    public ArrayList<StatusEmocional> getRegistrosEmocionais() { return registrosEmocionais; }
-    public void setRegistrosEmocionais(ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
+    public ArrayList<Humor> getHumores() { return humores; }
+    public String getHumorAtual(){
+        if(this.humores != null && !this.humores.isEmpty()){
+            return humores.get(humores.size()-1).getNomeHumor();
+        }
+        return "Sem descrição";
+    }
+    public void setHumores(ArrayList<Humor> humores) {
+        this.humores = humores;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public String getTipo() { return tipo; }

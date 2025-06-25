@@ -22,8 +22,6 @@ public class PsicologoDAO {
             stmt.setString(2, psicologo.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setInt(4, psicologo.getIdade());
-            stmt.setString(5, psicologo.getIdentificacao());
-
             int linhasAfetadas = stmt.executeUpdate();
 
             if (linhasAfetadas > 0) {
@@ -55,9 +53,7 @@ public class PsicologoDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
-                        null, // senha não retorna por segurança
                         rs.getInt("idade"),
-                        rs.getString("identificacao"),
                         buscarTurmasDoPsicologo(id)
                 );
             }
@@ -84,7 +80,6 @@ public class PsicologoDAO {
                         rs.getString("email"),
                         rs.getString("senha"), // senha criptografada para autenticação
                         rs.getInt("idade"),
-                        rs.getString("identificacao_profissional"),
                         buscarTurmasDoPsicologo(rs.getInt("id"))
                 );
             }
@@ -114,7 +109,6 @@ public class PsicologoDAO {
             stmt.setString(2, psicologo.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setInt(4, psicologo.getIdade());
-            stmt.setString(5, psicologo.getIdentificacao());
             stmt.setInt(6, psicologo.getId());
 
             return stmt.executeUpdate() > 0;
