@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="958.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
+<AnchorPane prefHeight="573.0" prefWidth="958.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
    <AnchorPane layoutX="290.0" layoutY="30.0" prefHeight="513.0" prefWidth="379.0" styleClass="humorEmoji_anchorPane" stylesheets="@../style/style.css">
       <children>
           <!-- Título -->

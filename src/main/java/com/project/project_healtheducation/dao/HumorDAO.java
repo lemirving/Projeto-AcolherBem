@@ -67,6 +67,34 @@ public class HumorDAO {
         return emocoes;
     }
 
+    public ArrayList<Humor> listarEmocoesDoAluno(int idAluno) {
+        String sql = "SELECT * FROM emocao WHERE id_aluno = ? ORDER BY data DESC";
+        ArrayList<Humor> emocoes = new ArrayList<>();
+
+        try (Connection conn = dbSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idAluno);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Humor emocao = new Humor(
+                            rs.getString("nomeHumor"),
+                            rs.getInt("id_aluno"),
+                            rs.getDate("data").toLocalDate(),
+                            rs.getString("descricao")
+                    );
+                    emocao.setId(rs.getInt("id"));
+                    emocoes.add(emocao);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar emoções do aluno: " + e.getMessage());
+        }
+
+        return emocoes;
+    }
+
     public boolean removerEmocaoPorId(int idEmocao) {
         String sql = "DELETE FROM emocao WHERE id = ?";
 

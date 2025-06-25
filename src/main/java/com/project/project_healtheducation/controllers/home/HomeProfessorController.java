@@ -4,8 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -49,7 +47,7 @@ public class HomeProfessorController {
     // /com/project/project_healtheducation/view/professor/telaPerfil.fxml
     @FXML
     private void handleTelaPerfil(ActionEvent event) {
-        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaPerfil.fxml");
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaPerfil.fxml");
     }
 
 
@@ -60,7 +58,7 @@ public class HomeProfessorController {
 
     @FXML
     private void handleTelaConfigs(ActionEvent event){
-        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaConfigs.fxml");
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaConfigs.fxml");
 
     }
 
