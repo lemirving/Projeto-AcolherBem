@@ -52,31 +52,31 @@ public class RegistroEmocoesController {
 
         alerta.getButtonTypes().setAll(sim, nao);
 
+
+
+
+
+        Optional<ButtonType> opcao = alerta.showAndWait();
+        // SALVAR NO BANCO DE DADOS
+
+        StatusEmocionalDAO emocional = new StatusEmocionalDAO();
         StatusEmocional emocao = new StatusEmocional(
                 alunoLogado.getId(),
                 LocalDate.now(),
                 descricao
         );
-
-        StatusEmocionalDAO emocional = new StatusEmocionalDAO();
         boolean sucesso = emocional.inserirEmocao(emocao);
         if(sucesso){
-            System.out.println("Emoção registrada com sucesso!");
-        } else {
-            System.out.println("Erro ao registrar emoção.");
+            Alert alerta2 = new Alert(Alert.AlertType.INFORMATION);
+            alerta2.setHeaderText(null);
+            alerta2.setContentText("Emoção registrada com sucesso!");
+            alerta2.showAndWait();
         }
 
-        Optional<ButtonType> opcao = alerta.showAndWait();
-        if(opcao .isPresent() && opcao.get() == sim){
-//            boolean sucesso = emocionalDAO.inserirEmocao(idAluno);
-//            if(sucesso){
-//
-//            }
-            System.out.println("Sua emoção: " + descricao);
-        }else{
-            System.out.println("Cancelou");
-        }
-        // SALVAR NO BANCO DE DADOS
+        Alert alerta3 = new Alert(Alert.AlertType.ERROR);
+        alerta3.setHeaderText(null);
+        alerta3.setContentText("Erro ao registrar sua emoção.");
+        alerta3.showAndWait();
     }
 
     private String getDescricaoSentimento(int valor) {
