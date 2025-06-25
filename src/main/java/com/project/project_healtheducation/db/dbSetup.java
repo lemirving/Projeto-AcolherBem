@@ -54,8 +54,9 @@ public class dbSetup {
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
-                    "idade INTEGER NOT NULL," +
-                    "identificacao TEXT NOT NULL" +
+                    "tipo TEXT NOT NULL" +
+//                    "idade INTEGER NOT NULL," +
+//                    "identificacao TEXT NOT NULL" +
                     ");";
 
             // Tabela emoção
@@ -64,7 +65,7 @@ public class dbSetup {
                     "id_aluno INTEGER NOT NULL," +
                     "data TEXT NOT NULL," +
                     "descricao TEXT NOT NULL," +
-                    "nivel INTEGER NOT NULL," +
+//                    "nivel INTEGER NOT NULL," +
                     "FOREIGN KEY (id_aluno) REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class PsicologoDAO {
 
     public boolean inserirPsicologo(Psicologo psicologo) {
-        String sql = "INSERT INTO psicologo (nome, email, senha, idade, identificacao) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO psicologo (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -21,8 +21,7 @@ public class PsicologoDAO {
             stmt.setString(1, psicologo.getNome());
             stmt.setString(2, psicologo.getEmail());
             stmt.setString(3, senhaCriptografada);
-            stmt.setInt(4, psicologo.getIdade());
-            stmt.setString(5, psicologo.getIdentificacao());
+            stmt.setString(4, psicologo.getTipo());
 
             int linhasAfetadas = stmt.executeUpdate();
 

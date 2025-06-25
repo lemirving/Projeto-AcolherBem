@@ -2,8 +2,10 @@ package com.project.project_healtheducation.controllers;
 
 import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.dao.ProfessorDAO;
+import com.project.project_healtheducation.dao.PsicologoDAO;
 import com.project.project_healtheducation.model.Aluno;
 import com.project.project_healtheducation.model.Professor;
+import com.project.project_healtheducation.model.Psicologo;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,6 +60,20 @@ public class CadastroController extends AlunoDAO {
         }
 
         return professor;
+    }
+
+    private Psicologo obterDadosFormularioPsicologo(){
+        Psicologo psicologo = new Psicologo();
+        psicologo.setNome(textNome.getText());
+        psicologo.setEmail(textEmail.getText());
+        psicologo.setSenha(textSenha.getText());
+
+        RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
+        if (selecionado != null) {
+            psicologo.setTipo(selecionado.getText());
+        }
+
+        return psicologo;
     }
 
     private boolean validarCadastro() {
@@ -126,8 +142,14 @@ public class CadastroController extends AlunoDAO {
             return dao.inserirProfessor(professor);
 
         } else {
-            mostrarAlerta("Cadastro para psicólogo ainda não implementado.");
-            return false;
+            Psicologo psicologo = obterDadosFormularioPsicologo();
+            PsicologoDAO daoPs = new PsicologoDAO();
+
+            if(daoPs.buscarPorEmail(psicologo.getEmail()) != null){
+                mostrarAlerta("Cadastro para psicólogo ainda não implementado.");
+                return false;
+            }
+            return daoPs.inserirPsicologo(psicologo);
         }
     }
 

@@ -2,12 +2,13 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Psicologo {
+public class Psicologo implements Usuario{
     private int id;
     private String nome;
     private String email;
     private String senha;
     private int idade;
+    private String tipo;
     private String identificacao;
     private ArrayList<Turma> turmasAcompanhadas = new ArrayList<>();
 
@@ -102,5 +103,13 @@ public class Psicologo {
 
     public void setTurmasAcompanhadas(ArrayList<Turma> turmasAcompanhadas) {
         this.turmasAcompanhadas = turmasAcompanhadas;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

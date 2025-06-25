@@ -1,9 +1,11 @@
 package com.project.project_healtheducation.controllers;
 
+import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.dao.ProfessorDAO;
 import com.project.project_healtheducation.model.Aluno;
 import com.project.project_healtheducation.model.Professor;
 import com.project.project_healtheducation.utils.ChangeScreen;
+import com.project.project_healtheducation.utils.SessaoUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -44,17 +46,27 @@ public class LoginController {
         }
 
         // Autenticação
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        boolean sucesso = professorDAO.autenticar(email, senha);
 
-        if (!sucesso) {
-            mostrarAlerta("E-mail ou senha incorretos.");
-            return false;
+        AlunoDAO alunoDAO = new AlunoDAO();
+        boolean alunoAutenticado = alunoDAO.autenticar(email, senha);
+        if (alunoAutenticado) {
+            Aluno alunoLogado = alunoDAO.buscarPorEmail(email);
+            SessaoUsuario.setUsuarioLogado(alunoLogado);
+            return true;
         }
 
-        System.out.println(sucesso);
+        // Tenta autenticar como professor (se quiser)
+        ProfessorDAO professorDAO = new ProfessorDAO();
+        boolean professorAutenticado = professorDAO.autenticar(email, senha);
+        if (professorAutenticado) {
+            Professor professorLogado = professorDAO.buscarProfessorPorEmail(email);
+            SessaoUsuario.setUsuarioLogado(professorLogado); // Só se SessaoUsuario suportar professor também
+            return true;
+        }
 
-        return true;
+        // Nenhuma autenticação foi bem-sucedida
+        mostrarAlerta("E-mail ou senha incorretos.");
+        return false;
     }
 
     private void mostrarAlerta(String mensagem) {

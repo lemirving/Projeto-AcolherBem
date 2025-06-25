@@ -7,13 +7,11 @@ public class StatusEmocional {
     private int idAluno; //
     private LocalDate data;
     private String descricao;
-    private int nivel;
 
-    public StatusEmocional(int idAluno, LocalDate data, String descricao, int nivel) {
+    public StatusEmocional(int idAluno, LocalDate data, String descricao) {
         this.idAluno = idAluno;
         this.data = data;
         this.descricao = descricao;
-        this.nivel = nivel;
     }
 
     public int getId() {
@@ -29,7 +27,7 @@ public class StatusEmocional {
         this.idAluno = idAluno;
         this.data = data;
         this.descricao = descricao;
-        this.nivel = nivel;
+//        this.nivel = nivel;
     }
 
     public int getIdAluno() {
@@ -48,9 +46,9 @@ public class StatusEmocional {
         return descricao;
     }
 
-    public int getNivel() {
-        return nivel;
-    }
+//    public int getNivel() {
+//        return nivel;
+//    }
 
     public void setData(LocalDate data) {
         this.data = data;
@@ -60,7 +58,7 @@ public class StatusEmocional {
         this.descricao = descricao;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
-    }
+//    public void setNivel(int nivel) {
+//        this.nivel = nivel;
+//    }
 }

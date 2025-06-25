@@ -2,7 +2,7 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Professor {
+public class Professor implements Usuario{
 
     private int id;
     private String nome;

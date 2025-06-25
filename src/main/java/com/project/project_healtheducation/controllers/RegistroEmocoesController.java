@@ -1,11 +1,16 @@
 package com.project.project_healtheducation.controllers;
 
+import com.project.project_healtheducation.dao.StatusEmocionalDAO;
+import com.project.project_healtheducation.model.Aluno;
+import com.project.project_healtheducation.model.StatusEmocional;
 import com.project.project_healtheducation.utils.ChangeScreen;
+import com.project.project_healtheducation.utils.SessaoUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 public class RegistroEmocoesController {
@@ -13,6 +18,9 @@ public class RegistroEmocoesController {
     @FXML
     private Slider sliderSentimento = new Slider();
     @FXML private Label labelSentimentoEscolhido = new Label();
+
+
+
 
     @FXML
     protected void initialize() {
@@ -26,6 +34,13 @@ public class RegistroEmocoesController {
     }
 
     @FXML protected void registrarSentimento(){
+
+        Aluno alunoLogado = (Aluno) SessaoUsuario.getUsuarioLogado();
+        if(alunoLogado == null){
+            System.out.println("Nenhum usuário logado!");
+            return;
+        }
+
         int valor = (int) sliderSentimento.getValue();
         String descricao = getDescricaoSentimento(valor);
 
@@ -37,9 +52,26 @@ public class RegistroEmocoesController {
 
         alerta.getButtonTypes().setAll(sim, nao);
 
+        StatusEmocional emocao = new StatusEmocional(
+                alunoLogado.getId(),
+                LocalDate.now(),
+                descricao
+        );
+
+        StatusEmocionalDAO emocional = new StatusEmocionalDAO();
+        boolean sucesso = emocional.inserirEmocao(emocao);
+        if(sucesso){
+            System.out.println("Emoção registrada com sucesso!");
+        } else {
+            System.out.println("Erro ao registrar emoção.");
+        }
 
         Optional<ButtonType> opcao = alerta.showAndWait();
         if(opcao .isPresent() && opcao.get() == sim){
+//            boolean sucesso = emocionalDAO.inserirEmocao(idAluno);
+//            if(sucesso){
+//
+//            }
             System.out.println("Sua emoção: " + descricao);
         }else{
             System.out.println("Cancelou");

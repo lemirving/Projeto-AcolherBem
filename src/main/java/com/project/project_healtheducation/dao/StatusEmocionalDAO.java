@@ -10,15 +10,15 @@ import java.util.ArrayList;
 public class StatusEmocionalDAO {
 
     public boolean inserirEmocao(StatusEmocional emocao) {
-        String sql = "INSERT INTO emocao (id_aluno, data, descricao, nivel) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO emocao (id_aluno, data, descricao) VALUES (?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setInt(1, emocao.getIdAluno());
-            stmt.setDate(2, Date.valueOf(emocao.getData())); // Usando java.sql.Date
+            stmt.setString(2, emocao.getData().toString()); // Convertendo DATE PRA STRING, O SQLITE NAO SUPORTA
             stmt.setString(3, emocao.getDescricao());
-            stmt.setInt(4, emocao.getNivel());
+//            stmt.setInt(4, emocao.getNivel());
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -53,8 +53,8 @@ public class StatusEmocionalDAO {
                     StatusEmocional emocao = new StatusEmocional(
                             rs.getInt("id_aluno"),
                             rs.getDate("data").toLocalDate(),  // Usando java.sql.Date
-                            rs.getString("descricao"),
-                            rs.getInt("nivel")
+                            rs.getString("descricao")
+//                            rs.getInt("nivel")
                     );
                     // Se StatusEmocional tiver id, atribua também:
                     emocao.setId(rs.getInt("id"));
