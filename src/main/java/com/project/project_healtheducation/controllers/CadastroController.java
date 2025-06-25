@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class CadastroController extends AlunoDAO {
+public class CadastroController {
 
     @FXML private TextField textNome;
     @FXML private TextField textEmail;
@@ -99,11 +99,11 @@ public class CadastroController extends AlunoDAO {
             alerta.showAndWait();
             return false;
         }
-        if (!matricula.matches("^\\d{9}$\n")) {
-            alerta.setContentText("Matrícula inválida.");
-            alerta.showAndWait();
-            return false;
-        }
+//        if (!matricula.matches("^\\d{9}$")) {
+//            alerta.setContentText("Matrícula inválida.");
+//            alerta.showAndWait();
+//            return false;
+//        }
 
         if (senha.length() < 6) {
             alerta.setContentText("A senha deve conter no mínimo 6 caracteres.");
@@ -128,16 +128,16 @@ public class CadastroController extends AlunoDAO {
 
     private boolean inserirUsuario() {
         if (!validarCadastro()) return false;
-
+        AlunoDAO alunoDAO = new AlunoDAO();
         String tipo = ((RadioButton) groupRadios.getSelectedToggle()).getText();
 
         if (tipo.equalsIgnoreCase("Aluno")) {
             Aluno aluno = obterDadosFormularioAluno();
-            if (buscarPorEmail(aluno.getEmail()) != null) {
+            if (alunoDAO.buscarPorEmail(aluno.getEmail()) != null) {
                 mostrarAlerta("Este e-mail já está cadastrado.");
                 return false;
             }
-            return inserirAluno(aluno);
+            return alunoDAO.inserirAluno(aluno);
 
         } else if (tipo.equalsIgnoreCase("Professor")) {
             Professor professor = obterDadosFormularioProfessor();
@@ -154,7 +154,7 @@ public class CadastroController extends AlunoDAO {
             PsicologoDAO daoPs = new PsicologoDAO();
 
             if(daoPs.buscarPorEmail(psicologo.getEmail()) != null){
-                mostrarAlerta("Cadastro para psicólogo ainda não implementado.");
+                mostrarAlerta("Este e-mail já está cadastrado");
                 return false;
             }
             return daoPs.inserirPsicologo(psicologo);

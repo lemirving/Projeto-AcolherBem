@@ -42,7 +42,7 @@ public class AlunoDAO {
 //    }
 
 public boolean inserirAluno(Aluno aluno) {
-    String sql = "INSERT INTO aluno (nome, email, senha, matricula) VALUES (?, ?, ?,?)";
+    String sql = "INSERT INTO aluno (nome, email, senha, tipo, matricula) VALUES (?, ?, ?,?,?)";
 
     try (Connection conn = dbSetup.getConnection();
          PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -52,7 +52,8 @@ public boolean inserirAluno(Aluno aluno) {
         stmt.setString(1, aluno.getNome());
         stmt.setString(2, aluno.getEmail());
         stmt.setString(3, senhaCriptografada);
-        stmt.setString(4, aluno.getMatricula());
+        stmt.setString(4, aluno.getTipo());
+        stmt.setString(5, aluno.getMatricula());
 
         int linhasAfetadas = stmt.executeUpdate();
 

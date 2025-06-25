@@ -20,7 +20,7 @@
                   <JFXButton onAction="#handleTelaGrafico" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
                   <JFXButton onAction="#handleTelaListaAlunos" prefHeight="80.0" prefWidth="265.0" text="Alunos" />
                   <JFXButton onAction="#handleTelaConfigs" prefHeight="80.0" prefWidth="265.0" text="Configuraçoes" />
-                  <JFXButton prefHeight="80.0" prefWidth="265.0" text="Sair" />
+                  <JFXButton onAction="#handleVoltar" prefHeight="80.0" prefWidth="265.0" text="Sair" />
                </children>
             </VBox>
          </children></AnchorPane>

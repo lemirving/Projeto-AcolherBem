@@ -24,7 +24,7 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Aluno aluno = new Aluno("Irving","irving@gmail.com","123456",12,"2B","aluno","1002424");
+        Aluno aluno = new Aluno("Irving","irving@gmail.com","123456",12,"2B","Aluno","1002424");
         AlunoDAO dao = new AlunoDAO();
         dao.inserirAluno(aluno);
 

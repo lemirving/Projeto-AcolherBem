@@ -24,6 +24,9 @@
                 <Label text="Confirmar senha:" />
                 <PasswordField fx:id="textSenhaConfirm" prefWidth="300" promptText="Repita a senha" />
 
+                <Label text="Matrícula"/>
+                <TextField fx:id="textMatricula" promptText="Digite a sua matrícula" prefWidth="300"/>
+
                 <Label style="-fx-padding: 10 0 0 0;" text="Selecione o que você é:" />
                 <HBox alignment="CENTER_LEFT" spacing="18">
                     <RadioButton fx:id="radioAluno" mnemonicParsing="false" text="Aluno" />

@@ -75,4 +75,8 @@ public class HomeProfessorController {
 
     }
 
+    @FXML
+    protected void handleVoltar(ActionEvent event) throws IOException {
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+    }
 }
