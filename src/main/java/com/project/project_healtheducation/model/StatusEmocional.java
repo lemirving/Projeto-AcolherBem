@@ -3,12 +3,14 @@ package com.project.project_healtheducation.model;
 import java.time.LocalDate;
 
 public class StatusEmocional {
+    private String nomeHumor;
     private int id;
     private int idAluno; //
     private LocalDate data;
     private String descricao;
 
-    public StatusEmocional(int idAluno, LocalDate data, String descricao) {
+    public StatusEmocional(String nomeHumor,int idAluno, LocalDate data, String descricao) {
+        this.nomeHumor = nomeHumor;
         this.idAluno = idAluno;
         this.data = data;
         this.descricao = descricao;
@@ -22,12 +24,21 @@ public class StatusEmocional {
         this.id = id;
     }
 
-    public StatusEmocional(int id, int idAluno, LocalDate data, String descricao, int nivel) {
+    public StatusEmocional(String nomeHumor,int id, int idAluno, LocalDate data, String descricao, int nivel) {
+        this.nomeHumor = nomeHumor;
         this.id = id;
         this.idAluno = idAluno;
         this.data = data;
         this.descricao = descricao;
 //        this.nivel = nivel;
+    }
+
+    public String getNomeHumor() {
+        return nomeHumor;
+    }
+
+    public void setNomeHumor(String nomeHumor) {
+        this.nomeHumor = nomeHumor;
     }
 
     public int getIdAluno() {

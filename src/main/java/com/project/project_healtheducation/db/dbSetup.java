@@ -61,10 +61,11 @@ public class dbSetup {
 
             // Tabela emoção
             String sqlEmocaoTable = "CREATE TABLE IF NOT EXISTS emocao (" +
+                    "nomeHumor TEXT NOT NULL," +
+                    "descricao TEXT NOT NULL," +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "id_aluno INTEGER NOT NULL," +
                     "data TEXT NOT NULL," +
-                    "descricao TEXT NOT NULL," +
 //                    "nivel INTEGER NOT NULL," +
                     "FOREIGN KEY (id_aluno) REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";
