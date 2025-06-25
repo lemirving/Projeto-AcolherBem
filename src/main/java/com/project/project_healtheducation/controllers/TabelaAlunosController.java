@@ -3,17 +3,14 @@ package com.project.project_healtheducation.controllers;
 import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.dao.TurmaDAO;
 import com.project.project_healtheducation.model.Aluno;
-import com.project.project_healtheducation.model.Turma;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.SimpleStringProperty;
 
 public class TabelaAlunosController {
 
@@ -27,23 +24,49 @@ public class TabelaAlunosController {
 
     private AlunoDAO dao = new AlunoDAO();
     @FXML
+//    public void initialize() {
+//        colNomeAluno.setCellValueFactory(new PropertyValueFactory<>("nome"));
+//        colMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+//        colTurma.setCellValueFactory(new PropertyValueFactory<>("nomeTurma"));
+//        colHumor.setCellValueFactory(new PropertyValueFactory<>("humorAtual"));
+//        tabelaAlunos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//        colNomeAluno.setMinWidth(80);
+//        colTurma.setMinWidth(100);
+//        colMatricula.setMinWidth(100);
+//        colHumor.setMinWidth(100);
+//        carregarTurma();
+//
+//    }
+
     public void initialize() {
-        colNomeAluno.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
-        colTurma.setCellValueFactory(new PropertyValueFactory<>("turmaNome"));
-        colHumor.setCellValueFactory(new PropertyValueFactory<>("humor"));
+        colNomeAluno.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNome())
+        );
+        colMatricula.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getMatricula())
+        );
+        colTurma.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getNomeTurma())
+        );
+        colHumor.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getHumorAtual())
+        );
+
         tabelaAlunos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         colNomeAluno.setMinWidth(80);
         colTurma.setMinWidth(100);
         colMatricula.setMinWidth(100);
         colHumor.setMinWidth(100);
 
+        carregarTurma();
     }
-    private void carregarTurma(String nomeTurma){
+
+    private void carregarTurma(){
         List<Aluno> listaAlunos = dao.listarTodosComUltimoHumor();
+        System.out.println("Qtd alunos: " + listaAlunos.size());
+        listaAlunos.forEach(a -> System.out.println(a.getNome() + " - " + a.getHumorAtual()));
         tabelaAlunos.getItems().setAll(listaAlunos);
-
-
     }
+
 
 }
