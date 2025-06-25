@@ -32,9 +32,9 @@ public class dbSetup {
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
                     "tipo TEXT NOT NULL," +
-                    "idade INTEGER," +
+                    "idade TEXT NOT NULL," +
                     "matricula TEXT," +
-                    "turma TEXT" +
+                    "turma TEXT NOT NULL" +
                     ");";
 
             // Tabela professor

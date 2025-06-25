@@ -4,20 +4,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@../style/paginaInicial.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
-    <children>
-        <VBox alignment="CENTER" prefHeight="473.0" prefWidth="705.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController"
+            stylesheets="@../style/paginaInicial.css"
+            style="-fx-background-color: linear-gradient(to bottom, #f0f9ff, #d9f4e1);">
 
-            <Text fill="#41bc18" strokeType="OUTSIDE" strokeWidth="0.0" text="MentalCareEdu">
+    <children>
+        <VBox alignment="CENTER" spacing="20"
+              prefHeight="500.0" prefWidth="700.0"
+              AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+            <Text text="PsicoEduca" fill="#3b945e" strokeType="OUTSIDE" strokeWidth="0">
                 <font>
-                    <Font size="22.0" />
+                    <Font size="36.0" />
                 </font>
             </Text>
-            <Text fill="#5b5959" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textmsg" text="Cuide da sua mente. Conquiste seus sonhos com os estudos." />
-            <VBox alignment="CENTER" spacing="15">
-            <Button onAction="#loginScreen" styleClass="btnHome" text="Login" />
-            <Button styleClass="btnHome" text="Cadastre-se" onAction="#cadastroScreen"/>
+
+            <Text text="Cuide da sua mente. Conquiste seus sonhos com os estudos."
+                  wrappingWidth="500"
+                  style="-fx-font-size: 16px; -fx-fill: #555555; -fx-text-alignment: center;" />
+
+            <VBox alignment="CENTER" spacing="15"
+                  style="-fx-background-color: #ffffff; -fx-padding: 30; -fx-background-radius: 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);">
+
+                <Button onAction="#loginScreen"
+                        text="Entrar"
+                        style="-fx-background-color: #3b945e; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 10 30;" />
+
+                <Button onAction="#cadastroScreen"
+                        text="Cadastre-se"
+                        style="-fx-background-color: #5ec576; -fx-text-fill: white; -fx-font-size: 16px; -fx-background-radius: 10; -fx-padding: 10 30;" />
             </VBox>
         </VBox>
     </children>
 </AnchorPane>
+

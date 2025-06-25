@@ -53,7 +53,7 @@ public boolean inserirAluno(Aluno aluno) {
         stmt.setString(2, aluno.getEmail());
         stmt.setString(3, senhaCriptografada);
         stmt.setString(4, aluno.getTipo());
-        stmt.setInt(5, aluno.getIdade());
+        stmt.setString(5, aluno.getIdade());
         stmt.setString(6, aluno.getMatricula());
         stmt.setString(7, aluno.getNomeTurma());
 
@@ -170,7 +170,7 @@ public boolean inserirAluno(Aluno aluno) {
                 aluno.setId(rs.getInt("id"));
                 aluno.setNome(rs.getString("nome"));
                 aluno.setEmail(rs.getString("email"));
-                aluno.setIdade(rs.getInt("idade"));
+                aluno.setIdade(rs.getString("idade"));
                 aluno.setTipo(rs.getString("tipo"));
                 aluno.setMatricula(rs.getString("matricula"));
                 aluno.setNomeTurma(rs.getString("turma"));

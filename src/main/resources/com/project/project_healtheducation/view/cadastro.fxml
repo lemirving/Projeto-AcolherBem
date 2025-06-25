@@ -12,26 +12,32 @@
             <Text fx:id="text" fill="#30475e" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Cadastre-se" />
 
             <VBox alignment="CENTER_LEFT" maxWidth="320" spacing="12">
-                <Label text="Nome:" />
+                <Label fx:id="labelNome" text="Nome:" />
                 <TextField fx:id="textNome" prefWidth="300" promptText="Digite seu nome" />
 
-                <Label text="Email:" />
+                <Label fx:id="labelEmail" text="Email:" />
                 <TextField fx:id="textEmail" prefWidth="300" promptText="Digite seu e-mail" />
 
-                <Label text="Senha:" />
+                <Label fx:id="labelSenha" text="Senha:" />
                 <PasswordField fx:id="textSenha" prefWidth="300" promptText="Digite sua senha" />
 
-                <Label text="Confirmar senha:" />
+                <Label fx:id="labelConfirmSenha" text="Confirmar senha:" />
                 <PasswordField fx:id="textSenhaConfirm" prefWidth="300" promptText="Repita a senha" />
 
-                <Label text="Matrícula"/>
+                <Label fx:id="labelIdade" text="Idade"/>
+                <TextField fx:id="textIdade" promptText="Digite a sua matrícula" prefWidth="300"/>
+
+                <Label fx:id="labelTurma" text="Turma"/>
+                <TextField fx:id="textTurma" promptText="Ex: 2B" prefWidth="300"/>
+
+                <Label fx:id="labelMatricula" text="Matrícula"/>
                 <TextField fx:id="textMatricula" promptText="Digite a sua matrícula" prefWidth="300"/>
 
                 <Label style="-fx-padding: 10 0 0 0;" text="Selecione o que você é:" />
                 <HBox alignment="CENTER_LEFT" spacing="18">
-                    <RadioButton fx:id="radioAluno" mnemonicParsing="false" text="Aluno" />
-                    <RadioButton fx:id="radioProfessor" mnemonicParsing="false" text="Professor" />
-                    <RadioButton fx:id="radioPsicologo" mnemonicParsing="false" text="Psicólogo" />
+                    <RadioButton fx:id="radioAluno" mnemonicParsing="false" text="Aluno" onAction="#mostrarCampos"/>
+                    <RadioButton fx:id="radioProfessor" mnemonicParsing="false" text="Professor" onAction="#mostrarCampos"/>
+                    <RadioButton fx:id="radioPsicologo" mnemonicParsing="false" text="Psicólogo" onAction="#mostrarCampos"/>
                 </HBox>
             </VBox>
 
