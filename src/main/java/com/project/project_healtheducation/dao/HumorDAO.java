@@ -1,15 +1,14 @@
 package com.project.project_healtheducation.dao;
 
 import com.project.project_healtheducation.db.dbSetup;
-import com.project.project_healtheducation.model.StatusEmocional;
+import com.project.project_healtheducation.model.Humor;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class StatusEmocionalDAO {
 
-    public boolean inserirEmocao(StatusEmocional emocao) {
+    public boolean inserirEmocao(Humor emocao) {
         String sql = "INSERT INTO emocao (id_aluno, data, descricao, nivel) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
@@ -17,7 +16,7 @@ public class StatusEmocionalDAO {
 
             stmt.setInt(1, emocao.getIdAluno());
             stmt.setDate(2, Date.valueOf(emocao.getData())); // Usando java.sql.Date
-            stmt.setString(3, emocao.getDescricao());
+            stmt.setString(3, emocao.getNomeHumor());
             stmt.setInt(4, emocao.getNivel());
 
             int linhasAfetadas = stmt.executeUpdate();
@@ -40,9 +39,9 @@ public class StatusEmocionalDAO {
         return false;
     }
 
-    public ArrayList<StatusEmocional> listarEmocoesPorAluno(int idAluno) {
+    public ArrayList<Humor> listarEmocoesPorAluno(int idAluno) {
         String sql = "SELECT * FROM emocao WHERE id_aluno = ? ORDER BY data DESC";
-        ArrayList<StatusEmocional> emocoes = new ArrayList<>();
+        ArrayList<Humor> emocoes = new ArrayList<>();
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -50,7 +49,7 @@ public class StatusEmocionalDAO {
             stmt.setInt(1, idAluno);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    StatusEmocional emocao = new StatusEmocional(
+                    Humor emocao = new Humor(
                             rs.getInt("id_aluno"),
                             rs.getDate("data").toLocalDate(),  // Usando java.sql.Date
                             rs.getString("descricao"),
