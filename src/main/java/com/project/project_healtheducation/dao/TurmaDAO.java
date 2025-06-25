@@ -38,6 +38,25 @@ public class TurmaDAO {
 
         return turma;
     }
+    public boolean checarExistencia(String nome) {
+        String sql = "SELECT * FROM turma WHERE nome = ?";
+        Turma turma = null;
+
+        try (Connection conn = dbSetup.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                turma = new Turma(rs.getString("nome"), rs.getInt("quantidade"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar turma: " + e.getMessage());
+        }
+        if(turma != null) return true;
+
+        return false;
+    }
 
     public ArrayList<Turma> listarTurmas() {
         String sql = "SELECT * FROM turma";

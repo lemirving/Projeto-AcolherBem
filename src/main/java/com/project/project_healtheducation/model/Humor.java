@@ -2,16 +2,18 @@ package com.project.project_healtheducation.model;
 
 import java.time.LocalDate;
 
-public class StatusEmocional {
+public class Humor {
     private int id;
     private int idAluno; //
     private LocalDate data;
-    private String descricao;
+    private String nomeHumor;
+    private int nivel;
 
-    public StatusEmocional(int idAluno, LocalDate data, String descricao) {
+    public Humor(int idAluno, LocalDate data, String humor, int nivel) {
         this.idAluno = idAluno;
         this.data = data;
-        this.descricao = descricao;
+        this.nomeHumor = humor;
+        this.nivel = nivel;
     }
 
     public int getId() {
@@ -22,12 +24,12 @@ public class StatusEmocional {
         this.id = id;
     }
 
-    public StatusEmocional(int id, int idAluno, LocalDate data, String descricao, int nivel) {
+    public Humor(int id, int idAluno, LocalDate data, String descricao, int nivel) {
         this.id = id;
         this.idAluno = idAluno;
         this.data = data;
-        this.descricao = descricao;
-//        this.nivel = nivel;
+        this.nomeHumor = descricao;
+        this.nivel = nivel;
     }
 
     public int getIdAluno() {
@@ -42,23 +44,23 @@ public class StatusEmocional {
         return data;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNomeHumor() {
+        return nomeHumor;
     }
 
-//    public int getNivel() {
-//        return nivel;
-//    }
+    public void setNomeHumor(String nomeHumor) {
+        this.nomeHumor = nomeHumor;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
 
     public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
-
-//    public void setNivel(int nivel) {
-//        this.nivel = nivel;
-//    }
 }

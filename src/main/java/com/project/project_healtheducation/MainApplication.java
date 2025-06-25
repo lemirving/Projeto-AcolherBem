@@ -1,8 +1,8 @@
 package com.project.project_healtheducation;
 
-import com.project.project_healtheducation.dao.ProfessorDAO;
+import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.db.dbSetup;
-import com.project.project_healtheducation.model.Professor;
+import com.project.project_healtheducation.model.Aluno;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,19 +16,19 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/project/project_healtheducation/view/HomeAluno.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/project/project_healtheducation/view/professor/telaProfessores.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1220, 800);
-        stage.setTitle("MentalHeathEducation");
+        stage.setTitle("MentalHeathCare");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-//        Aluno aluno = new Aluno("Irving", "2B", "9ano", 15, "12345", "irving@gmail.com", new ArrayList<>());
-//        AlunoDAO dao = new AlunoDAO();
-//        dao.inserirAluno(aluno);
-//
-//        Professor prof = new Professor("Jose","jose@gmail.com","12345",40,"Ed. Física",new ArrayList<>());
+        Aluno aluno = new Aluno("Irving","irving@gmail.com","123456",12,"2B","aluno","1002424");
+        AlunoDAO dao = new AlunoDAO();
+        dao.inserirAluno(aluno);
+
+//        Professor prof = new Professor("Jose","jose@gmail","12345",40,"Ed. Física",new ArrayList<>());
 //        ProfessorDAO daoProf = new ProfessorDAO();
 //        daoProf.inserirProfessor(prof);
 //

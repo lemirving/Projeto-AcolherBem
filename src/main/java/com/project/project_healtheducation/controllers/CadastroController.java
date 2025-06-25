@@ -19,6 +19,7 @@ public class CadastroController extends AlunoDAO {
     @FXML private TextField textEmail;
     @FXML private PasswordField textSenha;
     @FXML private PasswordField textSenhaConfirm;
+    @FXML private  TextField textMatricula;
 
     @FXML private RadioButton radioAluno;
     @FXML private RadioButton radioProfessor;
@@ -39,6 +40,7 @@ public class CadastroController extends AlunoDAO {
         aluno.setNome(textNome.getText());
         aluno.setEmail(textEmail.getText());
         aluno.setSenha(textSenha.getText());
+        aluno.setMatricula(textMatricula.getText());
 
         RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
         if (selecionado != null) {
@@ -79,13 +81,14 @@ public class CadastroController extends AlunoDAO {
     private boolean validarCadastro() {
         String nome = textNome.getText();
         String email = textEmail.getText();
+        String matricula = textMatricula.getText();
         String senha = textSenha.getText();
         String senhaConfirm = textSenhaConfirm.getText();
 
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
 
-        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty()) {
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty() || matricula.isEmpty()) {
             alerta.setContentText("Todos os campos devem ser preenchidos.");
             alerta.showAndWait();
             return false;
@@ -93,6 +96,11 @@ public class CadastroController extends AlunoDAO {
 
         if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
             alerta.setContentText("Email inválido.");
+            alerta.showAndWait();
+            return false;
+        }
+        if (!matricula.matches("^\\d{9}$\n")) {
+            alerta.setContentText("Matrícula inválida.");
             alerta.showAndWait();
             return false;
         }

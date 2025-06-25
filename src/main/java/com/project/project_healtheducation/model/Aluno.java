@@ -2,41 +2,41 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Aluno implements Usuario{
+public class Aluno {
     private int id;
     private String nome;
     private String email;
     private String senha;
     private int idade;
-    private String tipo;
-    private String anoEscolar;
     private String nomeTurma;
+    private String tipo;
+    private String matricula;
+    private String humorAtual;
 
-    private ArrayList<StatusEmocional> registrosEmocionais = new ArrayList<>();
+    public Aluno(String nome, String email, String senha, int idade, String nomeTurma, String tipo, String matricula) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.idade = idade;
+        this.nomeTurma = nomeTurma;
+        this.tipo = tipo;
+        this.matricula = matricula;
+    }
+
+    public void setHumorAtual(String humorAtual) {
+        this.humorAtual = humorAtual;
+    }
+
+    private ArrayList<Humor> humores = new ArrayList<>();
 
     public Aluno() {}
+    public Aluno(String nome, String email, String matricula){
+        this.nome = nome;
+        this.email = email;
+        this.matricula = matricula;
+    }
 
-    public Aluno( String nome, int id,String nomeTurma,
-                 String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-        this.nomeTurma = nomeTurma;
-        this.anoEscolar = anoEscolar;
-        this.idade = idade;
-        this.senha = senha;
-        this.email = email;
-        this.nome = nome;
-        this.id = id;
-    }
-    public Aluno( String nome,String nomeTurma,
-                  String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-        this.nomeTurma = nomeTurma;
-        this.anoEscolar = anoEscolar;
-        this.idade = idade;
-        this.senha = senha;
-        this.email = email;
-        this.nome = nome;
-    }
+
 
     // Getters e Setters
     public int getId() { return id; }
@@ -54,23 +54,31 @@ public class Aluno implements Usuario{
     public int getIdade() { return idade; }
     public void setIdade(int idade) { this.idade = idade; }
 
-    public String getAnoEscolar() { return anoEscolar; }
 
     public String getNomeTurma() {
         return nomeTurma;
     }
+    public void setNomeTurma(String nomeTurma) { this.nomeTurma = nomeTurma; }
 
-    public void setNomeTurma(String nomeTurma) {
-        this.nomeTurma = nomeTurma;
+    public ArrayList<Humor> getHumores() { return humores; }
+    public String getHumorAtual(){
+        if(this.humores != null && !this.humores.isEmpty()){
+            return humores.get(humores.size()-1).getNomeHumor();
+        }
+        return "Sem descrição";
+    }
+    public void setHumores(ArrayList<Humor> humores) {
+        this.humores = humores;
     }
 
-    public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar;}
-
-    public String setTipo(String tipo) {
-        return this.tipo = tipo;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public String getTipo() {
-        return tipo;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
 }

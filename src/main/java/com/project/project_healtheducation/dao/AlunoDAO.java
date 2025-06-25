@@ -42,7 +42,7 @@ public class AlunoDAO {
 //    }
 
 public boolean inserirAluno(Aluno aluno) {
-    String sql = "INSERT INTO aluno (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+    String sql = "INSERT INTO aluno (nome, email, senha, matricula) VALUES (?, ?, ?,?)";
 
     try (Connection conn = dbSetup.getConnection();
          PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -52,7 +52,7 @@ public boolean inserirAluno(Aluno aluno) {
         stmt.setString(1, aluno.getNome());
         stmt.setString(2, aluno.getEmail());
         stmt.setString(3, senhaCriptografada);
-        stmt.setString(4, aluno.getTipo());
+        stmt.setString(4, aluno.getMatricula());
 
         int linhasAfetadas = stmt.executeUpdate();
 
@@ -129,10 +129,12 @@ public boolean inserirAluno(Aluno aluno) {
         try (Connection conn = dbSetup.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
                 Aluno aluno = new Aluno();
-                aluno.setId(rs.getInt("id"));
                 aluno.setNome(rs.getString("nome"));
-                aluno.setEmail(rs.getString("email"));
-                aluno.setSenha(rs.getString("senha")); // Criptografada
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setNomeTurma(rs.getString("turma"));
+                aluno.setId(rs.getInt("id"));
+
+                // Criptografada
 //                aluno.setIdade(rs.getInt("idade"));
 //                aluno.setNomeTurma(rs.getString("nome_turma"));
                 alunos.add(aluno);
@@ -143,6 +145,46 @@ public boolean inserirAluno(Aluno aluno) {
 
         return alunos;
     }
+    public List<Aluno> listarTodosComUltimoHumor() {
+        List<Aluno> alunos = new ArrayList<>();
+        String sql = """
+        SELECT 
+            a.id,
+            a.nome,
+            a.email,
+            a.matricula,
+            a.turma,
+            (
+                SELECT e.emocao
+                FROM emocao e
+                WHERE e.id_aluno = a.id
+                ORDER BY datetime(e.data) DESC
+                LIMIT 1
+            ) AS ultimo_humor
+        FROM aluno a;
+        """;
+
+        try (Connection conn = dbSetup.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Aluno aluno = new Aluno();
+                aluno.setNome(rs.getString("nome"));
+                aluno.setEmail(rs.getString("email"));
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setNomeTurma(rs.getString("turma"));
+                aluno.setHumorAtual(rs.getString("ultimo_humor"));
+                alunos.add(aluno);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao listar alunos com humor: " + e.getMessage());
+        }
+
+        return alunos;
+    }
+
     public boolean removerAlunoPorId(int id) {
         String sql = "DELETE FROM aluno WHERE id = ?";
 

@@ -73,3 +73,6 @@
     -fx-background-radius: 6px;
     -fx-background-color: white;
 }
+.background_standardColor {
+    -fx-background-color: #e8effc;
+}

@@ -1,6 +1,7 @@
 package com.project.project_healtheducation.controllers.home;
 
 import com.jfoenix.controls.JFXButton;
+import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,129 +39,29 @@ public class HomeProfessorController {
 //            showError("Erro ao carregar a tela", "Não foi possível abrir a tela selecionada." + e.getMessage());
 //        }
 //    }
-    private void showError(String titulo, String mensagem){
-        javafx.scene.control.Alert alert = new  javafx.scene.control.Alert(Alert.AlertType.ERROR);
-        alert.setTitle(titulo);
-        alert.setHeaderText(null);
-        alert.setContentText(mensagem);
-        alert.showAndWait();
-    }
-
-    @FXML
-    private void handleTelaListaAlunos(ActionEvent event){
-        try {
-            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/telaListaAlunos.fxml");
-            if (resource == null) {
-                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/telaListaAlunos.fxml");
-            }
-            FXMLLoader loader = new FXMLLoader(resource);
-            AnchorPane tela = loader.load();
-
-            main_anchorPane.getChildren().clear();
-            main_anchorPane.getChildren().add(tela);
-
-            AnchorPane.setTopAnchor(tela, 0.0);
-            AnchorPane.setBottomAnchor(tela, 0.0);
-            AnchorPane.setLeftAnchor(tela, 0.0);
-            AnchorPane.setRightAnchor(tela, 0.0);
-
-        } catch (IOException e) {
-            showError("Erro ao carregar a tela", "Não foi possível abrir a tela selecionada. " + e.getMessage());
-        }
-    }
 
 
     @FXML
-    private void handleListaTurmas(ActionEvent event){
-        try {
-            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/telaListaTurmas.fxml");
-            if (resource == null) {
-                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/telaListaTurmas.fxml");
-            }
-            FXMLLoader loader = new FXMLLoader(resource);
-            AnchorPane tela = loader.load();
-
-            main_anchorPane.getChildren().clear();
-            main_anchorPane.getChildren().add(tela);
-
-            AnchorPane.setTopAnchor(tela, 0.0);
-            AnchorPane.setBottomAnchor(tela, 0.0);
-            AnchorPane.setLeftAnchor(tela, 0.0);
-            AnchorPane.setRightAnchor(tela, 0.0);
-
-        } catch (IOException e) {
-            showError("Erro ao carregar a tela", "Não foi possível abrir a tela selecionada. " + e.getMessage());
-        }
+    private void handleTelaListaAlunos() throws IOException {
+        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaListaAlunos.fxml");
     }
 
+    // /com/project/project_healtheducation/view/professor/telaPerfil.fxml
     @FXML
     private void handleTelaPerfil(ActionEvent event) {
-        try {
-            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/telaPerfil.fxml");
-            if (resource == null) {
-                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/telaPerfil.fxml");
-            }
-            FXMLLoader loader = new FXMLLoader(resource);
-            AnchorPane tela = loader.load();
-
-            main_anchorPane.getChildren().clear();
-            main_anchorPane.getChildren().add(tela);
-
-            AnchorPane.setTopAnchor(tela, 0.0);
-            AnchorPane.setBottomAnchor(tela, 0.0);
-            AnchorPane.setLeftAnchor(tela, 0.0);
-            AnchorPane.setRightAnchor(tela, 0.0);
-
-        } catch (IOException e) {
-            showError("Erro ao carregar a tela", "Não foi possível abrir a tela selecionada. " + e.getMessage());
-        }
+        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaPerfil.fxml");
     }
 
 
     @FXML
     private void handleTelaGrafico(ActionEvent event){
-        try {
-            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/telaGrafico.fxml");
-            if (resource == null) {
-                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/telaGrafico.fxml");
-            }
-            FXMLLoader loader = new FXMLLoader(resource);
-            AnchorPane tela = loader.load();
-
-            main_anchorPane.getChildren().clear();
-            main_anchorPane.getChildren().add(tela);
-
-            AnchorPane.setTopAnchor(tela, 0.0);
-            AnchorPane.setBottomAnchor(tela, 0.0);
-            AnchorPane.setLeftAnchor(tela, 0.0);
-            AnchorPane.setRightAnchor(tela, 0.0);
-
-        } catch (IOException e) {
-            showError("Erro ao carregar a tela", "Não foi possível abrir a tela selecionada. " + e.getMessage());
-        }
+        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaGrafico.fxml");
     }
 
     @FXML
     private void handleTelaConfigs(ActionEvent event){
-        try {
-            URL resource = getClass().getResource("/com/project/project_healtheducation/view/professor/telaConfigs.fxml");
-            if (resource == null) {
-                throw new IOException("FXML não encontrado: /com/project/project_healtheducation/view/professor/telaConfigs.fxml");
-            }
-            FXMLLoader loader = new FXMLLoader(resource);
-            AnchorPane tela = loader.load();
+        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaConfigs.fxml");
 
-            main_anchorPane.getChildren().clear();
-            main_anchorPane.getChildren().add(tela);
-
-            AnchorPane.setTopAnchor(tela, 0.0);
-            AnchorPane.setBottomAnchor(tela, 0.0);
-            AnchorPane.setLeftAnchor(tela, 0.0);
-            AnchorPane.setRightAnchor(tela, 0.0);
-
-        } catch (IOException e) {
-            showError("Erro ao carregar a tela", "Não foi possível abrir a tela selecionada. " + e.getMessage());
-        }
     }
 
 
