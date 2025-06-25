@@ -9,22 +9,22 @@ import java.util.ArrayList;
 public class HumorDAO {
 
     public boolean inserirEmocao(Humor emocao) {
-        String sql = "INSERT INTO emocao (id_aluno, data, descricao, nivel) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO emocao (nomeHumor, id_aluno, data, descricao) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setInt(1, emocao.getIdAluno());
-            stmt.setDate(2, Date.valueOf(emocao.getData())); // Usando java.sql.Date
-            stmt.setString(3, emocao.getNomeHumor());
-            stmt.setInt(4, emocao.getNivel());
+            stmt.setString(1, emocao.getNomeHumor());
+            stmt.setInt(2, emocao.getIdAluno());
+            stmt.setDate(3, Date.valueOf(emocao.getData()));
+            stmt.setString(4, emocao.getDescricao());
 
             int linhasAfetadas = stmt.executeUpdate();
 
             if (linhasAfetadas > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        emocao.setId(rs.getInt(1));  // Supondo que StatusEmocional tem setId()
+                        emocao.setId(rs.getInt(1));
                     }
                 }
                 return true;
@@ -50,12 +50,11 @@ public class HumorDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     Humor emocao = new Humor(
+                            rs.getString("nomeHumor"),
                             rs.getInt("id_aluno"),
-                            rs.getDate("data").toLocalDate(),  // Usando java.sql.Date
-                            rs.getString("descricao"),
-                            rs.getInt("nivel")
+                            rs.getDate("data").toLocalDate(),
+                            rs.getString("descricao")
                     );
-                    // Se StatusEmocional tiver id, atribua também:
                     emocao.setId(rs.getInt("id"));
                     emocoes.add(emocao);
                 }
@@ -91,14 +90,14 @@ public class HumorDAO {
         return false;
     }
 
-    public boolean atualizarEmocao(int idEmocao, String novaDescricao, int novoNivel) {
-        String sql = "UPDATE emocao SET descricao = ?, nivel = ? WHERE id = ?";
+    public boolean atualizarEmocao(int idEmocao, String novaDescricao, String novoNomeHumor) {
+        String sql = "UPDATE emocao SET descricao = ?, nomeHumor = ? WHERE id = ?";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, novaDescricao);
-            stmt.setInt(2, novoNivel);
+            stmt.setString(2, novoNomeHumor);
             stmt.setInt(3, idEmocao);
 
             int linhas = stmt.executeUpdate();

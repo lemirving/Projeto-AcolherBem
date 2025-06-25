@@ -30,11 +30,11 @@ public class dbSetup {
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
-                    "senha TEXT NOT NULL,"+
-                    "tipo TEXT NOT NULL" +
-//                    "idade INTEGER NOT NULL," +
-//                    "nome_turma TEXT NOT NULL" +
-//                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE SET NULL ON UPDATE CASCADE" +
+                    "senha TEXT NOT NULL," +
+                    "tipo TEXT NOT NULL," +
+                    "idade INTEGER," +
+                    "matricula TEXT," +
+                    "turma TEXT" +
                     ");";
 
             // Tabela professor
@@ -44,8 +44,6 @@ public class dbSetup {
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
                     "tipo TEXT NOT NULL" +
-//                    "idade INTEGER NOT NULL," +
-//                    "especialidade TEXT NOT NULL" +
                     ");";
 
             // Tabela psicologo
@@ -55,21 +53,19 @@ public class dbSetup {
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
                     "tipo TEXT NOT NULL" +
-//                    "idade INTEGER NOT NULL," +
-//                    "identificacao TEXT NOT NULL" +
                     ");";
 
             // Tabela emoção
             String sqlEmocaoTable = "CREATE TABLE IF NOT EXISTS emocao (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "nomeHumor TEXT NOT NULL," +
                     "id_aluno INTEGER NOT NULL," +
                     "data TEXT NOT NULL," +
                     "descricao TEXT NOT NULL," +
-//                    "nivel INTEGER NOT NULL," +
                     "FOREIGN KEY (id_aluno) REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";
 
-            // Tabela associação professor <-> turma
+            // Associação professor <-> turma
             String sqlTurmaProfessorTable = "CREATE TABLE IF NOT EXISTS turma_professor (" +
                     "nome_turma TEXT NOT NULL," +
                     "id_professor INTEGER NOT NULL," +
@@ -78,15 +74,16 @@ public class dbSetup {
                     "FOREIGN KEY (id_professor) REFERENCES professor(id) ON DELETE CASCADE" +
                     ");";
 
-            String sqlTurmaPsicologoTable = " CREATE TABLE IF NOT EXISTS turma_psicologo ("+
-                    "nome_turma TEXT NOT NULL,"+
-                    "id_psicologo INTEGER NOT NULL,"+
-                    "PRIMARY KEY (nome_turma, id_psicologo),"+
-                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE,"+
-                    "FOREIGN KEY (id_psicologo) REFERENCES psicologo(id) ON DELETE CASCADE"+
-            ");";
+            // Associação psicólogo <-> turma
+            String sqlTurmaPsicologoTable = "CREATE TABLE IF NOT EXISTS turma_psicologo (" +
+                    "nome_turma TEXT NOT NULL," +
+                    "id_psicologo INTEGER NOT NULL," +
+                    "PRIMARY KEY (nome_turma, id_psicologo)," +
+                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE," +
+                    "FOREIGN KEY (id_psicologo) REFERENCES psicologo(id) ON DELETE CASCADE" +
+                    ");";
 
-            // Executa todas as criações
+            // Executar as criações
             statement.execute(sqlTurmaTable);
             statement.execute(sqlAlunoTable);
             statement.execute(sqlProfessorTable);
@@ -105,4 +102,5 @@ public class dbSetup {
             System.out.println("Erro ao criar tabelas: " + e.getMessage());
         }
     }
+
 }

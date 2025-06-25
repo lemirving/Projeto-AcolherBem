@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class PsicologoDAO {
 
     public boolean inserirPsicologo(Psicologo psicologo) {
-        String sql = "INSERT INTO psicologo (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO psicologo (nome, email, senha, tipo, idade, identificacao_profissional) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -22,6 +22,8 @@ public class PsicologoDAO {
             stmt.setString(2, psicologo.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setString(4, psicologo.getTipo());
+            stmt.setInt(5, psicologo.getIdade());
+            stmt.setString(6, psicologo.getIdentificacao());
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -54,10 +56,11 @@ public class PsicologoDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
-                        null, // senha não retorna por segurança
+                        null, // senha omitida
                         rs.getInt("idade"),
-                        rs.getString("identificacao"),
-                        buscarTurmasDoPsicologo(id)
+                        rs.getString("identificacao_profissional"),
+                        buscarTurmasDoPsicologo(id),
+                        rs.getString("tipo")
                 );
             }
 
@@ -84,7 +87,8 @@ public class PsicologoDAO {
                         rs.getString("senha"), // senha criptografada para autenticação
                         rs.getInt("idade"),
                         rs.getString("identificacao_profissional"),
-                        buscarTurmasDoPsicologo(rs.getInt("id"))
+                        buscarTurmasDoPsicologo(rs.getInt("id")),
+                        rs.getString("tipo")
                 );
             }
         } catch (SQLException e) {
@@ -102,7 +106,7 @@ public class PsicologoDAO {
     }
 
     public boolean atualizarPsicologo(Psicologo psicologo) {
-        String sql = "UPDATE psicologo SET nome = ?, email = ?, senha = ?, idade = ?, identificacao_profissional = ? WHERE id = ?";
+        String sql = "UPDATE psicologo SET nome = ?, email = ?, senha = ?, idade = ?, identificacao_profissional = ?, tipo = ? WHERE id = ?";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -114,7 +118,8 @@ public class PsicologoDAO {
             stmt.setString(3, senhaCriptografada);
             stmt.setInt(4, psicologo.getIdade());
             stmt.setString(5, psicologo.getIdentificacao());
-            stmt.setInt(6, psicologo.getId());
+            stmt.setString(6, psicologo.getTipo());
+            stmt.setInt(7, psicologo.getId());
 
             return stmt.executeUpdate() > 0;
 

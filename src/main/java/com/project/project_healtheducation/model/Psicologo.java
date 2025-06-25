@@ -2,7 +2,7 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Psicologo implements Usuario{
+public class Psicologo implements Usuario {
     private int id;
     private String nome;
     private String email;
@@ -12,7 +12,11 @@ public class Psicologo implements Usuario{
     private String identificacao;
     private ArrayList<Turma> turmasAcompanhadas = new ArrayList<>();
 
-    public Psicologo(int id, String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas) {
+    // Construtor padrão
+    public Psicologo() {}
+
+    // Construtor completo com 'tipo'
+    public Psicologo(int id, String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas, String tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -20,42 +24,32 @@ public class Psicologo implements Usuario{
         this.idade = idade;
         this.identificacao = identificacao;
         this.turmasAcompanhadas = turmasAcompanhadas;
+        this.tipo = tipo;
     }
-    public Psicologo( String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas) {
+
+    // Construtor sem id, com 'tipo'
+    public Psicologo(String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas, String tipo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.idade = idade;
         this.identificacao = identificacao;
         this.turmasAcompanhadas = turmasAcompanhadas;
+        this.tipo = tipo;
     }
-    public Psicologo(){
 
-    }
-    public Psicologo(int id, String nome, String email, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas) {
+    // Construtor sem senha (ex: para consultas)
+    public Psicologo(int id, String nome, String email, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas, String tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.idade = idade;
         this.identificacao = identificacao;
         this.turmasAcompanhadas = turmasAcompanhadas;
+        this.tipo = tipo;
     }
 
-    public String getIdentificacao() {
-        return identificacao;
-    }
-
-    public ArrayList<Turma> getTurmasAcompanhadas() {
-        return turmasAcompanhadas;
-    }
-
-    public void addTurma(Turma novaTurma) {
-        this.turmasAcompanhadas.add(novaTurma);
-    }
-
-    public void rmvTurma(Turma turmaRemovida){
-        this.turmasAcompanhadas.remove(turmaRemovida);
-    }
+    // Getters e Setters
 
     public int getId() {
         return id;
@@ -97,16 +91,35 @@ public class Psicologo implements Usuario{
         this.idade = idade;
     }
 
+    public String getIdentificacao() {
+        return identificacao;
+    }
+
     public void setIdentificacao(String identificacao) {
         this.identificacao = identificacao;
+    }
+
+    public ArrayList<Turma> getTurmasAcompanhadas() {
+        return turmasAcompanhadas;
     }
 
     public void setTurmasAcompanhadas(ArrayList<Turma> turmasAcompanhadas) {
         this.turmasAcompanhadas = turmasAcompanhadas;
     }
 
+    // Métodos para adicionar e remover turma
+    public void addTurma(Turma turma) {
+        if (turma != null && !this.turmasAcompanhadas.contains(turma)) {
+            this.turmasAcompanhadas.add(turma);
+        }
+    }
+
+    public void removeTurma(Turma turma) {
+        this.turmasAcompanhadas.remove(turma);
+    }
+
     public String getTipo() {
-        return this.tipo;
+        return tipo;
     }
 
     public void setTipo(String tipo) {

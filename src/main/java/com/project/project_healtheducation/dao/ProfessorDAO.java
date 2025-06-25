@@ -54,9 +54,10 @@ public class ProfessorDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
-                        rs.getInt("idade"),
-                        rs.getString("especialidade"),
-                        buscarTurmasDoProfessor(id)
+                        rs.getString("senha"),  // senha criptografada
+                        0, // idade não está no banco, usar zero ou outro valor padrão
+                        null, // especialidade não está no banco
+                        rs.getString("tipo")
                 );
             }
 
@@ -81,10 +82,10 @@ public class ProfessorDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
-                        rs.getString("senha"), // senha criptografada para autenticação
-                        rs.getInt("idade"),
-                        rs.getString("especialidade"),
-                        buscarTurmasDoProfessor(rs.getInt("id"))
+                        rs.getString("senha"), // senha criptografada
+                        0, // idade não está no banco
+                        null, // especialidade não está no banco
+                        rs.getString("tipo")
                 );
             }
 
@@ -104,7 +105,7 @@ public class ProfessorDAO {
     }
 
     public boolean atualizarProfessor(Professor professor) {
-        String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, idade = ?, especialidade = ? WHERE id = ?";
+        String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, tipo = ? WHERE id = ?";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -114,9 +115,8 @@ public class ProfessorDAO {
             stmt.setString(1, professor.getNome());
             stmt.setString(2, professor.getEmail());
             stmt.setString(3, senhaCriptografada);
-            stmt.setInt(4, professor.getIdade());
-            stmt.setString(5, professor.getEspecialidade());
-            stmt.setInt(6, professor.getId());
+            stmt.setString(4, professor.getTipo());
+            stmt.setInt(5, professor.getId());
 
             return stmt.executeUpdate() > 0;
 

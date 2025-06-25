@@ -1,8 +1,10 @@
 package com.project.project_healtheducation.controllers;
 
-import com.project.project_healtheducation.dao.StatusEmocionalDAO;
+import com.project.project_healtheducation.dao.HumorDAO;
+import com.project.project_healtheducation.dao.HumorDAO;
 import com.project.project_healtheducation.model.Aluno;
-import com.project.project_healtheducation.model.StatusEmocional;
+import com.project.project_healtheducation.model.Humor;
+import com.project.project_healtheducation.model.Humor;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import com.project.project_healtheducation.utils.SessaoUsuario;
 import javafx.event.ActionEvent;
@@ -33,8 +35,8 @@ public class RegistroEmocoesController {
         sliderSentimento.valueProperty().addListener((obs, oldVal, newVal) -> labelSentimentoEscolhido.setText("Estado atual: " + getDescricaoSentimento(newVal.intValue())));
     }
 
-    @FXML protected void registrarSentimento(){
-
+    @FXML
+    protected void registrarSentimento(){
         Aluno alunoLogado = (Aluno) SessaoUsuario.getUsuarioLogado();
         if(alunoLogado == null){
             System.out.println("Nenhum usuário logado!");
@@ -42,41 +44,34 @@ public class RegistroEmocoesController {
         }
 
         int valor = (int) sliderSentimento.getValue();
-        String descricao = getDescricaoSentimento(valor);
+        String nomeHumor = getDescricaoSentimento(valor);
+        String descricao = "Registro feito automaticamente no app";
 
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setHeaderText(null);
         alerta.setContentText("Deseja registrar essa emoção?");
         ButtonType sim = new ButtonType("Sim");
         ButtonType nao = new ButtonType("Não");
-
         alerta.getButtonTypes().setAll(sim, nao);
 
-
-
-
-
         Optional<ButtonType> opcao = alerta.showAndWait();
-        // SALVAR NO BANCO DE DADOS
+        if(opcao.isPresent() && opcao.get() == sim) {
+            HumorDAO emocional = new HumorDAO();
+            Humor emocao = new Humor(nomeHumor, alunoLogado.getId(), LocalDate.now(), descricao);
+            boolean sucesso = emocional.inserirEmocao(emocao);
 
-        StatusEmocionalDAO emocional = new StatusEmocionalDAO();
-        StatusEmocional emocao = new StatusEmocional(
-                alunoLogado.getId(),
-                LocalDate.now(),
-                descricao
-        );
-        boolean sucesso = emocional.inserirEmocao(emocao);
-        if(sucesso){
-            Alert alerta2 = new Alert(Alert.AlertType.INFORMATION);
-            alerta2.setHeaderText(null);
-            alerta2.setContentText("Emoção registrada com sucesso!");
-            alerta2.showAndWait();
+            if (sucesso) {
+                Alert alerta2 = new Alert(Alert.AlertType.INFORMATION);
+                alerta2.setHeaderText(null);
+                alerta2.setContentText("Emoção registrada com sucesso!");
+                alerta2.showAndWait();
+            } else {
+                Alert alerta3 = new Alert(Alert.AlertType.ERROR);
+                alerta3.setHeaderText(null);
+                alerta3.setContentText("Erro ao registrar sua emoção.");
+                alerta3.showAndWait();
+            }
         }
-
-        Alert alerta3 = new Alert(Alert.AlertType.ERROR);
-        alerta3.setHeaderText(null);
-        alerta3.setContentText("Erro ao registrar sua emoção.");
-        alerta3.showAndWait();
     }
 
     private String getDescricaoSentimento(int valor) {
