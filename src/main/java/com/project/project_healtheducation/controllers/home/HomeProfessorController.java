@@ -1,9 +1,13 @@
 package com.project.project_healtheducation.controllers.home;
 
 import com.jfoenix.controls.JFXButton;
+import com.project.project_healtheducation.controllers.TabelaAlunosController;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -40,20 +44,51 @@ public class HomeProfessorController {
 
 
     @FXML
-    private void handleTelaListaAlunos() throws IOException {
-        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaListaAlunos.fxml");
+    private void handleTelaListaAlunos() {
+        try {
+
+            String fxmlPath = "/com/project/project_healtheducation/view/professor/telaListaAlunos.fxml";
+
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent loadedPane = loader.load(); // Carrega o FXML
+
+
+            TabelaAlunosController tabelaAlunosController = loader.getController();
+
+            // 4. Chama o método refreshData() no controller da TabelaAlunos
+            if (tabelaAlunosController != null) {
+                tabelaAlunosController.refreshData();
+            } else {
+                System.err.println("Erro: TabelaAlunosController não encontrado após carregar FXML.");
+            }
+
+            // 5. Adiciona o painel carregado ao main_anchorPane (simulando setHalfScreen)
+            // Limpa o conteúdo anterior e define o novo
+            main_anchorPane.getChildren().setAll(loadedPane);
+            // Opcional: ajustar os anchors para preencher o AnchorPane pai
+            AnchorPane.setTopAnchor(loadedPane, 0.0);
+            AnchorPane.setBottomAnchor(loadedPane, 0.0);
+            AnchorPane.setLeftAnchor(loadedPane, 0.0);
+            AnchorPane.setRightAnchor(loadedPane, 0.0);
+
+        } catch (IOException e) {
+            System.err.println("Erro ao carregar a tela da lista de alunos: " + e.getMessage());
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro de Carregamento");
+
+            alert.setHeaderText("Não foi possível carregar a lista de alunos.");
+            alert.setContentText("Detalhes: " + e.getMessage());
+
+            alert.showAndWait();
+        }
     }
 
     // /com/project/project_healtheducation/view/professor/telaPerfil.fxml
     @FXML
     private void handleTelaPerfil(ActionEvent event) {
         ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaPerfil.fxml");
-    }
-
-
-    @FXML
-    private void handleTelaGrafico(ActionEvent event){
-        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaGrafico.fxml");
     }
 
     @FXML
@@ -77,4 +112,6 @@ public class HomeProfessorController {
     protected void handleVoltar(ActionEvent event) throws IOException {
         ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
     }
+
+
 }

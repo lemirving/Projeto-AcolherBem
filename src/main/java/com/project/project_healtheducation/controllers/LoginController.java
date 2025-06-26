@@ -26,6 +26,12 @@ public class LoginController {
     @FXML
     private PasswordField textSenha;
 
+//    @FXML private ImageView logoView;
+
+    @FXML
+    public void initialize(){
+//        System.out.println(logoView.getImage());
+    }
 
     @FXML
     protected void tentarLogin(ActionEvent event) throws IOException {

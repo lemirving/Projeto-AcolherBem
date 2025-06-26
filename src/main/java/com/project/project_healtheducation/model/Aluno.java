@@ -11,19 +11,22 @@ public class Aluno implements Usuario {
     private String nomeTurma;
     private String tipo;
     private String matricula;
-    private String humorAtual;
-    private String descricaoAluno;
+    private String humorAtual; // Esta propriedade é preenchida pelo AlunoDAO.listarTodosComUltimoHumor()
+    private String descricaoHumorAtual;
     private String caminhoImagem;
+
+    // A lista 'humores' que NÃO é preenchida pela query de listarTodosComUltimoHumor()
+    private ArrayList<Humor> humores = new ArrayList<>(); // Mantenha se for usada em outras partes do sistema
 
     @Override
     public String getCaminhoImagem() {
         return caminhoImagem;
     }
+
     @Override
     public void setCaminhoImagem(String caminhoImagem) {
         this.caminhoImagem = caminhoImagem;
     }
-
 
     public Aluno(String nome, String email, String senha, String idade, String nomeTurma, String tipo, String matricula) {
         this.nome = nome;
@@ -35,20 +38,18 @@ public class Aluno implements Usuario {
         this.matricula = matricula;
     }
 
+    // Este setter está correto e é usado pelo AlunoDAO
     public void setHumorAtual(String humorAtual) {
         this.humorAtual = humorAtual;
     }
 
-    private ArrayList<Humor> humores = new ArrayList<>();
-
     public Aluno() {}
+
     public Aluno(String nome, String email, String matricula){
         this.nome = nome;
         this.email = email;
         this.matricula = matricula;
     }
-
-
 
     // Getters e Setters
     public int getId() { return id; }
@@ -70,19 +71,27 @@ public class Aluno implements Usuario {
     public void setIdade(String idade) {
         this.idade = idade;
     }
+    public String getDescricaoHumorAtual() {
+        return (this.descricaoHumorAtual != null && !this.descricaoHumorAtual.trim().isEmpty()) ? this.descricaoHumorAtual : "Nenhuma descrição.";
+    }
 
+    public void setDescricaoHumorAtual(String descricaoHumorAtual) {
+        this.descricaoHumorAtual = descricaoHumorAtual;
+    }
     public String getNomeTurma() {
         return nomeTurma;
     }
     public void setNomeTurma(String nomeTurma) { this.nomeTurma = nomeTurma; }
 
+
     public ArrayList<Humor> getHumores() { return humores; }
+
     public String getHumorAtual(){
-        if(this.humores != null && !this.humores.isEmpty()){
-            return humores.get(humores.size()-1).getNomeHumor().toString();
-        }
-        return "Sem descrição";
+
+        return (this.humorAtual != null && !this.humorAtual.trim().isEmpty()) ? this.humorAtual : "Sem descrição";
     }
+
+    // Este setter para a lista 'humores' está correto, se a lista for usada em outro lugar
     public void setHumores(ArrayList<Humor> humores) {
         this.humores = humores;
     }
@@ -97,4 +106,6 @@ public class Aluno implements Usuario {
 
     public String getTipo() { return tipo; }
     public void setTipo(String tipo) { this.tipo = tipo; }
+
+
 }

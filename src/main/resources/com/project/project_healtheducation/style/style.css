@@ -76,3 +76,95 @@
 .background_standardColor {
     -fx-background-color: #e8effc;
 }
+
+.cor-primaria {
+    -fx-background-color: #051e5d;
+    -fx-text-fill: white;
+}
+
+
+.cor-secundaria {
+    -fx-background-color: #002778;
+    -fx-text-fill: #000000;
+}
+
+
+.cor-de-fundo-padrao {
+    -fx-background-color: #9397a0;
+}
+
+
+.borda-padrao {
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+
+.borda-destaque {
+    -fx-border-color: #ffffff; /* Usando a cor primária para destaque */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.font-padrao {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 14px;
+    -fx-fill: white; /* Cor padrão do texto */
+}
+
+.font-titulo {
+    -fx-font-family: 'Verdana', sans-serif;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-fill: white; /* Azul escuro (exemplo) */
+}
+
+/* Para subtítulos ou textos menores */
+.font-subtitulo {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: regular;
+    -fx-fill: #555555;
+}
+
+/* --- Outras Classes Úteis (Bônus) --- */
+
+/* Para botões de ação */
+.botao-acao {
+    -fx-background-color: #007bff; /* Azul (exemplo) */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand; /* Muda o cursor para indicar que é clicável */
+}
+
+.botao-acao:hover {
+    -fx-background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+/* Para caixas de texto ou campos de entrada */
+.campo-texto-entrada {
+    -fx-background-color: white;
+    -fx-border-color: #D0D0D0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+.tabela-cabecalho {
+    -fx-background-color: #E0E0E0; /* Fundo cinza para o cabeçalho */
+    -fx-font-weight: bold;
+    -fx-text-fill: #444444;
+}
+
+.tabela-celula {
+    -fx-padding: 5px;
+    -fx-alignment: CENTER-LEFT; /* Alinha o conteúdo da célula */
+}
+
+.painel-principal-fundo {
+    -fx-background-color: #F8F8F8; /* Fundo muito claro */
+}

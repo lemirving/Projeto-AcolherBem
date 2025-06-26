@@ -10,7 +10,6 @@ Humor {
     private String descricao;
     private String nomeHumor;
 
-    // Construtor completo
     public Humor(int id, String nomeHumor, int idAluno, LocalDate data, String descricao) {
         this.id = id;
         this.nomeHumor = nomeHumor;
@@ -18,8 +17,9 @@ Humor {
         this.data = data;
         this.descricao = descricao;
     }
+    public Humor() {
+    }
 
-    // Construtor sem ID (para inserção no banco)
     public Humor(String nomeHumor, int idAluno, LocalDate data, String descricao) {
         this.nomeHumor = nomeHumor;
         this.idAluno = idAluno;
