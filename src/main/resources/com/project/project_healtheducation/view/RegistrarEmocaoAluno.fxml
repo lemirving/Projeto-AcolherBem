@@ -14,7 +14,7 @@
                   <AnchorPane layoutX="67.0" layoutY="88.0" prefHeight="211.0" prefWidth="675.0">
                      <children>
 
-                         <Slider fx:id="sliderSentimento" blockIncrement="1" layoutX="41.0" layoutY="136.0" majorTickUnit="1" max="5" min="0" prefHeight="61.0" prefWidth="593.0" snapToTicks="true" showTickLabels="true" showTickMarks="true"  value="2" />
+                         <Slider fx:id="sliderSentimento" blockIncrement="1" layoutX="41.0" layoutY="136.0" majorTickUnit="1" max="5" min="0" prefHeight="61.0" prefWidth="593.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2" />
                         <Label alignment="CENTER" layoutX="23.0" layoutY="94.0" prefHeight="30.0" prefWidth="58.0" text="Pessimo">
                            <font>
                               <Font size="15.0" />
@@ -47,7 +47,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="243.0" layoutY="21.0" prefHeight="53.0" prefWidth="317.0" text="Ola! Como se sente hoje?">
+                  <Label layoutX="243.0" layoutY="21.0" prefHeight="53.0" prefWidth="317.0" text="Olá! Como se sente hoje?">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -67,7 +67,7 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-             <JFXButton fx:id="registrarHumorBtn" layoutX="320.0" layoutY="518.0" onAction="#registrarSentimento" prefHeight="43.0" prefWidth="195.0" text="Registrar Humor">
+             <JFXButton fx:id="registrarHumorBtn" layoutX="320.0" layoutY="518.0" onAction="#registrarSentimento" prefHeight="43.0" prefWidth="195.0" style="-fx-background-color: #d5f7f5;" text="Registrar Humor">
                <font>
                   <Font size="14.0" />
                </font></JFXButton>

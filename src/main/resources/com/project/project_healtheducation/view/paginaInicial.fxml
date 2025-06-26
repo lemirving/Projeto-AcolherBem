@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
    <children>
-      <AnchorPane layoutX="50.0" layoutY="46.0" prefHeight="708.0" prefWidth="1121.0">
+      <AnchorPane layoutX="50.0" layoutY="46.0" prefHeight="708.0" prefWidth="1121.0" style="-fx-background-color: #b7f7ea;">
          <children>
-            <AnchorPane layoutX="323.0" layoutY="37.0" prefHeight="593.0" prefWidth="476.0">
+            <AnchorPane layoutX="323.0" layoutY="37.0" prefHeight="593.0" prefWidth="476.0" style="-fx-background-color: #ebfaf7;">
                <children>
                   <Pane layoutX="174.0" layoutY="22.0" prefHeight="122.0" prefWidth="128.0">
                      <children>
@@ -21,7 +19,7 @@
                   </Pane>
                   <Label layoutX="111.0" layoutY="171.0" text="Seja Bem Vindo ao PsicoEduca">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="21.0" />
                      </font>
                   </Label>
                   <Label layoutX="131.0" layoutY="209.0" text="Nos mostre como se sente">
@@ -29,17 +27,17 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <JFXButton onAction="#loginScreen" fx:id="loginBtn" layoutX="153.0" layoutY="297.0" prefHeight="62.0" prefWidth="170.0" text="Fazer Login">
+                  <JFXButton fx:id="loginBtn" layoutX="153.0" layoutY="297.0" onAction="#loginScreen" prefHeight="62.0" prefWidth="170.0" style="-fx-background-color: #dff0ef;" text="Fazer Login">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton onAction="#cadastroScreen" fx:id="CadastrarBtn" layoutX="154.0" layoutY="375.0" prefHeight="62.0" prefWidth="170.0" text="Cadastrar-se">
+                  <JFXButton fx:id="CadastrarBtn" layoutX="154.0" layoutY="375.0" onAction="#cadastroScreen" prefHeight="62.0" prefWidth="170.0" style="-fx-background-color: #dff0ef;" text="Cadastrar-se">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton  onAction="#btnSairApp" fx:id="sairBtn" layoutX="174.0" layoutY="504.0" prefHeight="38.0" prefWidth="128.0" text="Sair">
+                  <JFXButton fx:id="sairBtn" layoutX="174.0" layoutY="504.0" onAction="#btnSairApp" prefHeight="38.0" prefWidth="128.0" style="-fx-background-color: #f56c7b;" text="Sair">
                      <font>
                         <Font size="17.0" />
                      </font>

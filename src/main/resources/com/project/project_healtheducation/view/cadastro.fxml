@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="791.0" prefWidth="998.0" stylesheets="@style/cadastro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
+<AnchorPane prefHeight="791.0" prefWidth="998.0" style="-fx-background-color: #b7f7ea;" stylesheets="@style/cadastro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
     <children>
         <AnchorPane layoutX="189.0" layoutY="80.0" prefHeight="631.0" prefWidth="621.0">
             <children>
-                <AnchorPane layoutX="89.0" layoutY="47.0" prefHeight="439.0" prefWidth="444.0">
+                <AnchorPane layoutX="89.0" layoutY="47.0" prefHeight="439.0" prefWidth="444.0" style="-fx-background-color: #ebfaf7;">
                     <children>
                         <Label fx:id="labelNome" layoutX="78.0" layoutY="14.0" prefHeight="15.0" prefWidth="50.0" text="Nome:">
                             <font>
@@ -62,23 +62,23 @@
                     </children>
                 </AnchorPane>
 
-                <AnchorPane layoutX="89.0" layoutY="486.0" prefHeight="111.0" prefWidth="444.0">
+                <AnchorPane layoutX="89.0" layoutY="486.0" prefHeight="111.0" prefWidth="444.0" style="-fx-background-color: #ebfaf7;">
                     <children>
                         <JFXRadioButton fx:id="radioAluno" layoutX="53.0" layoutY="28.0" text="Aluno" />
                         <JFXRadioButton fx:id="radioProfessor" layoutX="174.0" layoutY="28.0" text="Professor" />
                         <JFXRadioButton fx:id="radioPsicologo" layoutX="292.0" layoutY="28.0" text="Psicologo" />
 
-                        <JFXButton fx:id="cadastrarBtn" layoutX="152.0" layoutY="56.0" onAction="#irParaHome" prefHeight="41.0" prefWidth="140.0" text="Cadastrar" />
+                        <JFXButton fx:id="cadastrarBtn" layoutX="152.0" layoutY="56.0" onAction="#irParaHome" prefHeight="41.0" prefWidth="140.0" style="-fx-background-color: #dff0ef;" text="Cadastrar" />
                     </children>
                 </AnchorPane>
-                <Label alignment="CENTER" layoutX="217.0" layoutY="14.0" prefHeight="34.0" prefWidth="187.0" text="Cadastre-se">
+                <Label alignment="CENTER" layoutX="217.0" layoutY="14.0" prefHeight="34.0" prefWidth="187.0" style="-fx-background-color: #dff0ef;" text="Cadastre-se">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-      <JFXButton fx:id="voltarBtn" layoutX="72.0" layoutY="80.0" onAction="#voltarInicio" prefHeight="27.0" prefWidth="72.0" text="Voltar">
+      <JFXButton fx:id="voltarBtn" layoutX="72.0" layoutY="80.0" onAction="#voltarInicio" prefHeight="27.0" prefWidth="72.0" style="-fx-background-color: #dff0ef;" text="Voltar">
          <font>
             <Font size="15.0" />
          </font>
