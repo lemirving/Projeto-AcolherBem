@@ -28,7 +28,6 @@ public class TelaPerfilController {
     @FXML
     public void initialize() {
         Usuario usuario = SessaoUsuario.getUsuarioLogado();
-
         if (usuario != null) {
             nomeLabel.setText("Nome: " + usuario.getNome());
             emailLabel.setText("Email: " + usuario.getEmail());
@@ -47,6 +46,6 @@ public class TelaPerfilController {
 
 
     public void handleEditarPerfil(ActionEvent event) throws IOException {
-        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/editarPefil.fxml");
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/editarPefil.fxml");
     }
 }

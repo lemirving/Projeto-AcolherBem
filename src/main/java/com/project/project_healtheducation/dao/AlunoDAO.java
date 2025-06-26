@@ -73,9 +73,6 @@ public boolean inserirAluno(Aluno aluno) {
     return false;
 }
 
-
-
-
     public Aluno buscarPorEmail(String email) {
         String sql = "SELECT * FROM aluno WHERE email = ?";
         try (Connection conn = dbSetup.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
