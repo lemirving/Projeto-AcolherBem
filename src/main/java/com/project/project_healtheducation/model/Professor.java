@@ -8,25 +8,27 @@ public class Professor implements Usuario {
     private String nome;
     private String email;
     private String senha;
-    private int idade; // Apenas na aplicação (não está no banco ainda)
+    private String idade; // Apenas na aplicação (não está no banco ainda)
     private String especialidade; // Apenas na aplicação
     private String tipo;
+    private String caminhoImagem;
 
-    private ArrayList<Turma> turmasLecionadas = new ArrayList<>();
-
-    // Construtores
-    public Professor() {}
-
-    public Professor(String nome, String email, String senha, int idade, String especialidade, String tipo) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.idade = idade;
-        this.especialidade = especialidade;
-        this.tipo = tipo;
+    public String getCaminhoImagem() {
+        return caminhoImagem;
     }
 
-    public Professor(int id, String nome, String email, String senha, int idade, String especialidade, String tipo) {
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
+
+    private String descricaoProfessor;
+    private ArrayList<Turma> turmasLecionadas = new ArrayList<>();
+
+    public Professor(){}
+    public Professor(int id, String nome, String email, String senha, String tipo, String idade){}
+    // Construtores
+    public Professor(int id,String nome, String email, String senha, String idade, String especialidade, String tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -35,6 +37,16 @@ public class Professor implements Usuario {
         this.especialidade = especialidade;
         this.tipo = tipo;
     }
+    public Professor(String nome, String email, String senha, String idade, String especialidade, String tipo) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.idade = idade;
+        this.especialidade = especialidade;
+        this.tipo = tipo;
+    }
+
+
 
     // Getters e Setters
     public int getId() { return id; }
@@ -49,8 +61,13 @@ public class Professor implements Usuario {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    public int getIdade() { return idade; }
-    public void setIdade(int idade) { this.idade = idade; }
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
 
     public String getEspecialidade() { return especialidade; }
     public void setEspecialidade(String especialidade) { this.especialidade = especialidade; }

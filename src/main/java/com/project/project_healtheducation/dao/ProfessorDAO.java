@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ProfessorDAO {
 
     public boolean inserirProfessor(Professor professor) {
-        String sql = "INSERT INTO professor (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO professor (nome, email, senha, tipo, idade, caminhoImagem) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -22,6 +22,9 @@ public class ProfessorDAO {
             stmt.setString(2, professor.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setString(4, professor.getTipo());
+            stmt.setString(5,professor.getIdade());
+            stmt.setString(8, professor.getCaminhoImagem()); // novo
+
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -54,10 +57,9 @@ public class ProfessorDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
-                        rs.getString("senha"),  // senha criptografada
-                        0, // idade não está no banco, usar zero ou outro valor padrão
-                        null, // especialidade não está no banco
-                        rs.getString("tipo")
+                        rs.getString("senha"),
+                        rs.getString("tipo"),
+                         rs.getString("idade")
                 );
             }
 
@@ -75,18 +77,19 @@ public class ProfessorDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, email);
-
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
-                return new Professor(
-                        rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getString("email"),
-                        rs.getString("senha"), // senha criptografada
-                        0, // idade não está no banco
-                        null, // especialidade não está no banco
-                        rs.getString("tipo")
-                );
+                Professor professor = new Professor();
+                professor.setId(rs.getInt("id"));
+                professor.setNome(rs.getString("nome"));
+                professor.setEmail(rs.getString("email"));
+                professor.setSenha(rs.getString("senha")); // senha criptografada
+                professor.setTipo(rs.getString("tipo"));
+                professor.setIdade(rs.getString("idade")); // Certifique-se de que está como INTEGER no banco
+                professor.setCaminhoImagem(rs.getString("caminhoImagem")); // se houver esse campo
+
+                return professor;
             }
 
         } catch (SQLException e) {
@@ -95,6 +98,7 @@ public class ProfessorDAO {
 
         return null;
     }
+
 
     public boolean autenticar(String email, String senhaDigitada) {
         Professor professor = buscarProfessorPorEmail(email);
@@ -142,6 +146,32 @@ public class ProfessorDAO {
 
         return false;
     }
+    public boolean atualizarPerfil(Professor professor) {
+        String sql = "UPDATE professor SET nome = ?, idade = ? WHERE id = ?";
+        try (Connection conn = dbSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, professor.getNome());
+            stmt.setString(2, professor.getIdade());
+            stmt.setInt(3, professor.getId());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar perfil do professor: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean atualizarCaminhoImagem(int id, String caminhoImagem) {
+        String sql = "UPDATE professor SET caminhoImagem = ? WHERE id = ?";
+        try (Connection conn = dbSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, caminhoImagem);
+            stmt.setInt(2, id);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar imagem do aluno: " + e.getMessage());
+        }
+        return false;
+    }
 
     public boolean associarTurmaAoProfessor(int idProfessor, String nomeTurma) {
         String sql = "INSERT INTO turma_professor (nome_turma, id_professor) VALUES (?, ?)";
@@ -181,4 +211,5 @@ public class ProfessorDAO {
 
         return turmas;
     }
+
 }

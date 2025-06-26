@@ -42,22 +42,27 @@ public class HomeProfessorController {
 
 
     @FXML
-    private void handleTelaListaAlunos() throws IOException {
+    protected void handleTelaListaAlunos() throws IOException {
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaListaAlunos.fxml");
     }
 
     // /com/project/project_healtheducation/view/professor/telaPerfil.fxml
     @FXML
-    private void handleTelaPerfil(ActionEvent event) {
+    protected void handleTelaPerfil(ActionEvent event) {
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaPerfil.fxml");
     }
 
 
     @FXML
-    private void handleTelaGrafico(ActionEvent event){
+    protected void handleTelaGrafico(ActionEvent event){
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaGrafico.fxml");
     }
 
+    /*
+    *
+    * handleTelaAluno(){
+    * ChangeScreen.sethalfScreen(main_anchorPane, caminho da tela de add emoção);
+    * */
     @FXML
     private void handleTelaConfigs(ActionEvent event){
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaConfigs.fxml");

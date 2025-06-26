@@ -25,34 +25,39 @@ public class dbSetup {
                     "quantidade INTEGER NOT NULL" +
                     ");";
 
-            // Tabela aluno
+            // Tabela aluno (com campo de imagem)
             String sqlAlunoTable = "CREATE TABLE IF NOT EXISTS aluno (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
                     "tipo TEXT NOT NULL," +
-                    "idade INTEGER," +
+                    "idade TEXT NOT NULL," +
                     "matricula TEXT," +
-                    "turma TEXT" +
+                    "turma TEXT," +
+                    "imagem_perfil TEXT" +
                     ");";
 
-            // Tabela professor
+            // Tabela professor (corrigida)
             String sqlProfessorTable = "CREATE TABLE IF NOT EXISTS professor (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
-                    "tipo TEXT NOT NULL" +
+                    "tipo TEXT NOT NULL," +
+                    "idade TEXT NOT NULL," +
+                    "caminhoImagem TEXT" +
                     ");";
 
-            // Tabela psicologo
+            // Tabela psicologo (corrigida)
             String sqlPsicologoTable = "CREATE TABLE IF NOT EXISTS psicologo (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
-                    "tipo TEXT NOT NULL" +
+                    "tipo TEXT NOT NULL," +      // <- adicionada vírgula aqui
+                    "idade TEXT NOT NULL," +
+                    "caminhoImagem TEXT" +
                     ");";
 
             // Tabela emoção
@@ -83,7 +88,7 @@ public class dbSetup {
                     "FOREIGN KEY (id_psicologo) REFERENCES psicologo(id) ON DELETE CASCADE" +
                     ");";
 
-            // Executar as criações
+            // Executar todas as criações
             statement.execute(sqlTurmaTable);
             statement.execute(sqlAlunoTable);
             statement.execute(sqlProfessorTable);
@@ -102,5 +107,4 @@ public class dbSetup {
             System.out.println("Erro ao criar tabelas: " + e.getMessage());
         }
     }
-
 }
