@@ -157,7 +157,7 @@ public class AlunoDAO {
         String sql = "SELECT a.id, a.nome, a.email, a.idade, a.tipo, a.matricula, a.turma, a.caminhoImagem, e.nomeHumor, e.descricao " + // <-- ADICIONADA 'e.descricao' AQUI!
                 "FROM aluno a " +
                 "LEFT JOIN (" +
-                "  SELECT id_aluno, nomeHumor, descricao " + // <-- ADICIONADA 'descricao' AQUI TAMBÉM!
+                "  SELECT id_aluno, nomeHumor, descricao " +
                 "  FROM emocao " +
                 "  WHERE id IN (" +
                 "    SELECT MAX(id) FROM emocao GROUP BY id_aluno" +
@@ -180,13 +180,12 @@ public class AlunoDAO {
                 aluno.setCaminhoImagem(rs.getString("caminhoImagem"));
 
                 String humorDoBanco = rs.getString("nomeHumor");
-                String descricaoDoBanco = rs.getString("descricao"); // <-- AGORA OBTENDO A DESCRIÇÃO DO RESULTSET
+                String descricaoDoBanco = rs.getString("descricao");
 
                 aluno.setHumorAtual(humorDoBanco);
-                aluno.setDescricaoHumorAtual(descricaoDoBanco); // <-- AGORA SETANDO A DESCRIÇÃO NO OBJETO ALUNO
+                aluno.setDescricaoHumorAtual(descricaoDoBanco);
 
-                // Removi a linha de System.out.println duplicada que estava aqui
-                // e a movi para o TabelaAlunosController para um diagnóstico mais centralizado.
+
 
                 lista.add(aluno);
             }

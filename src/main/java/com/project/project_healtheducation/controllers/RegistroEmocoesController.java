@@ -82,11 +82,11 @@ public class RegistroEmocoesController {
         switch (valor) {
             case 0: return "Péssimo";
             case 1: return "Triste";
-            case 2: return "Neutro"; // Se você quer "OK" aqui, mude para "OK"
+            case 2: return "Neutro";
             case 3: return "Bem";
             case 4: return "Feliz";
             case 5: return "Radiante";
-            default: return "Desconhecido"; // Este caso nunca deveria ser alcançado com o slider configurado
+            default: return "Desconhecido";
         }
     }
 
@@ -102,17 +102,17 @@ public class RegistroEmocoesController {
     }
 
     @FXML
-    protected void btnTelaInicial(ActionEvent event){ // Removido 'throws IOException'
+    protected void btnTelaInicial(ActionEvent event){
         try{
             ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
         } catch (IOException e){
-            // Exibe um alerta amigável ao usuário e loga o erro para depuração
+
             exibirAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível ir para a tela inicial", "Erro ao carregar a tela inicial: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    // Método auxiliar para exibir alertas de forma consistente
+
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String cabecalho, String conteudo) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);

@@ -5,13 +5,13 @@ import com.project.project_healtheducation.model.Humor;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter; // <-- NOVO IMPORT: Para formatar/parsear datas
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class HumorDAO {
 
-    // Formato para gravação e leitura de datas no banco de dados SQLite
-    private static final DateTimeFormatter DB_DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE; // YYYY-MM-DD
+
+    private static final DateTimeFormatter DB_DATE_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
 
     public boolean inserirEmocao(Humor emocao) {
         String sql = "INSERT INTO emocao (nomeHumor, id_aluno, data, descricao) VALUES (?, ?, ?, ?)";
@@ -21,7 +21,7 @@ public class HumorDAO {
 
             stmt.setString(1, emocao.getNomeHumor());
             stmt.setInt(2, emocao.getIdAluno());
-            stmt.setString(3, emocao.getData().format(DB_DATE_FORMATTER)); // <-- CORREÇÃO: Grava LocalDate como String
+            stmt.setString(3, emocao.getData().format(DB_DATE_FORMATTER));
             stmt.setString(4, emocao.getDescricao());
 
             int linhasAfetadas = stmt.executeUpdate();
@@ -38,15 +38,14 @@ public class HumorDAO {
             }
 
         } catch (SQLException e) {
-            System.err.println("Erro ao inserir emoção: " + e.getMessage()); // Use System.err para erros
-            e.printStackTrace();
+            System.err.println("Erro ao inserir emoção: " + e.getMessage());
         }
 
         return false;
     }
 
     public ArrayList<Humor> listarEmocoesPorAluno(int idAluno) {
-        String sql = "SELECT id, id_aluno, nomeHumor, descricao, data FROM emocao WHERE id_aluno = ? ORDER BY data DESC, id DESC"; // ORDENAÇÃO POR data e id para pegar o último de verdade
+        String sql = "SELECT id, id_aluno, nomeHumor, descricao, data FROM emocao WHERE id_aluno = ? ORDER BY data DESC, id DESC";
         ArrayList<Humor> emocoes = new ArrayList<>();
 
         try (Connection conn = dbSetup.getConnection();
@@ -55,12 +54,12 @@ public class HumorDAO {
             stmt.setInt(1, idAluno);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    Humor emocao = new Humor(); // Use o construtor vazio e setters para clareza
+                    Humor emocao = new Humor();
                     emocao.setId(rs.getInt("id"));
                     emocao.setIdAluno(rs.getInt("id_aluno"));
                     emocao.setNomeHumor(rs.getString("nomeHumor"));
                     emocao.setDescricao(rs.getString("descricao"));
-                    emocao.setData(LocalDate.parse(rs.getString("data"), DB_DATE_FORMATTER)); // <-- CORREÇÃO: Lê String e converte para LocalDate
+                    emocao.setData(LocalDate.parse(rs.getString("data"), DB_DATE_FORMATTER));
 
                     emocoes.add(emocao);
                 }
@@ -78,17 +77,16 @@ public class HumorDAO {
     public Map<String, Map<LocalDate, Integer>> getContagemEmocoesPorData(LocalDate dataInicio, LocalDate dataFim) {
         Map<String, Map<LocalDate, Integer>> emocoesPorData = new HashMap<>();
 
-        String sql = "SELECT nomeHumor, data as data_registro, COUNT(*) as contagem " + // Removed DATE() wrapper for SQLite TEXT data
-                "FROM emocao " +
-                "WHERE data BETWEEN ? AND ? " + // Comparison works correctly for YYYY-MM-DD strings
-                "GROUP BY nomeHumor, data " + // Group by data directly (as string)
+        String sql = "SELECT nomeHumor, data as data_registro, COUNT(*) as contagem " +
+                "WHERE data BETWEEN ? AND ? " +
+                "GROUP BY nomeHumor, data " +
                 "ORDER BY nomeHumor, data_registro";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, dataInicio.format(DB_DATE_FORMATTER)); // <-- CORREÇÃO: Passa como String
-            stmt.setString(2, dataFim.format(DB_DATE_FORMATTER));   // <-- CORREÇÃO: Passa como String
+            stmt.setString(1, dataInicio.format(DB_DATE_FORMATTER));
+            stmt.setString(2, dataFim.format(DB_DATE_FORMATTER));
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -151,7 +149,7 @@ public class HumorDAO {
                     emocao.setIdAluno(rs.getInt("id_aluno"));
                     emocao.setNomeHumor(rs.getString("nomeHumor"));
                     emocao.setDescricao(rs.getString("descricao"));
-                    emocao.setData(LocalDate.parse(rs.getString("data"), DB_DATE_FORMATTER)); // <-- CORREÇÃO AQUI
+                    emocao.setData(LocalDate.parse(rs.getString("data"), DB_DATE_FORMATTER));
                     emocoes.add(emocao);
                 }
             }

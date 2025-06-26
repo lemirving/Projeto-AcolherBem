@@ -24,6 +24,7 @@ public class HomeAlunoController {
         } else {
             labelSaudacao.setText("Olá! Como você se sente hoje?");
         }
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
     }
 
     @FXML

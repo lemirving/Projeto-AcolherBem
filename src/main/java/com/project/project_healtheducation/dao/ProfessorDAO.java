@@ -175,7 +175,6 @@ public class ProfessorDAO {
             stmt.setInt(2, id);
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
-            // CORRIGIDO: Mensagem de erro para professor
             System.out.println("Erro ao atualizar imagem do professor: " + e.getMessage());
         }
         return false;

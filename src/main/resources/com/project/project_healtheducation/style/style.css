@@ -154,7 +154,6 @@
     -fx-font-size: 14px;
 }
 
-/* Para tabelas */
 .tabela-cabecalho {
     -fx-background-color: #E0E0E0; /* Fundo cinza para o cabeçalho */
     -fx-font-weight: bold;
@@ -166,7 +165,6 @@
     -fx-alignment: CENTER-LEFT; /* Alinha o conteúdo da célula */
 }
 
-/* Para o AnchorPane principal de cada tela, se você quiser um fundo global */
 .painel-principal-fundo {
     -fx-background-color: #F8F8F8; /* Fundo muito claro */
 }

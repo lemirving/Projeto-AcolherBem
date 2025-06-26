@@ -209,47 +209,68 @@ public class CadastroController {
 
         return true;
     }
+    // CadastroController.java
     private boolean inserirUsuario() {
-        if (!validarCadastro()) return false;
+        if (!validarCadastro()) {
+            // validarCadastro() already shows an alert, so just return false.
+            return false;
+        }
+
         AlunoDAO alunoDAO = new AlunoDAO();
         String tipo = ((RadioButton) groupRadios.getSelectedToggle()).getText();
+
+        boolean success = false;
 
         if (tipo.equalsIgnoreCase("Aluno")) {
             Aluno aluno = obterDadosFormularioAluno();
             if (alunoDAO.buscarPorEmail(aluno.getEmail()) != null) {
-                mostrarAlerta("Este e-mail já está cadastrado.");
-                return false;
+                mostrarAlerta("Erro de Cadastro", "E-mail já Cadastrado", "Este e-mail já está cadastrado como Aluno.");
+            } else {
+                success = alunoDAO.inserirAluno(aluno);
+                if (!success) {
+                    mostrarAlerta("Erro de Cadastro", "Falha na Inserção", "Não foi possível cadastrar o Aluno. Verifique os dados ou tente novamente.");
+                }
             }
-            return alunoDAO.inserirAluno(aluno);
-
         } else if (tipo.equalsIgnoreCase("Professor")) {
             Professor professor = obterDadosFormularioProfessor();
             ProfessorDAO dao = new ProfessorDAO();
-
             if (dao.buscarProfessorPorEmail(professor.getEmail()) != null) {
-                mostrarAlerta("Este e-mail já está cadastrado.");
-                return false;
+                mostrarAlerta("Erro de Cadastro", "E-mail já Cadastrado", "Este e-mail já está cadastrado como Professor.");
+            } else {
+                success = dao.inserirProfessor(professor);
+                if (!success) {
+                    mostrarAlerta("Erro de Cadastro", "Falha na Inserção", "Não foi possível cadastrar o Professor. Verifique os dados ou tente novamente.");
+                }
             }
-            return dao.inserirProfessor(professor);
-
         } else {
             Psicologo psicologo = obterDadosFormularioPsicologo();
             PsicologoDAO daoPs = new PsicologoDAO();
-
             if(daoPs.buscarPorEmail(psicologo.getEmail()) != null){
-                mostrarAlerta("Este e-mail já está cadastrado");
-                return false;
+                mostrarAlerta("Erro de Cadastro", "E-mail já Cadastrado", "Este e-mail já está cadastrado como Psicólogo.");
+            } else {
+                success = daoPs.inserirPsicologo(psicologo);
+                if (!success) {
+                    mostrarAlerta("Erro de Cadastro", "Falha na Inserção", "Não foi possível cadastrar o Psicólogo. Verifique os dados ou tente novamente.");
+                }
             }
-            return daoPs.inserirPsicologo(psicologo);
         }
+        return success;
     }
 
-    private void mostrarAlerta(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
+    private void mostrarAlerta(String titulo, String cabecalho, String conteudo) {
+        Alert alert;
+        if (titulo.contains("Erro") || titulo.contains("Falha")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(conteudo);
         alert.showAndWait();
     }
+
+
 
     @FXML
     protected void voltarInicio(ActionEvent event) {
@@ -263,7 +284,7 @@ public class CadastroController {
     @FXML
     protected void irParaHome(ActionEvent event) {
         if (inserirUsuario()) {
-            mostrarAlerta("Cadastro realizado com sucesso! Faça login com suas novas credenciais.");
+            mostrarAlerta("Sucesso", "Sucesso na inserção", "Vá para o Login.");
             try {
                 ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/login.fxml");
             } catch (IOException e) {

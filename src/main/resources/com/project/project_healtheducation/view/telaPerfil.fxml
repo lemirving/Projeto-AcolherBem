@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="958.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
-    <AnchorPane layoutX="288.0" layoutY="30.0" prefHeight="513.0" prefWidth="382.0" styleClass="root_pane" stylesheets="@../style/style.css">
+<AnchorPane prefHeight="573.0" prefWidth="958.0" styleClass="painel-principal-fundo" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
+    <AnchorPane layoutX="288.0" layoutY="30.0" prefHeight="513.0" prefWidth="382.0" styleClass="cor-secundaria" stylesheets="@../style/style.css">
         <children>
-            <Label fx:id="tituloLabel" layoutX="116.0" layoutY="26.0" styleClass="titulo-perfil" text="Perfil do Usuário">
+            <Label fx:id="tituloLabel" layoutX="116.0" layoutY="26.0" styleClass="titulo-perfil" text="Perfil do Usuário" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="19.0" />
                 </font>
             </Label>
 
-            <JFXButton fx:id="editarPerfilBtn" layoutX="122.0" layoutY="450.0" onAction="#handleEditarPerfil" prefHeight="39.0" prefWidth="138.0" style="-fx-background-color: #8d99a1;" styleClass="botao-editar" text="Editar Perfil">
+            <JFXButton fx:id="editarPerfilBtn" layoutX="122.0" layoutY="450.0" onAction="#handleEditarPerfil" prefHeight="39.0" prefWidth="138.0" styleClass="botao-acao" stylesheets="@../style/style.css" text="Editar Perfil" textFill="WHITE">
                 <font>
                     <Font size="18.0" />
                 </font>
@@ -23,24 +24,23 @@
 
             <AnchorPane layoutX="29.0" layoutY="249.0" prefHeight="186.0" prefWidth="328.0">
                 <children>
-                    <Label layoutX="24.0" layoutY="14.0" text="Nome: ">
+                    <Label layoutX="24.0" layoutY="14.0" text="Nome: " textFill="WHITE">
                         <font>
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <Label fx:id="nomeValorLabel" layoutX="90.0" layoutY="14.0" text="[Nome do Usuário]">
+                    <Label fx:id="nomeValorLabel" layoutX="90.0" layoutY="14.0" text="[Nome do Usuário]" textFill="WHITE">
                         <font>
                             <Font size="18.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="nomeInput" layoutX="78.0" layoutY="9.0" prefHeight="31.0" prefWidth="212.0" promptText="Editar nome" />
 
-                    <Label fx:id="emailLabel" layoutX="28.0" layoutY="63.0" prefWidth="280.0" text="Email: "> <font>
+                    <Label fx:id="emailLabel" layoutX="28.0" layoutY="63.0" prefWidth="280.0" text="Email: " textFill="WHITE"> <font>
                         <Font size="18.0" />
                     </font>
                     </Label>
 
-                    <Label fx:id="tipoLabel" layoutX="29.0" layoutY="100.0" text="Tipo:  ">
+                    <Label fx:id="tipoLabel" layoutX="29.0" layoutY="100.0" text="Tipo:  " textFill="WHITE">
                         <font>
                             <Font size="18.0" />
                         </font>
@@ -48,19 +48,20 @@
 
                     <AnchorPane fx:id="idadeContainer" layoutX="0.0" layoutY="130.0" prefHeight="40.0" prefWidth="320.0">
                         <children>
-                            <Label layoutX="26.0" layoutY="5.0" text="Idade: ">
+                            <Label layoutX="26.0" layoutY="5.0" text="Idade: " textFill="WHITE">
                                 <font>
                                     <Font size="18.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="idadeValorLabel" layoutX="83.0" layoutY="5.0" text="[Idade do Usuário]">
+                            <Label fx:id="idadeValorLabel" layoutX="83.0" layoutY="5.0" text="[Idade do Usuário]" textFill="WHITE">
                                 <font>
                                     <Font size="18.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="idadeInput" layoutX="78.0" layoutY="0.0" prefHeight="31.0" prefWidth="212.0" promptText="Editar idade" />
+                            <TextField fx:id="idadeInput" layoutX="82.0" prefHeight="31.0" prefWidth="212.0" promptText="Editar idade" />
                         </children>
                     </AnchorPane>
+                    <TextField fx:id="nomeInput" layoutX="80.0" layoutY="9.0" prefHeight="31.0" prefWidth="212.0" promptText="Editar nome" />
                 </children>
             </AnchorPane>
 
@@ -70,7 +71,7 @@
                 </children>
             </AnchorPane>
 
-            <JFXButton fx:id="trocarFotoBtn" layoutX="129.0" layoutY="198.0" onAction="#handleAlterarFotoPerfil" prefHeight="39.0" prefWidth="124.0" style="-fx-background-color: #8d99a1;" styleClass="botao-editar" text="Trocar Foto">
+            <JFXButton fx:id="trocarFotoBtn" layoutX="129.0" layoutY="198.0" onAction="#handleAlterarFotoPerfil" prefHeight="39.0" prefWidth="124.0" styleClass="botao-acao" text="Trocar Foto" textFill="WHITE">
                 <font>
                     <Font size="18.0" />
                 </font>
