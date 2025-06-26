@@ -8,8 +8,7 @@ public class Professor implements Usuario {
     private String nome;
     private String email;
     private String senha;
-    // REMOVIDO: private String idade; // Idade NÃO pertence a Professor
-    // REMOVIDO: private String especialidade; // Especialidade NÃO pertence a Professor
+
     private String tipo;
     private String caminhoImagem;
 

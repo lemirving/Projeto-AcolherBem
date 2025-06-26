@@ -27,16 +27,11 @@ public class TelaListaAlunosController {
     public void initialize() {
         tabelaAlunos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        // Aqui você configura os valores das colunas (supondo que tenha getters correspondentes)
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         colHumor.setCellValueFactory(new PropertyValueFactory<>("humor"));
 
-        // Exemplo mock
-//        tabelaAlunos.getItems().addAll(
-//                new Aluno(),
-//                new Aluno("Irving","")
-//        );
+
     }
 }
