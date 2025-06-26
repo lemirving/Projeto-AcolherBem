@@ -78,6 +78,11 @@ public class Aluno implements Usuario {
 
     public ArrayList<Humor> getHumores() { return humores; }
     public String getHumorAtual(){
+        System.out.println(humores);
+        for(Humor h : this.humores){
+            System.out.println("kjlkjlkj");
+            System.out.println(h.getDescricao());
+        }
         if(this.humores != null && !this.humores.isEmpty()){
             return humores.get(humores.size()-1).getNomeHumor();
         }
