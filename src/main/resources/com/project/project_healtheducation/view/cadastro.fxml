@@ -12,36 +12,93 @@
             <Text fx:id="text" fill="#30475e" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Cadastre-se" />
 
             <VBox alignment="CENTER_LEFT" maxWidth="320" spacing="12">
-                <Label fx:id="labelNome" text="Nome:" />
-                <TextField fx:id="textNome" prefWidth="300" promptText="Digite seu nome" />
+                <Label fx:id="labelNome" text="Nome:">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <TextField fx:id="textNome" prefWidth="300" promptText="Digite seu nome">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
 
-                <Label fx:id="labelEmail" text="Email:" />
-                <TextField fx:id="textEmail" prefWidth="300" promptText="Digite seu e-mail" />
+                <Label fx:id="labelEmail" text="Email:">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <TextField fx:id="textEmail" prefWidth="300" promptText="Digite seu e-mail">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
 
-                <Label fx:id="labelSenha" text="Senha:" />
-                <PasswordField fx:id="textSenha" prefWidth="300" promptText="Digite sua senha" />
+                <Label fx:id="labelSenha" text="Senha:">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <PasswordField fx:id="textSenha" prefWidth="300" promptText="Digite sua senha">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
 
-                <Label fx:id="labelConfirmSenha" text="Confirmar senha:" />
-                <PasswordField fx:id="textSenhaConfirm" prefWidth="300" promptText="Repita a senha" />
+                <Label fx:id="labelConfirmSenha" text="Confirmar senha:">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <PasswordField fx:id="textSenhaConfirm" prefWidth="300" promptText="Repita a senha">
+               <font>
+                  <Font size="14.0" />
+               </font></PasswordField>
 
-                <Label fx:id="labelIdade" text="Idade"/>
-                <TextField fx:id="textIdade" promptText="Digite a sua matrícula" prefWidth="300"/>
+                <Label fx:id="labelIdade" text="Idade">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <TextField fx:id="textIdade" prefWidth="300" promptText="Digite a sua matrícula">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
 
-                <Label fx:id="labelTurma" text="Turma"/>
-                <TextField fx:id="textTurma" promptText="Ex: 2B" prefWidth="300"/>
+                <Label fx:id="labelTurma" text="Turma">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <TextField fx:id="textTurma" prefWidth="300" promptText="Ex: 2B">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
 
-                <Label fx:id="labelMatricula" text="Matrícula"/>
-                <TextField fx:id="textMatricula" promptText="Digite a sua matrícula" prefWidth="300"/>
+                <Label fx:id="labelMatricula" text="Matrícula">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+                <TextField fx:id="textMatricula" prefWidth="300" promptText="Digite a sua matrícula">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
 
-                <Label style="-fx-padding: 10 0 0 0;" text="Selecione o que você é:" />
+                <Label style="-fx-padding: 10 0 0 0;" text="Selecione o que você é:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
                 <HBox alignment="CENTER_LEFT" spacing="18">
-                    <RadioButton fx:id="radioAluno" mnemonicParsing="false" text="Aluno" onAction="#mostrarCampos"/>
-                    <RadioButton fx:id="radioProfessor" mnemonicParsing="false" text="Professor" onAction="#mostrarCampos"/>
-                    <RadioButton fx:id="radioPsicologo" mnemonicParsing="false" text="Psicólogo" onAction="#mostrarCampos"/>
+                    <RadioButton fx:id="radioAluno" mnemonicParsing="false" onAction="#mostrarCampos" text="Aluno">
+                  <font>
+                     <Font size="13.0" />
+                  </font></RadioButton>
+                    <RadioButton fx:id="radioProfessor" mnemonicParsing="false" onAction="#mostrarCampos" text="Professor">
+                  <font>
+                     <Font size="13.0" />
+                  </font></RadioButton>
+                    <RadioButton fx:id="radioPsicologo" mnemonicParsing="false" onAction="#mostrarCampos" text="Psicólogo">
+                  <font>
+                     <Font size="13.0" />
+                  </font></RadioButton>
                 </HBox>
             </VBox>
 
-            <Button onAction="#irParaHome" style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-background-radius: 6; -fx-padding: 6 16;" text="Cadastrar" />
+            <Button onAction="#irParaHome" style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-background-radius: 6; -fx-padding: 6 16;" text="Cadastrar">
+            <font>
+               <Font size="16.0" />
+            </font></Button>
 
             <Button onAction="#voltarInicio" style="-fx-background-color: transparent; -fx-text-fill: #30475e;                            -fx-font-weight: bold;" text="Voltar" />
         </VBox>
