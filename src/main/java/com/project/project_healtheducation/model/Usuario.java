@@ -4,5 +4,12 @@ public interface Usuario {
     int getId();
     String getNome();
     String getEmail();
-    // outros métodos comuns
+
+    String getIdade();
+
+    void setNome(String nome);
+
+    void setEmail(String email);
+
+    void setIdade(String idade);
 }

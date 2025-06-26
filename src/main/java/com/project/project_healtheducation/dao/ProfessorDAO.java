@@ -55,7 +55,7 @@ public class ProfessorDAO {
                         rs.getString("nome"),
                         rs.getString("email"),
                         rs.getString("senha"),  // senha criptografada
-                        0, // idade não está no banco, usar zero ou outro valor padrão
+                        "0", // idade não está no banco, usar zero ou outro valor padrão
                         null, // especialidade não está no banco
                         rs.getString("tipo")
                 );
@@ -83,7 +83,7 @@ public class ProfessorDAO {
                         rs.getString("nome"),
                         rs.getString("email"),
                         rs.getString("senha"), // senha criptografada
-                        0, // idade não está no banco
+                        "0", // idade não está no banco
                         null, // especialidade não está no banco
                         rs.getString("tipo")
                 );

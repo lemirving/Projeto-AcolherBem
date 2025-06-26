@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="958.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
+<AnchorPane fx:id="main_anchorPane" prefHeight="573.0" prefWidth="958.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
    <AnchorPane layoutX="290.0" layoutY="30.0" prefHeight="513.0" prefWidth="379.0" styleClass="humorEmoji_anchorPane" stylesheets="@../style/style.css">
       <children>
           <!-- Título -->
@@ -20,27 +20,23 @@
           <!-- Dados do usuário -->
           <VBox layoutX="160" layoutY="70" prefHeight="131.0" prefWidth="189.0" spacing="10">
               <children>
-                  <Label fx:id="nomeLabel" text="Nome: Irving Lemuel">
+                  <Label fx:id="nomeLabel">
                   <font>
                      <Font size="18.0" />
                   </font></Label>
-                  <Label fx:id="emailLabel" text="Email: irving@email.com">
+                  <Label fx:id="emailLabel">
                   <font>
                      <Font size="16.0" />
                   </font></Label>
-                  <Label fx:id="idadeLabel" text="Idade: 21">
+                  <Label fx:id="idadeLabel">
                   <font>
                      <Font size="18.0" />
                   </font></Label>
-                  <Label fx:id="profissaoLabel" text="Profissão: Professor">
-                  <font>
-                     <Font size="18.0" />
-                  </font></Label>
-              </children>
+                  </children>
           </VBox>
 
           <!-- Botão editar -->
-          <JFXButton fx:id="editarBtn" layoutX="33.0" layoutY="385.0" styleClass="botao-editar" text="Editar Perfil" />
+          <JFXButton fx:id="editarBtn" layoutX="33.0" layoutY="385.0" styleClass="botao-editar" text="Editar Perfil" onAction="#handleEditarPerfil"/>
           <Label layoutX="40.0" layoutY="218.0" styleClass="label-emocao" text="Descrição:" />
          <TextArea layoutX="35.0" layoutY="234.0" prefHeight="139.0" prefWidth="309.0" styleClass="emocao-textarea" />
       </children>

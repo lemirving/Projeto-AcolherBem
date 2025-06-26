@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class PsicologoDAO {
 
     public boolean inserirPsicologo(Psicologo psicologo) {
-        String sql = "INSERT INTO psicologo (nome, email, senha, tipo, idade, identificacao_profissional) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO psicologo (nome, email, senha, tipo) VALUES ( ?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -22,8 +22,6 @@ public class PsicologoDAO {
             stmt.setString(2, psicologo.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setString(4, psicologo.getTipo());
-            stmt.setInt(5, psicologo.getIdade());
-            stmt.setString(6, psicologo.getIdentificacao());
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -57,9 +55,7 @@ public class PsicologoDAO {
                         rs.getString("nome"),
                         rs.getString("email"),
                         null, // senha omitida
-                        rs.getInt("idade"),
-                        rs.getString("identificacao_profissional"),
-                        buscarTurmasDoPsicologo(id),
+//                        buscarTurmasDoPsicologo(id),
                         rs.getString("tipo")
                 );
             }
@@ -85,9 +81,7 @@ public class PsicologoDAO {
                         rs.getString("nome"),
                         rs.getString("email"),
                         rs.getString("senha"), // senha criptografada para autenticação
-                        rs.getInt("idade"),
-                        rs.getString("identificacao_profissional"),
-                        buscarTurmasDoPsicologo(rs.getInt("id")),
+//                        buscarTurmasDoPsicologo(rs.getInt("id")),
                         rs.getString("tipo")
                 );
             }
@@ -116,8 +110,6 @@ public class PsicologoDAO {
             stmt.setString(1, psicologo.getNome());
             stmt.setString(2, psicologo.getEmail());
             stmt.setString(3, senhaCriptografada);
-            stmt.setInt(4, psicologo.getIdade());
-            stmt.setString(5, psicologo.getIdentificacao());
             stmt.setString(6, psicologo.getTipo());
             stmt.setInt(7, psicologo.getId());
 

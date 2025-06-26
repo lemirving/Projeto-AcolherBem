@@ -94,7 +94,6 @@ public class LoginController {
             }else if(usuario instanceof Professor){
                 ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/professor/telaProfessores.fxml");
             }
-
         }
     }
 }

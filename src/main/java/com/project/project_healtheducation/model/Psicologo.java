@@ -7,7 +7,7 @@ public class Psicologo implements Usuario {
     private String nome;
     private String email;
     private String senha;
-    private int idade;
+    private String idade;
     private String tipo;
     private String identificacao;
     private ArrayList<Turma> turmasAcompanhadas = new ArrayList<>();
@@ -16,36 +16,30 @@ public class Psicologo implements Usuario {
     public Psicologo() {}
 
     // Construtor completo com 'tipo'
-    public Psicologo(int id, String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas, String tipo) {
+    public Psicologo(int id, String nome, String email, String senha, String idade, String tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.idade = idade;
-        this.identificacao = identificacao;
-        this.turmasAcompanhadas = turmasAcompanhadas;
         this.tipo = tipo;
     }
 
     // Construtor sem id, com 'tipo'
-    public Psicologo(String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas, String tipo) {
+    public Psicologo(String nome, String email, String senha, String idade, String tipo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.idade = idade;
-        this.identificacao = identificacao;
-        this.turmasAcompanhadas = turmasAcompanhadas;
         this.tipo = tipo;
     }
 
     // Construtor sem senha (ex: para consultas)
-    public Psicologo(int id, String nome, String email, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas, String tipo) {
+    public Psicologo(int id, String nome, String email, String idade, String tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.idade = idade;
-        this.identificacao = identificacao;
-        this.turmasAcompanhadas = turmasAcompanhadas;
         this.tipo = tipo;
     }
 
@@ -75,6 +69,11 @@ public class Psicologo implements Usuario {
         this.email = email;
     }
 
+    @Override
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
+
     public String getSenha() {
         return senha;
     }
@@ -83,12 +82,8 @@ public class Psicologo implements Usuario {
         this.senha = senha;
     }
 
-    public int getIdade() {
+    public String getIdade() {
         return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
     }
 
     public String getIdentificacao() {

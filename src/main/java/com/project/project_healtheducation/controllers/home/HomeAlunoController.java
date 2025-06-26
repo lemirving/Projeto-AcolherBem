@@ -27,12 +27,12 @@ public class HomeAlunoController {
     }
 
     @FXML
-    private void handleTelaPerfil(ActionEvent event) {
+    private void handleTelaPerfil() {
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/telaPerfil.fxml");
     }
 
     @FXML
-    private void handleTelaConfigs(ActionEvent event){
+    private void handleTelaConfigs(){
         ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaConfigs.fxml");
 
     }
@@ -41,12 +41,12 @@ public class HomeAlunoController {
 
 
     @FXML
-    protected void handleTelaInicial(ActionEvent event) throws IOException {
-        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
+    protected void handleHomeInicio(ActionEvent event) throws IOException {
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
     }
     @FXML
-    protected void registrarEmocoesScreen(ActionEvent event) throws IOException{
-        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
+    protected void registrarEmocoesScreen(){
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
     }
 
     @FXML

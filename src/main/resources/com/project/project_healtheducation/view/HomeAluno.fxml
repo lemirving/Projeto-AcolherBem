@@ -22,9 +22,9 @@
                 <VBox layoutX="75.0" prefHeight="690.0" prefWidth="265.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <JFXButton onAction="#handleTelaPerfil" prefHeight="80.0" prefWidth="265.0" text="Perfil" />
-                        <JFXButton onAction="#handleTelaInicial" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
+                        <JFXButton onAction="#handleHomeInicio" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
                         <JFXButton onAction="#handleTelaConfigs" prefHeight="80.0" prefWidth="265.0" text="Configuraçoes" />
-                        <JFXButton onAction="#handleTelaInicial" prefHeight="80.0" prefWidth="265.0" text="Sair" />
+                        <JFXButton onAction="#btnVoltarPaginaInicio" prefHeight="80.0" prefWidth="265.0" text="Sair" />
                     </children>
                 </VBox>
             </children></AnchorPane>

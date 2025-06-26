@@ -8,7 +8,7 @@ public class Professor implements Usuario {
     private String nome;
     private String email;
     private String senha;
-    private int idade; // Apenas na aplicação (não está no banco ainda)
+    private String idade; // Apenas na aplicação (não está no banco ainda)
     private String especialidade; // Apenas na aplicação
     private String tipo;
 
@@ -17,7 +17,7 @@ public class Professor implements Usuario {
     // Construtores
     public Professor() {}
 
-    public Professor(String nome, String email, String senha, int idade, String especialidade, String tipo) {
+    public Professor(String nome, String email, String senha, String idade, String especialidade, String tipo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -26,7 +26,7 @@ public class Professor implements Usuario {
         this.tipo = tipo;
     }
 
-    public Professor(int id, String nome, String email, String senha, int idade, String especialidade, String tipo) {
+    public Professor(int id, String nome, String email, String senha, String idade, String especialidade, String tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -49,8 +49,8 @@ public class Professor implements Usuario {
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    public int getIdade() { return idade; }
-    public void setIdade(int idade) { this.idade = idade; }
+    public String getIdade() { return idade; }
+    public void setIdade(String idade) { this.idade = idade; }
 
     public String getEspecialidade() { return especialidade; }
     public void setEspecialidade(String especialidade) { this.especialidade = especialidade; }
