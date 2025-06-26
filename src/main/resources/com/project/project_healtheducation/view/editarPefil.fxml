@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.project.project_healtheducation.controllers.EditarPerfilController"
+            prefWidth="600" prefHeight="400"
+            style="-fx-background-color: #f5f5f5;">
+
+    <children>
+        <VBox alignment="CENTER"
+              spacing="20"
+              prefWidth="400"
+              layoutX="100" layoutY="50"
+              style="-fx-background-color: white; -fx-padding: 30; -fx-background-radius: 10;">
+
+            <Text text="Editar Perfil"
+                  style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+            <Label text="Nome:" />
+            <TextField fx:id="nomeField" promptText="Digite seu nome" prefWidth="300" />
+
+            <Label text="Email:" />
+            <TextField fx:id="emailField" promptText="Digite seu e-mail" prefWidth="300" />
+
+            <Label text="Idade:" />
+            <TextField fx:id="idadeField" promptText="Digite sua idade" prefWidth="300" />
+
+            <HBox spacing="15">
+                <Button text="Salvar" onAction="#salvarAlteracoes"
+                        style="-fx-background-color: #00b894; -fx-text-fill: white;" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

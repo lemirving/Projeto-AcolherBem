@@ -13,13 +13,23 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class CadastroController extends AlunoDAO {
+public class CadastroController {
 
     @FXML private TextField textNome;
     @FXML private TextField textEmail;
     @FXML private PasswordField textSenha;
     @FXML private PasswordField textSenhaConfirm;
-    @FXML private  TextField textMatricula;
+    @FXML private TextField textMatricula;
+    @FXML private TextField textIdade;
+    @FXML private TextField textTurma;
+
+    @FXML private Label labelNome;
+    @FXML private Label labelEmail;
+    @FXML private Label labelIdade;
+    @FXML private Label labelMatricula;
+    @FXML private Label labelSenha;
+    @FXML private Label labelConfirmSenha;
+    @FXML private Label labelTurma;
 
     @FXML private RadioButton radioAluno;
     @FXML private RadioButton radioProfessor;
@@ -27,12 +37,52 @@ public class CadastroController extends AlunoDAO {
 
     private ToggleGroup groupRadios;
 
+    @FXML protected void mostrarCampos(){
+
+        labelNome.setVisible(true);
+        labelEmail.setVisible(true);
+        labelSenha.setVisible(true);
+        labelConfirmSenha.setVisible(true);
+        labelMatricula.setVisible(true);
+        labelTurma.setVisible(true);
+        labelIdade.setVisible(true);
+        labelNome.setVisible(true);
+
+
+        textNome.setVisible(true);
+        textEmail.setVisible(true);
+        textIdade.setVisible(true);
+        textSenha.setVisible(true);
+        textSenhaConfirm.setVisible(true);
+        textMatricula.setVisible(true);
+        textTurma.setVisible(true);
+    }
+
     @FXML
     private void initialize() {
         groupRadios = new ToggleGroup();
         radioAluno.setToggleGroup(groupRadios);
         radioProfessor.setToggleGroup(groupRadios);
         radioPsicologo.setToggleGroup(groupRadios);
+
+        labelNome.setVisible(false);
+        labelEmail.setVisible(false);
+        labelSenha.setVisible(false);
+        labelConfirmSenha.setVisible(false);
+        labelMatricula.setVisible(false);
+        labelTurma.setVisible(false);
+        labelIdade.setVisible(false);
+        labelNome.setVisible(false);
+
+
+        textNome.setVisible(false);
+        textEmail.setVisible(false);
+        textIdade.setVisible(false);
+        textSenha.setVisible(false);
+        textSenhaConfirm.setVisible(false);
+        textMatricula.setVisible(false);
+        textTurma.setVisible(false);
+
     }
 
     private Aluno obterDadosFormularioAluno() {
@@ -40,6 +90,8 @@ public class CadastroController extends AlunoDAO {
         aluno.setNome(textNome.getText());
         aluno.setEmail(textEmail.getText());
         aluno.setSenha(textSenha.getText());
+        aluno.setIdade(textIdade.getText());
+        aluno.setNomeTurma(textTurma.getText());
         aluno.setMatricula(textMatricula.getText());
 
         RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
@@ -84,11 +136,13 @@ public class CadastroController extends AlunoDAO {
         String matricula = textMatricula.getText();
         String senha = textSenha.getText();
         String senhaConfirm = textSenhaConfirm.getText();
+        String turmaAluno = textTurma.getText();
+        String idade = textIdade.getText();
 
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
 
-        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty() || matricula.isEmpty()) {
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty() || matricula.isEmpty() ||turmaAluno.isEmpty() || idade.isEmpty()) {
             alerta.setContentText("Todos os campos devem ser preenchidos.");
             alerta.showAndWait();
             return false;
@@ -99,8 +153,13 @@ public class CadastroController extends AlunoDAO {
             alerta.showAndWait();
             return false;
         }
-        if (!matricula.matches("^\\d{9}$\n")) {
+        if (!matricula.matches("^\\d{9}$")) {
             alerta.setContentText("Matrícula inválida.");
+            alerta.showAndWait();
+            return false;
+        }
+        if (!turmaAluno.matches("^[1-9][A-Z]$")) {
+            alerta.setContentText("Turma inválida. Use o formato '2B', '3A', etc.");
             alerta.showAndWait();
             return false;
         }
@@ -128,16 +187,16 @@ public class CadastroController extends AlunoDAO {
 
     private boolean inserirUsuario() {
         if (!validarCadastro()) return false;
-
+        AlunoDAO alunoDAO = new AlunoDAO();
         String tipo = ((RadioButton) groupRadios.getSelectedToggle()).getText();
 
         if (tipo.equalsIgnoreCase("Aluno")) {
             Aluno aluno = obterDadosFormularioAluno();
-            if (buscarPorEmail(aluno.getEmail()) != null) {
+            if (alunoDAO.buscarPorEmail(aluno.getEmail()) != null) {
                 mostrarAlerta("Este e-mail já está cadastrado.");
                 return false;
             }
-            return inserirAluno(aluno);
+            return alunoDAO.inserirAluno(aluno);
 
         } else if (tipo.equalsIgnoreCase("Professor")) {
             Professor professor = obterDadosFormularioProfessor();
@@ -154,7 +213,7 @@ public class CadastroController extends AlunoDAO {
             PsicologoDAO daoPs = new PsicologoDAO();
 
             if(daoPs.buscarPorEmail(psicologo.getEmail()) != null){
-                mostrarAlerta("Cadastro para psicólogo ainda não implementado.");
+                mostrarAlerta("Este e-mail já está cadastrado");
                 return false;
             }
             return daoPs.inserirPsicologo(psicologo);
@@ -178,13 +237,9 @@ public class CadastroController extends AlunoDAO {
     }
 
     @FXML
-    protected void irParaHome(ActionEvent event) {
+    protected void irParaHome(ActionEvent event) throws IOException{
         if (inserirUsuario()) {
-            try {
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
         }
     }
 }

@@ -4,6 +4,8 @@ import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.dao.ProfessorDAO;
 import com.project.project_healtheducation.model.Aluno;
 import com.project.project_healtheducation.model.Professor;
+import com.project.project_healtheducation.model.Psicologo;
+import com.project.project_healtheducation.model.Usuario;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import com.project.project_healtheducation.utils.SessaoUsuario;
 import javafx.event.ActionEvent;
@@ -85,7 +87,13 @@ public class LoginController {
 
     @FXML
     protected void irParaHome(ActionEvent event) throws IOException{
-        if(validarLogin())
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+        if(validarLogin()){
+            Usuario usuario = SessaoUsuario.getUsuarioLogado();
+            if(usuario instanceof Aluno){
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+            }else if(usuario instanceof Professor){
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/professor/telaProfessores.fxml");
+            }
+        }
     }
 }

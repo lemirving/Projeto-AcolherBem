@@ -4,8 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.project.project_healtheducation.utils.ChangeScreen;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -42,30 +40,25 @@ public class HomeProfessorController {
 
 
     @FXML
-    protected void handleTelaListaAlunos() throws IOException {
+    private void handleTelaListaAlunos() throws IOException {
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaListaAlunos.fxml");
     }
 
     // /com/project/project_healtheducation/view/professor/telaPerfil.fxml
     @FXML
-    protected void handleTelaPerfil(ActionEvent event) {
-        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaPerfil.fxml");
+    private void handleTelaPerfil(ActionEvent event) {
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaPerfil.fxml");
     }
 
 
     @FXML
-    protected void handleTelaGrafico(ActionEvent event){
+    private void handleTelaGrafico(ActionEvent event){
         ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaGrafico.fxml");
     }
 
-    /*
-    *
-    * handleTelaAluno(){
-    * ChangeScreen.sethalfScreen(main_anchorPane, caminho da tela de add emoção);
-    * */
     @FXML
     private void handleTelaConfigs(ActionEvent event){
-        ChangeScreen.setHalfScreen(main_anchorPane,"/com/project/project_healtheducation/view/professor/telaConfigs.fxml");
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaConfigs.fxml");
 
     }
 
@@ -80,4 +73,8 @@ public class HomeProfessorController {
 
     }
 
+    @FXML
+    protected void handleVoltar(ActionEvent event) throws IOException {
+        ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+    }
 }

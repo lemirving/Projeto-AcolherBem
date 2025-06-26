@@ -7,21 +7,38 @@
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-size: cover; -fx-background-color: #e4eff0; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.LoginController">
 
     <children>
-        <VBox fx:id="loginContainer" alignment="CENTER" layoutX="203.0" layoutY="50.0" maxWidth="500" prefHeight="500.0" prefWidth="394.0" spacing="20" style="-fx-background-color: #e3f8ff; -fx-padding: 30; -fx-background-radius: 12;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="203.0" AnchorPane.rightAnchor="203.0" AnchorPane.topAnchor="50.0">
+        <VBox fx:id="cadastroContainer" alignment="CENTER" layoutX="177.0" layoutY="30.0" prefHeight="540.0" prefWidth="447.0" spacing="20" style="-fx-background-color: #e3f8ff; -fx-padding: 25;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="30.0">
 
-            <Text fx:id="text" fill="#30475e" style="-fx-font-size: 28px; -fx-font-weight: bold;" text="Login" />
+            <Text fx:id="text" fill="#30475e" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Bem vindo de volta!" />
 
-            <VBox alignment="CENTER_LEFT" prefHeight="118.0" prefWidth="282.0" spacing="10" styleClass="formContainer">
-                <Label text="Email:" />
-                <TextField fx:id="textEmail" prefHeight="26.0" prefWidth="197.0" promptText="Digite seu e-mail" />
+            <VBox alignment="CENTER_LEFT" maxWidth="320" spacing="12">
 
-                <Label text="Senha:" />
-                <PasswordField fx:id="textSenha" promptText="Digite sua senha" />
+                <Label fx:id="labelEmail" text="Email:">
+                    <font>
+                        <Font size="16.0" />
+                    </font></Label>
+                <TextField fx:id="textEmail" prefWidth="300" promptText="Digite seu e-mail">
+                    <font>
+                        <Font size="14.0" />
+                    </font></TextField>
+
+                <Label fx:id="labelSenha" text="Senha:">
+                    <font>
+                        <Font size="16.0" />
+                    </font></Label>
+                <PasswordField fx:id="textSenha" prefWidth="300" promptText="Digite sua senha">
+                    <font>
+                        <Font size="14.0" />
+                    </font></PasswordField>
+
             </VBox>
 
-            <Button onAction="#irParaHome" style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-padding: 8 20;" text="Entrar" />
+            <Button onAction="#irParaHome" style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-background-radius: 6; -fx-padding: 6 16;" text="Cadastrar">
+                <font>
+                    <Font size="16.0" />
+                </font></Button>
 
-            <Button onAction="#voltarInicio" style="-fx-background-color: transparent; -fx-text-fill: #30475e;" text="Voltar" />
+            <Button onAction="#voltarInicio" style="-fx-background-color: transparent; -fx-text-fill: #30475e;                            -fx-font-weight: bold;" text="Voltar" />
         </VBox>
     </children>
 </AnchorPane>

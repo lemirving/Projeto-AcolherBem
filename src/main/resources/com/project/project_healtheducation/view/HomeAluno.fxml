@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.home.HomeAlunoController">
+<BorderPane fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.home.HomeAlunoController">
     <top>
         <AnchorPane fx:id="menu_bar" prefHeight="48.0" prefWidth="1220.0" style="-fx-background-color: #3f72d9;" styleClass="menu_bar">
             <children>
@@ -24,12 +19,12 @@
     <left>
         <AnchorPane fx:id="side_bar" prefHeight="690.0" prefWidth="265.0" styleClass="side_bar" stylesheets="@style/style.css" BorderPane.alignment="CENTER">
             <children>
-                <VBox layoutX="75.0" prefHeight="690.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <VBox layoutX="75.0" prefHeight="690.0" prefWidth="265.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Perfil" />
-                        <JFXButton onAction="#btnTelaInicial" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
-                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Configuraçoes" />
-                        <JFXButton prefHeight="80.0" prefWidth="265.0" text="Sair" />
+                        <JFXButton onAction="#handleTelaPerfil" prefHeight="80.0" prefWidth="265.0" text="Perfil" />
+                        <JFXButton onAction="#handleHomeInicio" prefHeight="80.0" prefWidth="265.0" text="Tela Inicial" />
+                        <JFXButton onAction="#handleTelaConfigs" prefHeight="80.0" prefWidth="265.0" text="Configuraçoes" />
+                        <JFXButton onAction="#btnVoltarPaginaInicio" prefHeight="80.0" prefWidth="265.0" text="Sair" />
                     </children>
                 </VBox>
             </children></AnchorPane>
@@ -42,11 +37,7 @@
                 <!-- Área amarela (humorEmoji) fixa no topo -->
                 <AnchorPane fx:id="humorEmoji_anchorPane" prefHeight="100.0" style="-fx-background-color: yellow;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Label layoutX="282.0" layoutY="36.0" text="Olá, [Nome do Aluno]! Como você se sente hoje?">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
+                        <Label fx:id="labelSaudacao" layoutX="282.0" layoutY="36.0" text="Olá, ! Como você se sente hoje?"/>
                     </children>
                 </AnchorPane>
 
