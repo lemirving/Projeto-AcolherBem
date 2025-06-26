@@ -1,15 +1,23 @@
 package com.project.project_healtheducation.model;
 
 public interface Usuario {
+
     int getId();
+    void setId(int id);
+
     String getNome();
-    String getEmail();
-
-    String getIdade();
-
     void setNome(String nome);
 
+    String getEmail();
     void setEmail(String email);
 
-    void setIdade(String idade);
+    String getSenha();
+    void setSenha(String senha);
+
+    String getTipo();
+    void setTipo(String tipo);
+
+    String getCaminhoImagem();
+    void setCaminhoImagem(String caminhoImagemm);
+
 }

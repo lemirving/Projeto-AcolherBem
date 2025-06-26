@@ -1,44 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-size: cover; -fx-background-color: #e4eff0; -fx-background-repeat: no-repeat;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.LoginController">
-
-    <children>
-        <VBox fx:id="cadastroContainer" alignment="CENTER" layoutX="177.0" layoutY="30.0" prefHeight="540.0" prefWidth="447.0" spacing="20" style="-fx-background-color: #e3f8ff; -fx-padding: 25;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="30.0">
-
-            <Text fx:id="text" fill="#30475e" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Bem vindo de volta!" />
-
-            <VBox alignment="CENTER_LEFT" maxWidth="320" spacing="12">
-
-                <Label fx:id="labelEmail" text="Email:">
-                    <font>
-                        <Font size="16.0" />
-                    </font></Label>
-                <TextField fx:id="textEmail" prefWidth="300" promptText="Digite seu e-mail">
-                    <font>
-                        <Font size="14.0" />
-                    </font></TextField>
-
-                <Label fx:id="labelSenha" text="Senha:">
-                    <font>
-                        <Font size="16.0" />
-                    </font></Label>
-                <PasswordField fx:id="textSenha" prefWidth="300" promptText="Digite sua senha">
-                    <font>
-                        <Font size="14.0" />
-                    </font></PasswordField>
-
-            </VBox>
-
-            <Button onAction="#irParaHome" style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-background-radius: 6; -fx-padding: 6 16;" text="Cadastrar">
-                <font>
-                    <Font size="16.0" />
-                </font></Button>
-
-            <Button onAction="#voltarInicio" style="-fx-background-color: transparent; -fx-text-fill: #30475e;                            -fx-font-weight: bold;" text="Voltar" />
-        </VBox>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.LoginController"> <children>
+    <AnchorPane layoutX="71.0" layoutY="59.0" prefHeight="683.0" prefWidth="1078.0">
+        <children>
+            <AnchorPane layoutX="320.0" layoutY="60.0" prefHeight="563.0" prefWidth="438.0">
+                <children>
+                    <TextField fx:id="textEmail" layoutX="60.0" layoutY="259.0" prefHeight="36.0" prefWidth="319.0" />
+                    <Label layoutX="60.0" layoutY="230.0" prefHeight="21.0" prefWidth="78.0" text="Email: ">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Label>
+                    <PasswordField fx:id="textSenha" layoutX="60.0" layoutY="338.0" prefHeight="36.0" prefWidth="319.0" />
+                    <Label layoutX="60.0" layoutY="310.0" prefHeight="21.0" prefWidth="78.0" text="Senha:">
+                        <font>
+                            <Font name="System Bold" size="18.0" />
+                        </font>
+                    </Label>
+                    <JFXButton layoutX="130.0" layoutY="445.0" onAction="#tentarLogin" prefHeight="62.0" prefWidth="180.0" style="-fx-background-color: #dff0ef;" text="Login">
+                        <font>
+                            <Font size="18.0" />
+                        </font>
+                    </JFXButton>
+                  <ImageView fx:id="logoView" fitHeight="186.0" fitWidth="219.0" layoutX="127.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/imgLogo.png" />
+                     </image>
+                  </ImageView>
+                </children>
+            </AnchorPane>
+            <JFXButton fx:id="voltarBtn" layoutX="62.0" layoutY="49.0" onAction="#voltarInicio" prefHeight="28.0" prefWidth="78.0" text="Voltar">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+        </children>
+    </AnchorPane>
+</children>
 </AnchorPane>

@@ -37,26 +37,8 @@ public class CadastroController {
 
     private ToggleGroup groupRadios;
 
-    @FXML protected void mostrarCampos(){
-
-        labelNome.setVisible(true);
-        labelEmail.setVisible(true);
-        labelSenha.setVisible(true);
-        labelConfirmSenha.setVisible(true);
-        labelMatricula.setVisible(true);
-        labelTurma.setVisible(true);
-        labelIdade.setVisible(true);
-        labelNome.setVisible(true);
-
-
-        textNome.setVisible(true);
-        textEmail.setVisible(true);
-        textIdade.setVisible(true);
-        textSenha.setVisible(true);
-        textSenhaConfirm.setVisible(true);
-        textMatricula.setVisible(true);
-        textTurma.setVisible(true);
-    }
+    // Removemos o método 'mostrarCampos()' pois ele será substituído por 'atualizarVisibilidadeCampos'
+    // e o listener no initialize()
 
     @FXML
     private void initialize() {
@@ -65,25 +47,45 @@ public class CadastroController {
         radioProfessor.setToggleGroup(groupRadios);
         radioPsicologo.setToggleGroup(groupRadios);
 
-        labelNome.setVisible(false);
-        labelEmail.setVisible(false);
-        labelSenha.setVisible(false);
-        labelConfirmSenha.setVisible(false);
-        labelMatricula.setVisible(false);
-        labelTurma.setVisible(false);
-        labelIdade.setVisible(false);
-        labelNome.setVisible(false);
+
+        groupRadios.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String tipoSelecionado = ((RadioButton) newValue).getText();
+                atualizarVisibilidadeCampos(tipoSelecionado);
+            } else {
+                atualizarVisibilidadeCampos(null);
+            }
+        });
+
+        radioAluno.setSelected(true);
+    }
 
 
-        textNome.setVisible(false);
-        textEmail.setVisible(false);
-        textIdade.setVisible(false);
-        textSenha.setVisible(false);
-        textSenhaConfirm.setVisible(false);
-        textMatricula.setVisible(false);
-        textTurma.setVisible(false);
+    private void atualizarVisibilidadeCampos(String tipo) {
+        boolean isAluno = "Aluno".equalsIgnoreCase(tipo);
+        boolean isProfessor = "Professor".equalsIgnoreCase(tipo);
+        boolean isPsicologo = "Psicologo".equalsIgnoreCase(tipo);
+
+
+        boolean isAnyTypeSelected = (tipo != null);
+        labelNome.setVisible(isAnyTypeSelected); textNome.setVisible(isAnyTypeSelected);
+        labelEmail.setVisible(isAnyTypeSelected); textEmail.setVisible(isAnyTypeSelected);
+        labelSenha.setVisible(isAnyTypeSelected); textSenha.setVisible(isAnyTypeSelected);
+        labelConfirmSenha.setVisible(isAnyTypeSelected); textSenhaConfirm.setVisible(isAnyTypeSelected);
+
+        labelMatricula.setVisible(isAluno); textMatricula.setVisible(isAluno);
+        labelTurma.setVisible(isAluno); textTurma.setVisible(isAluno);
+        labelIdade.setVisible(isAluno); textIdade.setVisible(isAluno);
+
+
+        if (!isAluno) {
+            textMatricula.clear();
+            textTurma.clear();
+            textIdade.clear();
+        }
 
     }
+
 
     private Aluno obterDadosFormularioAluno() {
         Aluno aluno = new Aluno();
@@ -133,33 +135,20 @@ public class CadastroController {
     private boolean validarCadastro() {
         String nome = textNome.getText();
         String email = textEmail.getText();
-        String matricula = textMatricula.getText();
         String senha = textSenha.getText();
         String senhaConfirm = textSenhaConfirm.getText();
-        String turmaAluno = textTurma.getText();
-        String idade = textIdade.getText();
 
         Alert alerta = new Alert(Alert.AlertType.WARNING);
         alerta.setHeaderText(null);
 
-        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty() || matricula.isEmpty() ||turmaAluno.isEmpty() || idade.isEmpty()) {
-            alerta.setContentText("Todos os campos devem ser preenchidos.");
+        if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty()) {
+            alerta.setContentText("Nome, E-mail e Senhas devem ser preenchidos.");
             alerta.showAndWait();
             return false;
         }
 
         if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
-            alerta.setContentText("Email inválido.");
-            alerta.showAndWait();
-            return false;
-        }
-        if (!matricula.matches("^\\d{9}$")) {
-            alerta.setContentText("Matrícula inválida.");
-            alerta.showAndWait();
-            return false;
-        }
-        if (!turmaAluno.matches("^[1-9][A-Z]$")) {
-            alerta.setContentText("Turma inválida. Use o formato '2B', '3A', etc.");
+            alerta.setContentText("E-mail inválido.");
             alerta.showAndWait();
             return false;
         }
@@ -176,15 +165,50 @@ public class CadastroController {
             return false;
         }
 
-        if (groupRadios.getSelectedToggle() == null) {
-            alerta.setContentText("Selecione o tipo de usuário.");
+        RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
+        if (selecionado == null) {
+            alerta.setContentText("Selecione o tipo de usuário (Aluno, Professor ou Psicólogo).");
             alerta.showAndWait();
             return false;
         }
 
+        String tipo = selecionado.getText();
+        if (tipo.equalsIgnoreCase("Aluno")) {
+            String matricula = textMatricula.getText();
+            String turmaAluno = textTurma.getText();
+            String idade = textIdade.getText();
+
+            if (matricula.isEmpty() || turmaAluno.isEmpty() || idade.isEmpty()) {
+                alerta.setContentText("Para Aluno, Matrícula, Turma e Idade devem ser preenchidos.");
+                alerta.showAndWait();
+                return false;
+            }
+            if (!matricula.matches("^\\d{9}$")) {
+                alerta.setContentText("Matrícula inválida. Deve conter 9 dígitos numéricos.");
+                alerta.showAndWait();
+                return false;
+            }
+            if (!turmaAluno.matches("^[1-9][A-Z]$")) {
+                alerta.setContentText("Turma inválida. Use o formato '2B', '3A', etc.");
+                alerta.showAndWait();
+                return false;
+            }
+            try {
+                int idadeNum = Integer.parseInt(idade);
+                if (idadeNum <= 0 || idadeNum > 120) { // Exemplo de faixa de idade
+                    alerta.setContentText("Idade inválida.");
+                    alerta.showAndWait();
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                alerta.setContentText("Idade deve ser um número válido.");
+                alerta.showAndWait();
+                return false;
+            }
+        }
+
         return true;
     }
-
     private boolean inserirUsuario() {
         if (!validarCadastro()) return false;
         AlunoDAO alunoDAO = new AlunoDAO();
@@ -237,9 +261,28 @@ public class CadastroController {
     }
 
     @FXML
-    protected void irParaHome(ActionEvent event) throws IOException{
+    protected void irParaHome(ActionEvent event) {
         if (inserirUsuario()) {
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+            mostrarAlerta("Cadastro realizado com sucesso! Faça login com suas novas credenciais.");
+            try {
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/login.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+                exibirAlerta("Erro ao trocar janela", "Erro de Navegação", "Erro ao carregar tela de login.");
+            }
         }
     }
+    private void exibirAlerta(String titulo, String cabecalho, String conteudo) {
+        Alert alert;
+        if (titulo.contains("Erro") || titulo.contains("Falha")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(conteudo);
+        alert.showAndWait();
+    }
+
 }

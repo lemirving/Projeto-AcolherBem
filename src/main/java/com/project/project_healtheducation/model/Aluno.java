@@ -12,6 +12,18 @@ public class Aluno implements Usuario {
     private String tipo;
     private String matricula;
     private String humorAtual;
+    private String descricaoAluno;
+    private String caminhoImagem;
+
+    @Override
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+    @Override
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
 
     public Aluno(String nome, String email, String senha, String idade, String nomeTurma, String tipo, String matricula) {
         this.nome = nome;
@@ -48,12 +60,16 @@ public class Aluno implements Usuario {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    public String getIdade() { return idade; }
-    public void setIdade(String idade) { this.idade = idade; }
+    public String getIdade() {
+        return idade;
+    }
+
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
 
     public String getNomeTurma() {
         return nomeTurma;

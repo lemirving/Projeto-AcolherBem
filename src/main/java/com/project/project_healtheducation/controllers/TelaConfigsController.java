@@ -21,6 +21,6 @@ public class TelaConfigsController {
 
 
     public void handleEditarPerfil(ActionEvent event) {
-        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/editarPefil.fxml");
+        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/telaPerfil.fxml");
     }
 }

@@ -44,10 +44,15 @@ public class HomeAlunoController {
     protected void handleHomeInicio(ActionEvent event) throws IOException {
         ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
     }
+
     @FXML
-    protected void registrarEmocoesScreen(){
+    protected void handleRegistrarEmocoes() {
         ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
     }
+//    @FXML
+//    protected void registrarEmocoesScreen(){
+//        ChangeScreen.setHalfScreen(main_anchorPane, "/com/project/project_healtheducation/view/RegistrarEmocaoAluno.fxml");
+//    }
 
     @FXML
     protected void btnVoltarPaginaInicio(ActionEvent event) throws IOException{

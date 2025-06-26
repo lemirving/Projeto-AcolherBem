@@ -2,6 +2,7 @@ package com.project.project_healtheducation.controllers;
 
 import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.dao.ProfessorDAO;
+import com.project.project_healtheducation.dao.PsicologoDAO;
 import com.project.project_healtheducation.model.Aluno;
 import com.project.project_healtheducation.model.Professor;
 import com.project.project_healtheducation.model.Psicologo;
@@ -12,88 +13,101 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 
 public class LoginController {
 
     @FXML
-    TextField textEmail;
+    private TextField textEmail;
+
     @FXML
-    PasswordField textSenha;
+    private PasswordField textSenha;
 
+    @FXML private ImageView logoView;
 
-    private boolean validarLogin() {
+    @FXML
+    public void initialize(){
+        System.out.println(logoView.getImage());
+    }
+
+    @FXML
+    protected void tentarLogin(ActionEvent event) throws IOException {
         String email = textEmail.getText();
-        String senha = textSenha.getText();
+        String senhaDigitada = textSenha.getText();
 
-        // Verifica se algum campo está vazio
-        if (email.isEmpty() || senha.isEmpty()) {
-            mostrarAlerta("Todos os campos devem ser preenchidos.");
-            return false;
+        // Validações básicas
+        if (email.isEmpty() || senhaDigitada.isEmpty()) {
+            mostrarAlerta("Preencha todos os campos.");
+            return;
         }
 
-        // Verifica formato básico do e-mail
         if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
             mostrarAlerta("Digite um e-mail válido.");
-            return false;
+            return;
         }
 
-        // Verifica se a senha tem pelo menos 4 caracteres
-        if (senha.length() < 4) {
-            mostrarAlerta("A senha deve ter pelo menos 4 caracteres.");
-            return false;
+        if (senhaDigitada.length() < 6) {
+            mostrarAlerta("A senha deve ter pelo menos 6 caracteres.");
+            return;
         }
 
-        // Autenticação
+        Usuario usuarioAutenticado = null;
 
+        // Tenta autenticar como Aluno
         AlunoDAO alunoDAO = new AlunoDAO();
-        boolean alunoAutenticado = alunoDAO.autenticar(email, senha);
-        if (alunoAutenticado) {
-            Aluno alunoLogado = alunoDAO.buscarPorEmail(email);
-            SessaoUsuario.setUsuarioLogado(alunoLogado);
-            return true;
+        if (alunoDAO.autenticar(email, senhaDigitada)) {
+            usuarioAutenticado = alunoDAO.buscarPorEmail(email);
         }
 
-        // Tenta autenticar como professor (se quiser)
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        boolean professorAutenticado = professorDAO.autenticar(email, senha);
-        if (professorAutenticado) {
-            Professor professorLogado = professorDAO.buscarProfessorPorEmail(email);
-            SessaoUsuario.setUsuarioLogado(professorLogado); // Só se SessaoUsuario suportar professor também
-            return true;
+        // Se não for aluno, tenta como professor
+        if (usuarioAutenticado == null) {
+            ProfessorDAO professorDAO = new ProfessorDAO();
+            if (professorDAO.autenticar(email, senhaDigitada)) {
+                usuarioAutenticado = professorDAO.buscarProfessorPorEmail(email);
+            }
         }
 
-        // Nenhuma autenticação foi bem-sucedida
-        mostrarAlerta("E-mail ou senha incorretos.");
-        return false;
+        // Se não for professor, tenta como psicólogo
+        if (usuarioAutenticado == null) {
+            PsicologoDAO psicologoDAO = new PsicologoDAO();
+            if (psicologoDAO.autenticar(email, senhaDigitada)) {
+                usuarioAutenticado = psicologoDAO.buscarPorEmail(email);
+            }
+        }
+
+        // Se autenticado, salva sessão e redireciona
+        if (usuarioAutenticado != null) {
+            SessaoUsuario.setUsuarioLogado(usuarioAutenticado);
+
+            if (usuarioAutenticado instanceof Aluno) {
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+            } else if (usuarioAutenticado instanceof Professor) {
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/homeProfPsico.fxml");
+            } else if (usuarioAutenticado instanceof Psicologo) {
+                // Redirecionamento ainda não implementado
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/homeProfPsico.fxml");
+            }
+
+            textEmail.clear();
+            textSenha.clear();
+        } else {
+            mostrarAlerta("E-mail ou senha incorretos. Tente novamente.");
+            textSenha.clear();
+        }
     }
 
     private void mostrarAlerta(String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
     }
 
-
     @FXML
-    protected void voltarInicio(ActionEvent event) throws IOException{
+    protected void voltarInicio(ActionEvent event) throws IOException {
         ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
-
-    }
-
-    @FXML
-    protected void irParaHome(ActionEvent event) throws IOException{
-        if(validarLogin()){
-            Usuario usuario = SessaoUsuario.getUsuarioLogado();
-            if(usuario instanceof Aluno){
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
-            }else if(usuario instanceof Professor){
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/professor/telaProfessores.fxml");
-            }
-        }
     }
 }

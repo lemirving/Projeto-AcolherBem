@@ -4,7 +4,11 @@ import com.project.project_healtheducation.db.dbSetup;
 import com.project.project_healtheducation.model.Humor;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class HumorDAO {
 
@@ -16,7 +20,7 @@ public class HumorDAO {
 
             stmt.setString(1, emocao.getNomeHumor());
             stmt.setInt(2, emocao.getIdAluno());
-            stmt.setDate(3, Date.valueOf(emocao.getData()));
+            stmt.setString(3, emocao.getData().toString());
             stmt.setString(4, emocao.getDescricao());
 
             int linhasAfetadas = stmt.executeUpdate();
@@ -38,6 +42,7 @@ public class HumorDAO {
 
         return false;
     }
+
 
     public ArrayList<Humor> listarEmocoesPorAluno(int idAluno) {
         String sql = "SELECT * FROM emocao WHERE id_aluno = ? ORDER BY data DESC";
@@ -116,6 +121,45 @@ public class HumorDAO {
         }
 
         return false;
+    }
+    public Map<String, Map<LocalDate, Integer>> getContagemEmocoesPorData(LocalDate dataInicio, LocalDate dataFim) {
+        // Usamos TreeMap para garantir que as datas dentro de cada emoção estejam ordenadas
+        // (importante para a plotagem do gráfico de linhas)
+        Map<String, Map<LocalDate, Integer>> emocoesPorData = new HashMap<>();
+
+        // Consulta SQL para agrupar e contar emoções por dia e por tipo de humor
+        String sql = "SELECT nomeHumor, DATE(data) as data_registro, COUNT(*) as contagem " +
+                "FROM emocao " + // Sua tabela é 'emocao'
+                "WHERE data BETWEEN ? AND ? " +
+                "GROUP BY nomeHumor, DATE(data) " +
+                "ORDER BY nomeHumor, data_registro"; // Ordena para melhor processamento
+
+        try (Connection conn = dbSetup.getConnection(); // Usando seu dbSetup
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDate(1, Date.valueOf(dataInicio)); // Converte LocalDate para java.sql.Date
+            stmt.setDate(2, Date.valueOf(dataFim));   // Converte LocalDate para java.sql.Date
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    String nomeHumor = rs.getString("nomeHumor");
+                    LocalDate data = rs.getDate("data_registro").toLocalDate(); // Converte java.sql.Date para LocalDate
+                    int contagem = rs.getInt("contagem");
+
+                    // Adiciona o humor ao mapa principal se ainda não existir, inicializando com um TreeMap
+                    emocoesPorData.computeIfAbsent(nomeHumor, k -> new TreeMap<>());
+                    // Adiciona a contagem para a data específica do humor
+                    emocoesPorData.get(nomeHumor).put(data, contagem);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar contagem de emoções por data para o gráfico: " + e.getMessage());
+            e.printStackTrace();
+            // Em um ambiente de produção, você pode querer lançar uma exceção customizada aqui
+            // para que o Controller possa lidar com ela (ex: exibir uma mensagem de erro ao usuário).
+        }
+        return emocoesPorData;
     }
 
     public boolean atualizarEmocao(int idEmocao, String novaDescricao, String novoNomeHumor) {

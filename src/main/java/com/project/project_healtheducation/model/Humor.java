@@ -2,7 +2,8 @@ package com.project.project_healtheducation.model;
 
 import java.time.LocalDate;
 
-public class Humor {
+public class
+Humor {
     private int id;
     private int idAluno;
     private LocalDate data;

@@ -1,106 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@style/cadastro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
-
+<AnchorPane prefHeight="791.0" prefWidth="998.0" stylesheets="@style/cadastro.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.CadastroController">
     <children>
-        <VBox fx:id="cadastroContainer" alignment="CENTER" layoutX="88.0" layoutY="30.0" prefHeight="524.0" prefWidth="229.0" spacing="20" style="-fx-background-color: #e3f8ff; -fx-padding: 25;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="88.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="30.0">
+        <AnchorPane layoutX="189.0" layoutY="80.0" prefHeight="631.0" prefWidth="621.0">
+            <children>
+                <AnchorPane layoutX="89.0" layoutY="47.0" prefHeight="439.0" prefWidth="444.0">
+                    <children>
+                        <Label fx:id="labelNome" layoutX="78.0" layoutY="14.0" prefHeight="15.0" prefWidth="50.0" text="Nome:">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="textNome" layoutX="78.0" layoutY="40.0" prefHeight="27.0" prefWidth="289.0" />
 
-            <Text fx:id="text" fill="#30475e" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Cadastre-se" />
+                        <Label fx:id="labelEmail" layoutX="78.0" layoutY="74.0" prefHeight="15.0" prefWidth="50.0" text="Email:">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="textEmail" layoutX="77.0" layoutY="100.0" prefHeight="27.0" prefWidth="289.0" />
 
-            <VBox alignment="CENTER_LEFT" maxWidth="320" spacing="12">
-                <Label fx:id="labelNome" text="Nome:">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <TextField fx:id="textNome" prefWidth="300" promptText="Digite seu nome">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
+                        <Label fx:id="labelSenha" layoutX="78.0" layoutY="127.0" prefHeight="19.0" prefWidth="62.0" text="Senha:">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <PasswordField fx:id="textSenha" layoutX="77.0" layoutY="153.0" prefHeight="27.0" prefWidth="289.0" />
 
-                <Label fx:id="labelEmail" text="Email:">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <TextField fx:id="textEmail" prefWidth="300" promptText="Digite seu e-mail">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
+                        <Label fx:id="labelConfirmSenha" layoutX="77.0" layoutY="180.0" prefHeight="19.0" prefWidth="150.0" text="Confirmar Senha:">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <PasswordField fx:id="textSenhaConfirm" layoutX="77.0" layoutY="206.0" prefHeight="27.0" prefWidth="289.0" />
 
-                <Label fx:id="labelSenha" text="Senha:">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <PasswordField fx:id="textSenha" prefWidth="300" promptText="Digite sua senha">
-               <font>
-                  <Font size="14.0" />
-               </font></PasswordField>
+                        <Label fx:id="labelIdade" layoutX="78.0" layoutY="244.0" prefHeight="19.0" prefWidth="62.0" text="Idade:">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="textIdade" layoutX="78.0" layoutY="270.0" prefHeight="27.0" prefWidth="289.0" />
 
-                <Label fx:id="labelConfirmSenha" text="Confirmar senha:">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <PasswordField fx:id="textSenhaConfirm" prefWidth="300" promptText="Repita a senha">
-               <font>
-                  <Font size="14.0" />
-               </font></PasswordField>
+                        <Label fx:id="labelTurma" layoutX="78.0" layoutY="297.0" prefHeight="19.0" prefWidth="62.0" text="Turma: ">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="textTurma" layoutX="77.0" layoutY="323.0" prefHeight="27.0" prefWidth="289.0" />
 
-                <Label fx:id="labelIdade" text="Idade">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <TextField fx:id="textIdade" prefWidth="300" promptText="Digite a sua matrícula">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
+                        <Label fx:id="labelMatricula" layoutX="78.0" layoutY="358.0" prefHeight="19.0" prefWidth="84.0" text="Matricula:">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="textMatricula" layoutX="77.0" layoutY="384.0" prefHeight="27.0" prefWidth="289.0" />
+                    </children>
+                </AnchorPane>
 
-                <Label fx:id="labelTurma" text="Turma">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <TextField fx:id="textTurma" prefWidth="300" promptText="Ex: 2B">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
+                <AnchorPane layoutX="89.0" layoutY="486.0" prefHeight="111.0" prefWidth="444.0">
+                    <children>
+                        <JFXRadioButton fx:id="radioAluno" layoutX="53.0" layoutY="28.0" text="Aluno" />
+                        <JFXRadioButton fx:id="radioProfessor" layoutX="174.0" layoutY="28.0" text="Professor" />
+                        <JFXRadioButton fx:id="radioPsicologo" layoutX="292.0" layoutY="28.0" text="Psicologo" />
 
-                <Label fx:id="labelMatricula" text="Matrícula">
-               <font>
-                  <Font size="16.0" />
-               </font></Label>
-                <TextField fx:id="textMatricula" prefWidth="300" promptText="Digite a sua matrícula">
-               <font>
-                  <Font size="15.0" />
-               </font></TextField>
-
-                <Label style="-fx-padding: 10 0 0 0;" text="Selecione o que você é:">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-                <HBox alignment="CENTER_LEFT" spacing="18">
-                    <RadioButton fx:id="radioAluno" mnemonicParsing="false" onAction="#mostrarCampos" text="Aluno">
-                  <font>
-                     <Font size="13.0" />
-                  </font></RadioButton>
-                    <RadioButton fx:id="radioProfessor" mnemonicParsing="false" onAction="#mostrarCampos" text="Professor">
-                  <font>
-                     <Font size="13.0" />
-                  </font></RadioButton>
-                    <RadioButton fx:id="radioPsicologo" mnemonicParsing="false" onAction="#mostrarCampos" text="Psicólogo">
-                  <font>
-                     <Font size="13.0" />
-                  </font></RadioButton>
-                </HBox>
-            </VBox>
-
-            <Button onAction="#irParaHome" style="-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-background-radius: 6; -fx-padding: 6 16;" text="Cadastrar">
-            <font>
-               <Font size="16.0" />
-            </font></Button>
-
-            <Button onAction="#voltarInicio" style="-fx-background-color: transparent; -fx-text-fill: #30475e;                            -fx-font-weight: bold;" text="Voltar" />
-        </VBox>
+                        <JFXButton fx:id="cadastrarBtn" layoutX="152.0" layoutY="56.0" onAction="#irParaHome" prefHeight="41.0" prefWidth="140.0" text="Cadastrar" />
+                    </children>
+                </AnchorPane>
+                <Label alignment="CENTER" layoutX="217.0" layoutY="14.0" prefHeight="34.0" prefWidth="187.0" text="Cadastre-se">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+      <JFXButton fx:id="voltarBtn" layoutX="72.0" layoutY="80.0" onAction="#voltarInicio" prefHeight="27.0" prefWidth="72.0" text="Voltar">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </JFXButton>
     </children>
 </AnchorPane>

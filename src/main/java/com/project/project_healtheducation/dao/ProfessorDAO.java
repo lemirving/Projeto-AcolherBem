@@ -11,7 +11,8 @@ import java.util.ArrayList;
 public class ProfessorDAO {
 
     public boolean inserirProfessor(Professor professor) {
-        String sql = "INSERT INTO professor (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+        // CORRIGIDO: Removida 'idade' da query SQL. Agora são 5 placeholders.
+        String sql = "INSERT INTO professor (nome, email, senha, tipo, caminhoImagem) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -22,6 +23,10 @@ public class ProfessorDAO {
             stmt.setString(2, professor.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setString(4, professor.getTipo());
+            // REMOVIDO: stmt.setString(5, professor.getIdade());
+            // CORRIGIDO: O caminhoImagem agora é o 5º parâmetro
+            stmt.setString(5, professor.getCaminhoImagem()); // novo
+
 
             int linhasAfetadas = stmt.executeUpdate();
 
@@ -54,10 +59,9 @@ public class ProfessorDAO {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("email"),
-                        rs.getString("senha"),  // senha criptografada
-                        "0", // idade não está no banco, usar zero ou outro valor padrão
-                        null, // especialidade não está no banco
-                        rs.getString("tipo")
+                        rs.getString("senha"),
+                        rs.getString("tipo"),
+                        rs.getString("caminhoImagem")
                 );
             }
 
@@ -75,18 +79,21 @@ public class ProfessorDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, email);
-
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
-                return new Professor(
-                        rs.getInt("id"),
-                        rs.getString("nome"),
-                        rs.getString("email"),
-                        rs.getString("senha"), // senha criptografada
-                        "0", // idade não está no banco
-                        null, // especialidade não está no banco
-                        rs.getString("tipo")
-                );
+                Professor professor = new Professor(rs.getInt("id"), rs.getString("nome"), rs.getString("email"), rs.getString("senha"), rs.getString("tipo"), rs.getString("caminhoImagem"));
+                professor.setId(rs.getInt("id"));
+                professor.setNome(rs.getString("nome"));
+                professor.setEmail(rs.getString("email"));
+                professor.setSenha(rs.getString("senha")); // senha criptografada
+                professor.setTipo(rs.getString("tipo"));
+                professor.setTipo(rs.getString("caminhoImagem"));
+
+                // REMOVIDO: professor.setIdade(rs.getString("idade"));
+                professor.setCaminhoImagem(rs.getString("caminhoImagem")); // se houver esse campo
+
+                return professor;
             }
 
         } catch (SQLException e) {
@@ -95,6 +102,7 @@ public class ProfessorDAO {
 
         return null;
     }
+
 
     public boolean autenticar(String email, String senhaDigitada) {
         Professor professor = buscarProfessorPorEmail(email);
@@ -105,6 +113,7 @@ public class ProfessorDAO {
     }
 
     public boolean atualizarProfessor(Professor professor) {
+        // Esta query não incluía idade, então está OK.
         String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, tipo = ? WHERE id = ?";
 
         try (Connection conn = dbSetup.getConnection();
@@ -140,6 +149,35 @@ public class ProfessorDAO {
             System.out.println("Erro ao remover professor: " + e.getMessage());
         }
 
+        return false;
+    }
+
+    public boolean atualizarPerfil(Professor professor) {
+        // CORRIGIDO: Removida 'idade' da query UPDATE
+        String sql = "UPDATE professor SET nome = ? WHERE id = ?";
+        try (Connection conn = dbSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, professor.getNome());
+            // REMOVIDO: stmt.setString(2, professor.getIdade());
+            stmt.setInt(2, professor.getId()); // Agora é o 2º parâmetro
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Erro ao atualizar perfil do professor: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean atualizarCaminhoImagem(int id, String caminhoImagem) {
+        String sql = "UPDATE professor SET caminhoImagem = ? WHERE id = ?";
+        try (Connection conn = dbSetup.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, caminhoImagem);
+            stmt.setInt(2, id);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            // CORRIGIDO: Mensagem de erro para professor
+            System.out.println("Erro ao atualizar imagem do professor: " + e.getMessage());
+        }
         return false;
     }
 
@@ -181,4 +219,5 @@ public class ProfessorDAO {
 
         return turmas;
     }
+
 }

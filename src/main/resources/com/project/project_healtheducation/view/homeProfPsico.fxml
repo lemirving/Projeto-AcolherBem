@@ -3,16 +3,16 @@
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.home.HomeProfessorController">
+<BorderPane fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.home.HomeProfessorController">
    <top>
-      <AnchorPane fx:id="menu_bar" prefHeight="114.0" prefWidth="1223.0" styleClass="menu_bar" stylesheets="@../../style/style.css" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="menu_bar" prefHeight="114.0" prefWidth="1223.0" styleClass="menu_bar" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
          <children>
-            <Pane fx:id="pane_menuBar" prefHeight="200.0" prefWidth="200.0" styleClass="pane_menuBar" stylesheets="@../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+            <Pane fx:id="pane_menuBar" prefHeight="200.0" prefWidth="200.0" styleClass="pane_menuBar" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
          </children>
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane fx:id="side_bar" prefHeight="690.0" prefWidth="265.0" styleClass="side_bar" stylesheets="@../../style/style.css" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="side_bar" prefHeight="690.0" prefWidth="265.0" styleClass="side_bar" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutX="75.0" prefHeight="690.0" prefWidth="265.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -27,7 +27,7 @@
 
    </left>
    <center>
-      <AnchorPane fx:id="main_anchorPane" prefHeight="500.0" prefWidth="958.0" styleClass="main_anchorPane" stylesheets="@../../style/style.css" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="main_anchorPane" prefHeight="500.0" prefWidth="958.0" styleClass="main_anchorPane" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
          <children>
             <JFXButton layoutX="694.0" layoutY="14.0" prefHeight="41.0" prefWidth="247.0" />
          </children>

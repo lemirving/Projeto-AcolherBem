@@ -12,6 +12,7 @@ module com.project.project_healtheducation {
     requires java.sql;
     requires jbcrypt;
     requires com.jfoenix;
+    requires java.desktop;
 
     opens com.project.project_healtheducation to javafx.fxml;
     exports com.project.project_healtheducation;
