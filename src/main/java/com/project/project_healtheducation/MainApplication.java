@@ -27,7 +27,7 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // Nada muda aqui, pois o setup do usuário será feito no main antes do launch()
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/project/project_healtheducation/view/professor/telaPerfil.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/com/project/project_healtheducation/view/paginaInicial.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1220, 800);
         stage.setTitle("MentalHeathCare");
         stage.setScene(scene);

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="573.0" prefWidth="958.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
+<AnchorPane prefHeight="573.0" prefWidth="958.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaPerfilController">
     <AnchorPane layoutX="288.0" layoutY="30.0" prefHeight="513.0" prefWidth="382.0" styleClass="root_pane" stylesheets="@../style/style.css">
         <children>
             <Label fx:id="tituloLabel" layoutX="116.0" layoutY="26.0" styleClass="titulo-perfil" text="Perfil do Usuário">
@@ -39,23 +40,28 @@
                         <Font size="18.0" />
                     </font>
                     </Label>
-                    <Label layoutX="26.0" layoutY="101.0" text="Idade: ">
-                        <font>
-                            <Font size="18.0" />
-                        </font>
-                    </Label>
-                    <Label fx:id="idadeValorLabel" layoutX="90.0" layoutY="101.0" text="[Idade do Usuário]">
-                        <font>
-                            <Font size="18.0" />
-                        </font>
-                    </Label>
-                    <TextField fx:id="idadeInput" layoutX="78.0" layoutY="100.0" prefHeight="31.0" prefWidth="212.0" promptText="Editar idade" />
 
-                    <Label fx:id="tipoLabel" layoutX="24.0" layoutY="139.0" text="Tipo:  ">
+                    <Label fx:id="tipoLabel" layoutX="29.0" layoutY="100.0" text="Tipo:  ">
                         <font>
                             <Font size="18.0" />
                         </font>
                     </Label>
+
+                    <AnchorPane fx:id="idadeContainer" layoutX="0.0" layoutY="130.0" prefHeight="40.0" prefWidth="320.0">
+                        <children>
+                            <Label layoutX="26.0" layoutY="5.0" text="Idade: ">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <Label fx:id="idadeValorLabel" layoutX="83.0" layoutY="5.0" text="[Idade do Usuário]">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                            <TextField fx:id="idadeInput" layoutX="78.0" layoutY="0.0" prefHeight="31.0" prefWidth="212.0" promptText="Editar idade" />
+                        </children>
+                    </AnchorPane>
                 </children>
             </AnchorPane>
 

@@ -2,17 +2,17 @@ package com.project.project_healtheducation.controllers;
 
 import com.project.project_healtheducation.dao.AlunoDAO;
 import com.project.project_healtheducation.dao.ProfessorDAO;
+import com.project.project_healtheducation.dao.PsicologoDAO;
 import com.project.project_healtheducation.model.Aluno;
 import com.project.project_healtheducation.model.Professor;
 import com.project.project_healtheducation.model.Psicologo;
-import com.project.project_healtheducation.model.Usuario;
+import com.project.project_healtheducation.model.Usuario; // IMPORTE a interface Usuario
 import com.project.project_healtheducation.utils.ChangeScreen;
 import com.project.project_healtheducation.utils.SessaoUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -24,76 +24,81 @@ public class LoginController {
     @FXML
     PasswordField textSenha;
 
-
-    private boolean validarLogin() {
+    @FXML
+    protected void tentarLogin(ActionEvent event) throws IOException {
         String email = textEmail.getText();
-        String senha = textSenha.getText();
+        String senhaDigitada = textSenha.getText(); // Renomeado para clareza
 
-        // Verifica se algum campo está vazio
-        if (email.isEmpty() || senha.isEmpty()) {
-            mostrarAlerta("Todos os campos devem ser preenchidos.");
-            return false;
+        // 1. Validações Iniciais
+        if (email.isEmpty() || senhaDigitada.isEmpty()) {
+            mostrarAlerta("Preencha todos os campos.");
+            return;
         }
-
-        // Verifica formato básico do e-mail
         if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
             mostrarAlerta("Digite um e-mail válido.");
-            return false;
+            return;
+        }
+        // A validação de tamanho de senha é geralmente feita antes da criptografia no cadastro.
+        // No login, o BCrypt.checkpw cuidará da comparação, mas 6 caracteres é uma boa prática para alerta inicial.
+        if (senhaDigitada.length() < 6) {
+            mostrarAlerta("A senha deve ter pelo menos 6 caracteres.");
+            return;
         }
 
-        // Verifica se a senha tem pelo menos 4 caracteres
-        if (senha.length() < 4) {
-            mostrarAlerta("A senha deve ter pelo menos 4 caracteres.");
-            return false;
-        }
+        // 2. Tentar Autenticação e Armazenar como tipo Usuario
+        Usuario usuarioAutenticado = null;
 
-        // Autenticação
-
+        // Tenta como Aluno
         AlunoDAO alunoDAO = new AlunoDAO();
-        boolean alunoAutenticado = alunoDAO.autenticar(email, senha);
-        if (alunoAutenticado) {
-            Aluno alunoLogado = alunoDAO.buscarPorEmail(email);
-            SessaoUsuario.setUsuarioLogado(alunoLogado);
-            return true;
+        if (alunoDAO.autenticar(email, senhaDigitada)) { // Usa o método autenticar do AlunoDAO
+            usuarioAutenticado = alunoDAO.buscarPorEmail(email); // Busque o objeto completo após autenticar
         }
 
-        // Tenta autenticar como professor (se quiser)
-        ProfessorDAO professorDAO = new ProfessorDAO();
-        boolean professorAutenticado = professorDAO.autenticar(email, senha);
-        if (professorAutenticado) {
-            Professor professorLogado = professorDAO.buscarProfessorPorEmail(email);
-            SessaoUsuario.setUsuarioLogado(professorLogado); // Só se SessaoUsuario suportar professor também
-            return true;
+        if (usuarioAutenticado == null) {
+            ProfessorDAO professorDAO = new ProfessorDAO();
+            if (professorDAO.autenticar(email, senhaDigitada)) { // Usa o método autenticar do ProfessorDAO
+                usuarioAutenticado = professorDAO.buscarProfessorPorEmail(email); // Busque o objeto completo
+            }
         }
 
-        // Nenhuma autenticação foi bem-sucedida
-        mostrarAlerta("E-mail ou senha incorretos.");
-        return false;
+        // Se ainda não autenticado, tenta como Psicologo
+        if (usuarioAutenticado == null) {
+            PsicologoDAO psicologoDAO = new PsicologoDAO();
+            if (psicologoDAO.autenticar(email, senhaDigitada)) { // Usa o método autenticar do PsicologoDAO
+                usuarioAutenticado = psicologoDAO.buscarPorEmail(email); // Busque o objeto completo
+            }
+        }
+
+        if (usuarioAutenticado != null) {
+            SessaoUsuario.setUsuarioLogado(usuarioAutenticado);
+
+            if (usuarioAutenticado instanceof Aluno) {
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+            } else if (usuarioAutenticado instanceof Professor) {
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/professor/telaProfessores.fxml");
+            } else if (usuarioAutenticado instanceof Psicologo) {
+                // TODO: Adicionar a tela inicial do Psicólogo
+                mostrarAlerta("Login de Psicólogo realizado! Redirecionar para tela de Psicólogo (ainda não implementada).");
+              }
+
+            textEmail.clear();
+            textSenha.clear();
+        } else {
+            // Se nenhum usuário foi autenticado
+            mostrarAlerta("E-mail ou senha incorretos. Tente novamente.");
+            textSenha.clear();
+        }
     }
 
     private void mostrarAlerta(String mensagem) {
-        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
         alerta.showAndWait();
     }
 
-
     @FXML
-    protected void voltarInicio(ActionEvent event) throws IOException{
+    protected void voltarInicio(ActionEvent event) throws IOException {
         ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/paginaInicial.fxml");
-
-    }
-
-    @FXML
-    protected void irParaHome(ActionEvent event) throws IOException{
-        if(validarLogin()){
-            Usuario usuario = SessaoUsuario.getUsuarioLogado();
-            if(usuario instanceof Aluno){
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
-            }else if(usuario instanceof Professor){
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/professor/telaProfessores.fxml");
-            }
-        }
     }
 }

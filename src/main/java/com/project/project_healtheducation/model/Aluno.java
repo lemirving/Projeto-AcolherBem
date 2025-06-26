@@ -15,10 +15,11 @@ public class Aluno implements Usuario {
     private String descricaoAluno;
     private String caminhoImagem;
 
+    @Override
     public String getCaminhoImagem() {
         return caminhoImagem;
     }
-
+    @Override
     public void setCaminhoImagem(String caminhoImagem) {
         this.caminhoImagem = caminhoImagem;
     }
