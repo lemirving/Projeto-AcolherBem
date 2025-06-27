@@ -7,13 +7,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TelaListaAlunosController {
-    public TelaListaAlunosController(){
-
-    }
-
     @FXML
     private TableView<Aluno> tabelaAlunos;
-
     @FXML
     private TableColumn<Aluno, String> colNome;
     @FXML
@@ -22,6 +17,7 @@ public class TelaListaAlunosController {
     private TableColumn<Aluno, String> colMatricula;
     @FXML
     private TableColumn<Aluno, String> colHumor;
+
 
     @FXML
     public void initialize() {

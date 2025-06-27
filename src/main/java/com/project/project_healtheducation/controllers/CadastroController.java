@@ -37,9 +37,6 @@ public class CadastroController {
 
     private ToggleGroup groupRadios;
 
-    // Removemos o método 'mostrarCampos()' pois ele será substituído por 'atualizarVisibilidadeCampos'
-    // e o listener no initialize()
-
     @FXML
     private void initialize() {
         groupRadios = new ToggleGroup();
