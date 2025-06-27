@@ -151,7 +151,6 @@ public class AlunoDAO {
         return alunos;
     }
 
-    // --- MÉTODO CORRIGIDO: listarTodosComUltimoHumor() ---
     public List<Aluno> listarTodosComUltimoHumor() {
         List<Aluno> lista = new ArrayList<>();
         String sql = "SELECT a.id, a.nome, a.email, a.idade, a.tipo, a.matricula, a.turma, a.caminhoImagem, e.nomeHumor, e.descricao " + // <-- ADICIONADA 'e.descricao' AQUI!

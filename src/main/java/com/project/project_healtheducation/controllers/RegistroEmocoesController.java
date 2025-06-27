@@ -32,11 +32,9 @@ public class RegistroEmocoesController {
             sliderSentimento.valueProperty().addListener((obs, oldVal, newVal) -> {
                 labelSentimentoEscolhido.setText("Estado atual: " + getDescricaoSentimento(newVal.intValue()));
             });
-            // Opcional: Definir o estado inicial do label com base no valor inicial do slider
             labelSentimentoEscolhido.setText("Estado atual: " + getDescricaoSentimento((int) sliderSentimento.getValue()));
         }
 
-        // Garante que o TextArea comece vazio
         if (textAreaDescricao != null) {
             textAreaDescricao.setText("");
         }
@@ -56,14 +54,14 @@ public class RegistroEmocoesController {
 
         Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
         confirmacao.setHeaderText(null);
-        confirmacao.setContentText("Deseja registrar essa emoção como '" + nomeHumor + "'?"); // Adiciona a emoção na pergunta
+        confirmacao.setContentText("Deseja registrar essa emoção como '" + nomeHumor + "'?");
         ButtonType sim = new ButtonType("Sim");
-        ButtonType nao = new ButtonType("Não", ButtonBar.ButtonData.CANCEL_CLOSE); // Botão "Não" com tipo CANCEL_CLOSE para fechar sem ação
+        ButtonType nao = new ButtonType("Não", ButtonBar.ButtonData.CANCEL_CLOSE);
         confirmacao.getButtonTypes().setAll(sim, nao);
 
         Optional<ButtonType> opcao = confirmacao.showAndWait();
         if(opcao.isPresent() && opcao.get() == sim) {
-            HumorDAO humorDAO = new HumorDAO(); // Crie a instância do DAO
+            HumorDAO humorDAO = new HumorDAO();
             Humor emocao = new Humor(nomeHumor, alunoLogado.getId(), LocalDate.now(), descricaoRegistro);
             boolean sucesso = humorDAO.inserirEmocao(emocao);
 
@@ -77,7 +75,6 @@ public class RegistroEmocoesController {
         }
     }
 
-    // Método getDescricaoSentimento com as novas 6 categorias
     private String getDescricaoSentimento(int valor) {
         switch (valor) {
             case 0: return "Péssimo";
@@ -89,29 +86,6 @@ public class RegistroEmocoesController {
             default: return "Desconhecido";
         }
     }
-
-    @FXML
-    protected void voltar(ActionEvent event){
-        try{
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
-        }catch (IOException e){
-            // Exibe um alerta amigável ao usuário e loga o erro para depuração
-            exibirAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível voltar", "Erro ao carregar a tela anterior: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    protected void btnTelaInicial(ActionEvent event){
-        try{
-            ChangeScreen.setScreen(event, "/com/project/project_healtheducation/paginaInicial.fxml");
-        } catch (IOException e){
-
-            exibirAlerta(Alert.AlertType.ERROR, "Erro de Navegação", "Não foi possível ir para a tela inicial", "Erro ao carregar a tela inicial: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
 
     private void exibirAlerta(Alert.AlertType tipo, String titulo, String cabecalho, String conteudo) {
         Alert alert = new Alert(tipo);

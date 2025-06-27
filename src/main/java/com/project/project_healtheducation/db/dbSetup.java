@@ -19,13 +19,6 @@ public class dbSetup {
 
             statement.execute("PRAGMA foreign_keys = ON;");
 
-            // Tabela turma
-            String sqlTurmaTable = "CREATE TABLE IF NOT EXISTS turma (" +
-                    "nome TEXT PRIMARY KEY," +
-                    "quantidade INTEGER NOT NULL" +
-                    ");";
-
-            // Tabela aluno (com campo de imagem)
             String sqlAlunoTable = "CREATE TABLE IF NOT EXISTS aluno (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
@@ -48,17 +41,15 @@ public class dbSetup {
                     "caminhoImagem TEXT" +
                     ");";
 
-            // Tabela psicologo (corrigida)
             String sqlPsicologoTable = "CREATE TABLE IF NOT EXISTS psicologo (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nome TEXT NOT NULL," +
                     "email TEXT NOT NULL UNIQUE," +
                     "senha TEXT NOT NULL," +
-                    "tipo TEXT NOT NULL," +      // <- adicionada vírgula aqui
+                    "tipo TEXT NOT NULL," +
                     "caminhoImagem TEXT" +
                     ");";
 
-            // Tabela emoção
             String sqlEmocaoTable = "CREATE TABLE IF NOT EXISTS emocao (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "nomeHumor TEXT NOT NULL," +
@@ -68,32 +59,10 @@ public class dbSetup {
                     "FOREIGN KEY (id_aluno) REFERENCES aluno(id) ON DELETE CASCADE ON UPDATE CASCADE" +
                     ");";
 
-            // Associação professor <-> turma
-            String sqlTurmaProfessorTable = "CREATE TABLE IF NOT EXISTS turma_professor (" +
-                    "nome_turma TEXT NOT NULL," +
-                    "id_professor INTEGER NOT NULL," +
-                    "PRIMARY KEY (nome_turma, id_professor)," +
-                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE," +
-                    "FOREIGN KEY (id_professor) REFERENCES professor(id) ON DELETE CASCADE" +
-                    ");";
-
-            // Associação psicólogo <-> turma
-            String sqlTurmaPsicologoTable = "CREATE TABLE IF NOT EXISTS turma_psicologo (" +
-                    "nome_turma TEXT NOT NULL," +
-                    "id_psicologo INTEGER NOT NULL," +
-                    "PRIMARY KEY (nome_turma, id_psicologo)," +
-                    "FOREIGN KEY (nome_turma) REFERENCES turma(nome) ON DELETE CASCADE," +
-                    "FOREIGN KEY (id_psicologo) REFERENCES psicologo(id) ON DELETE CASCADE" +
-                    ");";
-
-            // Executar todas as criações
-            statement.execute(sqlTurmaTable);
             statement.execute(sqlAlunoTable);
             statement.execute(sqlProfessorTable);
             statement.execute(sqlPsicologoTable);
             statement.execute(sqlEmocaoTable);
-            statement.execute(sqlTurmaProfessorTable);
-            statement.execute(sqlTurmaPsicologoTable);
 
             if (bancoNovo) {
                 System.out.println("Banco criado com nova estrutura.");

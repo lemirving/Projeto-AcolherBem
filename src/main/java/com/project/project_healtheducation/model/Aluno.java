@@ -11,12 +11,9 @@ public class Aluno implements Usuario {
     private String nomeTurma;
     private String tipo;
     private String matricula;
-    private String humorAtual; // Esta propriedade é preenchida pelo AlunoDAO.listarTodosComUltimoHumor()
+    private String humorAtual;
     private String descricaoHumorAtual;
     private String caminhoImagem;
-
-    // A lista 'humores' que NÃO é preenchida pela query de listarTodosComUltimoHumor()
-    private ArrayList<Humor> humores = new ArrayList<>(); // Mantenha se for usada em outras partes do sistema
 
     @Override
     public String getCaminhoImagem() {
@@ -38,7 +35,6 @@ public class Aluno implements Usuario {
         this.matricula = matricula;
     }
 
-    // Este setter está correto e é usado pelo AlunoDAO
     public void setHumorAtual(String humorAtual) {
         this.humorAtual = humorAtual;
     }
@@ -51,7 +47,6 @@ public class Aluno implements Usuario {
         this.matricula = matricula;
     }
 
-    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -84,17 +79,12 @@ public class Aluno implements Usuario {
     public void setNomeTurma(String nomeTurma) { this.nomeTurma = nomeTurma; }
 
 
-    public ArrayList<Humor> getHumores() { return humores; }
-
     public String getHumorAtual(){
 
         return (this.humorAtual != null && !this.humorAtual.trim().isEmpty()) ? this.humorAtual : "Sem descrição";
     }
 
-    // Este setter para a lista 'humores' está correto, se a lista for usada em outro lugar
-    public void setHumores(ArrayList<Humor> humores) {
-        this.humores = humores;
-    }
+
 
     public String getMatricula() {
         return matricula;

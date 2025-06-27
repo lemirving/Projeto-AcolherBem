@@ -44,7 +44,7 @@ public class TelaListaEmocoesController {
 
         tabelaEmocoes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
 
-        carregarEmocoesDoAluno(); // <- chama o método abaixo
+        carregarEmocoesDoAluno();
     }
 
 

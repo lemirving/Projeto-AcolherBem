@@ -8,17 +8,13 @@ public class Professor implements Usuario {
     private String nome;
     private String email;
     private String senha;
-
     private String tipo;
     private String caminhoImagem;
 
-    // REMOVIDO: private String descricaoProfessor; // Se não estiver em uso ou no banco para Professor
 
-    // Construtor vazio (essencial para DAOs que usam setters)
     public Professor() {}
 
-    // Construtor para criação/busca de Professor com dados do banco
-    // ATENÇÃO: Assegure-se de que a ordem e o tipo dos parâmetros correspondem ao seu DAO.
+
     public Professor(int id, String nome, String email, String senha, String tipo, String caminhoImagem) {
         this.id = id;
         this.nome = nome;
@@ -37,9 +33,7 @@ public class Professor implements Usuario {
         this.caminhoImagem = caminhoImagem;
     }
 
-
-    // --- Getters e Setters ---
-    @Override // Marque como @Override se estiver implementando da interface Usuario
+    @Override
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -58,8 +52,6 @@ public class Professor implements Usuario {
     @Override
     public void setSenha(String senha) { this.senha = senha; }
 
-    // REMOVIDO: getIdade() e setIdade() - Não são mais de Professor
-    // REMOVIDO: getEspecialidade() e setEspecialidade() - Não são mais de Professor
 
     @Override
     public String getTipo() { return tipo; }
@@ -75,26 +67,6 @@ public class Professor implements Usuario {
         this.caminhoImagem = caminhoImagem;
     }
 
-    // Se turmasLecionadas for um atributo relevante para o modelo de Professor
-    // e não apenas para o DAO, mantenha. Caso contrário, pode ser movido apenas para o DAO.
-    private ArrayList<Turma> turmasLecionadas = new ArrayList<>(); // Inicialize aqui para evitar NullPointerException
-    public ArrayList<Turma> getTurmasLecionadas() { return turmasLecionadas; }
-    public void setTurmasLecionadas(ArrayList<Turma> turmasLecionadas) { this.turmasLecionadas = turmasLecionadas; }
 
-    public void adicionarTurma(Turma novaTurma) {
-        if (this.turmasLecionadas == null) { // Garantia contra null se não inicializado no construtor
-            this.turmasLecionadas = new ArrayList<>();
-        }
-        this.turmasLecionadas.add(novaTurma);
-    }
 
-    public void removerTurma(Turma turmaRemovida) {
-        if (this.turmasLecionadas != null) {
-            this.turmasLecionadas.remove(turmaRemovida);
-        }
-    }
-
-    // Se 'descricaoProfessor' não estiver no banco ou em uso, remova.
-    // public String getDescricaoProfessor() { return descricaoProfessor; }
-    // public void setDescricaoProfessor(String descricaoProfessor) { this.descricaoProfessor = descricaoProfessor; }
 }

@@ -2,7 +2,6 @@ package com.project.project_healtheducation.dao;
 
 import com.project.project_healtheducation.db.dbSetup;
 import com.project.project_healtheducation.model.Professor;
-import com.project.project_healtheducation.model.Turma;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 public class ProfessorDAO {
 
     public boolean inserirProfessor(Professor professor) {
-        // CORRIGIDO: Removida 'idade' da query SQL. Agora são 5 placeholders.
         String sql = "INSERT INTO professor (nome, email, senha, tipo, caminhoImagem) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = dbSetup.getConnection();
@@ -23,8 +21,6 @@ public class ProfessorDAO {
             stmt.setString(2, professor.getEmail());
             stmt.setString(3, senhaCriptografada);
             stmt.setString(4, professor.getTipo());
-            // REMOVIDO: stmt.setString(5, professor.getIdade());
-            // CORRIGIDO: O caminhoImagem agora é o 5º parâmetro
             stmt.setString(5, professor.getCaminhoImagem()); // novo
 
 
@@ -113,7 +109,6 @@ public class ProfessorDAO {
     }
 
     public boolean atualizarProfessor(Professor professor) {
-        // Esta query não incluía idade, então está OK.
         String sql = "UPDATE professor SET nome = ?, email = ?, senha = ?, tipo = ? WHERE id = ?";
 
         try (Connection conn = dbSetup.getConnection();
@@ -153,12 +148,10 @@ public class ProfessorDAO {
     }
 
     public boolean atualizarPerfil(Professor professor) {
-        // CORRIGIDO: Removida 'idade' da query UPDATE
         String sql = "UPDATE professor SET nome = ? WHERE id = ?";
         try (Connection conn = dbSetup.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, professor.getNome());
-            // REMOVIDO: stmt.setString(2, professor.getIdade());
             stmt.setInt(2, professor.getId()); // Agora é o 2º parâmetro
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -197,26 +190,5 @@ public class ProfessorDAO {
         return false;
     }
 
-    public ArrayList<Turma> buscarTurmasDoProfessor(int idProfessor) {
-        String sql = "SELECT t.nome, t.quantidade FROM turma t JOIN turma_professor tp ON t.nome = tp.nome_turma WHERE tp.id_professor = ?";
-        ArrayList<Turma> turmas = new ArrayList<>();
-
-        try (Connection conn = dbSetup.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, idProfessor);
-
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                Turma turma = new Turma(rs.getString("nome"), rs.getInt("quantidade"));
-                turmas.add(turma);
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Erro ao buscar turmas do professor: " + e.getMessage());
-        }
-
-        return turmas;
-    }
 
 }

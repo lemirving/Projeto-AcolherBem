@@ -1,23 +1,16 @@
 package com.project.project_healtheducation.controllers;
 
 import com.project.project_healtheducation.dao.AlunoDAO;
-import com.project.project_healtheducation.dao.TurmaDAO;
 import com.project.project_healtheducation.model.Aluno;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.List;
-import javafx.beans.property.SimpleStringProperty;
-
-import javax.security.auth.callback.Callback;
 
 public class TabelaAlunosController {
 
-    private TurmaDAO turmaDAO = new TurmaDAO();
 
     @FXML private TableView<Aluno> tabelaAlunos;
     @FXML private TableColumn<Aluno, String> colNomeAluno;

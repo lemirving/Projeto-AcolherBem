@@ -26,11 +26,9 @@ public class LoginController {
     @FXML
     private PasswordField textSenha;
 
-//    @FXML private ImageView logoView;
 
     @FXML
     public void initialize(){
-//        System.out.println(logoView.getImage());
     }
 
     @FXML
@@ -38,7 +36,6 @@ public class LoginController {
         String email = textEmail.getText();
         String senhaDigitada = textSenha.getText();
 
-        // Validações básicas
         if (email.isEmpty() || senhaDigitada.isEmpty()) {
             mostrarAlerta("Preencha todos os campos.");
             return;
@@ -56,13 +53,11 @@ public class LoginController {
 
         Usuario usuarioAutenticado = null;
 
-        // Tenta autenticar como Aluno
         AlunoDAO alunoDAO = new AlunoDAO();
         if (alunoDAO.autenticar(email, senhaDigitada)) {
             usuarioAutenticado = alunoDAO.buscarPorEmail(email);
         }
 
-        // Se não for aluno, tenta como professor
         if (usuarioAutenticado == null) {
             ProfessorDAO professorDAO = new ProfessorDAO();
             if (professorDAO.autenticar(email, senhaDigitada)) {
@@ -70,7 +65,6 @@ public class LoginController {
             }
         }
 
-        // Se não for professor, tenta como psicólogo
         if (usuarioAutenticado == null) {
             PsicologoDAO psicologoDAO = new PsicologoDAO();
             if (psicologoDAO.autenticar(email, senhaDigitada)) {
@@ -78,7 +72,6 @@ public class LoginController {
             }
         }
 
-        // Se autenticado, salva sessão e redireciona
         if (usuarioAutenticado != null) {
             SessaoUsuario.setUsuarioLogado(usuarioAutenticado);
 
@@ -87,7 +80,6 @@ public class LoginController {
             } else if (usuarioAutenticado instanceof Professor) {
                 ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/homeProfPsico.fxml");
             } else if (usuarioAutenticado instanceof Psicologo) {
-                // Redirecionamento ainda não implementado
                 ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/homeProfPsico.fxml");
             }
 
