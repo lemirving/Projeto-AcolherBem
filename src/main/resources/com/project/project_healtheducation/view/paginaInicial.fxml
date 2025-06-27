@@ -1,23 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane stylesheets="@../style/paginaInicial.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
-    <children>
-        <VBox alignment="CENTER" prefHeight="473.0" prefWidth="705.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-
-            <Text fill="#41bc18" strokeType="OUTSIDE" strokeWidth="0.0" text="MentalCareEdu">
-                <font>
-                    <Font size="22.0" />
-                </font>
-            </Text>
-            <Text fill="#5b5959" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textmsg" text="Cuide da sua mente. Conquiste seus sonhos com os estudos." />
-            <VBox alignment="CENTER" spacing="15">
-            <Button onAction="#loginScreen" styleClass="btnHome" text="Login" />
-            <Button styleClass="btnHome" text="Cadastre-se" onAction="#cadastroScreen"/>
-            </VBox>
-        </VBox>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.PaginaInicialController">
+   <children>
+      <AnchorPane layoutX="50.0" layoutY="46.0" prefHeight="708.0" prefWidth="1121.0" styleClass="cor-primaria" stylesheets="@../style/style.css">
+         <children>
+            <AnchorPane layoutX="323.0" layoutY="58.0" prefHeight="593.0" prefWidth="476.0" styleClass="painel-principal-fundo" stylesheets="@../style/style.css">
+               <children>
+                  <Pane layoutX="182.0" layoutY="45.0" prefHeight="100.0" prefWidth="112.0" stylesheets="@../style/style.css">
+                     <styleClass>
+                        <String fx:value="borda-destaque" />
+                        <String fx:value="cor-secundaria" />
+                     </styleClass>
+                  </Pane>
+                  <Label layoutX="101.0" layoutY="175.0" text="Seja Bem Vindo ao AcolherBem" textFill="#1b6126">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="131.0" layoutY="196.0" text="Nos mostre como se sente">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="loginBtn" layoutX="153.0" layoutY="297.0" onAction="#loginScreen" prefHeight="62.0" prefWidth="170.0" stylesheets="@../style/style.css" text="Fazer Login">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="borda-padrao" />
+                        <String fx:value="botao-acao" />
+                        <String fx:value="font-titulo" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="CadastrarBtn" layoutX="153.0" layoutY="399.0" onAction="#cadastroScreen" prefHeight="62.0" prefWidth="170.0" stylesheets="@../style/style.css" text="Cadastrar-se">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="botao-acao" />
+                        <String fx:value="font-titulo" />
+                     </styleClass>
+                  </JFXButton>
+                  <JFXButton fx:id="sairBtn" layoutX="174.0" layoutY="504.0" onAction="#btnSairApp" prefHeight="38.0" prefWidth="128.0" styleClass="borda-padrao" stylesheets="@../style/style.css" text="Sair">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

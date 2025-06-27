@@ -1,62 +1,45 @@
 package com.project.project_healtheducation.model;
 
-import java.util.ArrayList;
+import java.util.ArrayList; // ArrayList import is not strictly needed if turmasLecionadas is removed, but harmless if kept.
 
-public class Psicologo implements Usuario{
+public class Psicologo implements Usuario {
     private int id;
     private String nome;
     private String email;
     private String senha;
-    private int idade;
+    // REMOVIDO: private String idade; // Idade não é um atributo para Psicólogo
     private String tipo;
-    private String identificacao;
-    private ArrayList<Turma> turmasAcompanhadas = new ArrayList<>();
+    private String caminhoImagem;
 
-    public Psicologo(int id, String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas) {
+    // --- Construtores ---
+
+    // Construtor padrão (sempre bom ter para frameworks)
+    public Psicologo() {}
+
+    // Construtor completo para buscar ou criar Psicólogo com todos os dados do banco
+    // ATENÇÃO: Assegure-se de que a ordem e o tipo dos parâmetros correspondem ao seu DAO
+    // e às colunas da sua tabela 'psicologo' no banco de dados.
+    public Psicologo(int id, String nome, String email, String senha, String tipo, String caminhoImagem) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.idade = idade;
-        this.identificacao = identificacao;
-        this.turmasAcompanhadas = turmasAcompanhadas;
+        this.tipo = tipo;
+        this.caminhoImagem = caminhoImagem;
     }
-    public Psicologo( String nome, String email, String senha, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas) {
+
+    // Construtor para inserção (sem id, pois o banco de dados o gera)
+    public Psicologo(String nome, String email, String senha, String tipo, String caminhoImagem) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.idade = idade;
-        this.identificacao = identificacao;
-        this.turmasAcompanhadas = turmasAcompanhadas;
-    }
-    public Psicologo(){
-
-    }
-    public Psicologo(int id, String nome, String email, int idade, String identificacao, ArrayList<Turma> turmasAcompanhadas) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
-        this.identificacao = identificacao;
-        this.turmasAcompanhadas = turmasAcompanhadas;
+        this.tipo = tipo;
+        this.caminhoImagem = caminhoImagem;
     }
 
-    public String getIdentificacao() {
-        return identificacao;
-    }
+    // --- Getters e Setters ---
 
-    public ArrayList<Turma> getTurmasAcompanhadas() {
-        return turmasAcompanhadas;
-    }
-
-    public void addTurma(Turma novaTurma) {
-        this.turmasAcompanhadas.add(novaTurma);
-    }
-
-    public void rmvTurma(Turma turmaRemovida){
-        this.turmasAcompanhadas.remove(turmaRemovida);
-    }
-
+    @Override // Indica que este método está implementando um método da interface Usuario
     public int getId() {
         return id;
     }
@@ -65,51 +48,56 @@ public class Psicologo implements Usuario{
         this.id = id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
 
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
 
+    @Override
     public void setEmail(String email) {
         this.email = email;
     }
 
+    @Override
     public String getSenha() {
         return senha;
     }
 
+    @Override
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
-    public int getIdade() {
-        return idade;
-    }
+    // REMOVIDO: getIdade() e setIdade() - não são mais relevantes para Psicólogo
+    // @Override // Remover o @Override daqui, pois 'idade' não está na interface
+    // public String getIdade() { return idade; }
+    // public void setIdade(String idade) { this.idade = idade; }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
-    }
-
-    public void setTurmasAcompanhadas(ArrayList<Turma> turmasAcompanhadas) {
-        this.turmasAcompanhadas = turmasAcompanhadas;
-    }
-
+    @Override
     public String getTipo() {
-        return this.tipo;
+        return tipo;
     }
 
+    @Override
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+    @Override
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+    @Override
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
     }
 }

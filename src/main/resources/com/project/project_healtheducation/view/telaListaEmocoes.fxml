@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+    <AnchorPane prefHeight="619.0" prefWidth="955.0" stylesheets="@../../style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.TelaListaEmocoesController">
+        <children>
+            <AnchorPane prefHeight="224.0" prefWidth="253.0" styleClass="background_standardColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <AnchorPane prefHeight="119.0" prefWidth="958.0">
+                        <Label layoutX="417.0" layoutY="24.0" prefHeight="15.0" prefWidth="124.0">Suas últimas emoções</Label>
+                    </AnchorPane>
+                    <VBox layoutX="8.0" layoutY="125.0" prefHeight="465.0" prefWidth="935.0" styleClass="emocao-textarea" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="125.0">
+                        <children>
+                            <TableView fx:id="tabelaEmocoes" prefHeight="491.0" prefWidth="935.0">
+                                <columns>
+                                    <TableColumn fx:id="colNomeHumor" text="Humor" />
+                                    <TableColumn fx:id="colDescricao" text="Descrição" />
+                                    <TableColumn fx:id="colData" text="Data" />
+                                </columns>
+                            </TableView>
+
+                        </children>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </children>
+
+    </AnchorPane>

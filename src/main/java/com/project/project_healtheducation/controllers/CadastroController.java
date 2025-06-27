@@ -13,12 +13,23 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class CadastroController extends AlunoDAO {
+public class CadastroController {
 
     @FXML private TextField textNome;
     @FXML private TextField textEmail;
     @FXML private PasswordField textSenha;
     @FXML private PasswordField textSenhaConfirm;
+    @FXML private TextField textMatricula;
+    @FXML private TextField textIdade;
+    @FXML private TextField textTurma;
+
+    @FXML private Label labelNome;
+    @FXML private Label labelEmail;
+    @FXML private Label labelIdade;
+    @FXML private Label labelMatricula;
+    @FXML private Label labelSenha;
+    @FXML private Label labelConfirmSenha;
+    @FXML private Label labelTurma;
 
     @FXML private RadioButton radioAluno;
     @FXML private RadioButton radioProfessor;
@@ -26,19 +37,64 @@ public class CadastroController extends AlunoDAO {
 
     private ToggleGroup groupRadios;
 
+    // Removemos o método 'mostrarCampos()' pois ele será substituído por 'atualizarVisibilidadeCampos'
+    // e o listener no initialize()
+
     @FXML
     private void initialize() {
         groupRadios = new ToggleGroup();
         radioAluno.setToggleGroup(groupRadios);
         radioProfessor.setToggleGroup(groupRadios);
         radioPsicologo.setToggleGroup(groupRadios);
+
+
+        groupRadios.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                String tipoSelecionado = ((RadioButton) newValue).getText();
+                atualizarVisibilidadeCampos(tipoSelecionado);
+            } else {
+                atualizarVisibilidadeCampos(null);
+            }
+        });
+
+        radioAluno.setSelected(true);
     }
+
+
+    private void atualizarVisibilidadeCampos(String tipo) {
+        boolean isAluno = "Aluno".equalsIgnoreCase(tipo);
+        boolean isProfessor = "Professor".equalsIgnoreCase(tipo);
+        boolean isPsicologo = "Psicologo".equalsIgnoreCase(tipo);
+
+
+        boolean isAnyTypeSelected = (tipo != null);
+        labelNome.setVisible(isAnyTypeSelected); textNome.setVisible(isAnyTypeSelected);
+        labelEmail.setVisible(isAnyTypeSelected); textEmail.setVisible(isAnyTypeSelected);
+        labelSenha.setVisible(isAnyTypeSelected); textSenha.setVisible(isAnyTypeSelected);
+        labelConfirmSenha.setVisible(isAnyTypeSelected); textSenhaConfirm.setVisible(isAnyTypeSelected);
+
+        labelMatricula.setVisible(isAluno); textMatricula.setVisible(isAluno);
+        labelTurma.setVisible(isAluno); textTurma.setVisible(isAluno);
+        labelIdade.setVisible(isAluno); textIdade.setVisible(isAluno);
+
+
+        if (!isAluno) {
+            textMatricula.clear();
+            textTurma.clear();
+            textIdade.clear();
+        }
+
+    }
+
 
     private Aluno obterDadosFormularioAluno() {
         Aluno aluno = new Aluno();
         aluno.setNome(textNome.getText());
         aluno.setEmail(textEmail.getText());
         aluno.setSenha(textSenha.getText());
+        aluno.setIdade(textIdade.getText());
+        aluno.setNomeTurma(textTurma.getText());
+        aluno.setMatricula(textMatricula.getText());
 
         RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
         if (selecionado != null) {
@@ -86,13 +142,13 @@ public class CadastroController extends AlunoDAO {
         alerta.setHeaderText(null);
 
         if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || senhaConfirm.isEmpty()) {
-            alerta.setContentText("Todos os campos devem ser preenchidos.");
+            alerta.setContentText("Nome, E-mail e Senhas devem ser preenchidos.");
             alerta.showAndWait();
             return false;
         }
 
         if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
-            alerta.setContentText("Email inválido.");
+            alerta.setContentText("E-mail inválido.");
             alerta.showAndWait();
             return false;
         }
@@ -109,56 +165,112 @@ public class CadastroController extends AlunoDAO {
             return false;
         }
 
-        if (groupRadios.getSelectedToggle() == null) {
-            alerta.setContentText("Selecione o tipo de usuário.");
+        RadioButton selecionado = (RadioButton) groupRadios.getSelectedToggle();
+        if (selecionado == null) {
+            alerta.setContentText("Selecione o tipo de usuário (Aluno, Professor ou Psicólogo).");
             alerta.showAndWait();
             return false;
         }
 
+        String tipo = selecionado.getText();
+        if (tipo.equalsIgnoreCase("Aluno")) {
+            String matricula = textMatricula.getText();
+            String turmaAluno = textTurma.getText();
+            String idade = textIdade.getText();
+
+            if (matricula.isEmpty() || turmaAluno.isEmpty() || idade.isEmpty()) {
+                alerta.setContentText("Para Aluno, Matrícula, Turma e Idade devem ser preenchidos.");
+                alerta.showAndWait();
+                return false;
+            }
+            if (!matricula.matches("^\\d{9}$")) {
+                alerta.setContentText("Matrícula inválida. Deve conter 9 dígitos numéricos.");
+                alerta.showAndWait();
+                return false;
+            }
+            if (!turmaAluno.matches("^[1-9][A-Z]$")) {
+                alerta.setContentText("Turma inválida. Use o formato '2B', '3A', etc.");
+                alerta.showAndWait();
+                return false;
+            }
+            try {
+                int idadeNum = Integer.parseInt(idade);
+                if (idadeNum <= 0 || idadeNum > 120) { // Exemplo de faixa de idade
+                    alerta.setContentText("Idade inválida.");
+                    alerta.showAndWait();
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                alerta.setContentText("Idade deve ser um número válido.");
+                alerta.showAndWait();
+                return false;
+            }
+        }
+
         return true;
     }
-
+    // CadastroController.java
     private boolean inserirUsuario() {
-        if (!validarCadastro()) return false;
+        if (!validarCadastro()) {
+            // validarCadastro() already shows an alert, so just return false.
+            return false;
+        }
 
+        AlunoDAO alunoDAO = new AlunoDAO();
         String tipo = ((RadioButton) groupRadios.getSelectedToggle()).getText();
+
+        boolean success = false;
 
         if (tipo.equalsIgnoreCase("Aluno")) {
             Aluno aluno = obterDadosFormularioAluno();
-            if (buscarPorEmail(aluno.getEmail()) != null) {
-                mostrarAlerta("Este e-mail já está cadastrado.");
-                return false;
+            if (alunoDAO.buscarPorEmail(aluno.getEmail()) != null) {
+                mostrarAlerta("Erro de Cadastro", "E-mail já Cadastrado", "Este e-mail já está cadastrado como Aluno.");
+            } else {
+                success = alunoDAO.inserirAluno(aluno);
+                if (!success) {
+                    mostrarAlerta("Erro de Cadastro", "Falha na Inserção", "Não foi possível cadastrar o Aluno. Verifique os dados ou tente novamente.");
+                }
             }
-            return inserirAluno(aluno);
-
         } else if (tipo.equalsIgnoreCase("Professor")) {
             Professor professor = obterDadosFormularioProfessor();
             ProfessorDAO dao = new ProfessorDAO();
-
             if (dao.buscarProfessorPorEmail(professor.getEmail()) != null) {
-                mostrarAlerta("Este e-mail já está cadastrado.");
-                return false;
+                mostrarAlerta("Erro de Cadastro", "E-mail já Cadastrado", "Este e-mail já está cadastrado como Professor.");
+            } else {
+                success = dao.inserirProfessor(professor);
+                if (!success) {
+                    mostrarAlerta("Erro de Cadastro", "Falha na Inserção", "Não foi possível cadastrar o Professor. Verifique os dados ou tente novamente.");
+                }
             }
-            return dao.inserirProfessor(professor);
-
         } else {
             Psicologo psicologo = obterDadosFormularioPsicologo();
             PsicologoDAO daoPs = new PsicologoDAO();
-
             if(daoPs.buscarPorEmail(psicologo.getEmail()) != null){
-                mostrarAlerta("Cadastro para psicólogo ainda não implementado.");
-                return false;
+                mostrarAlerta("Erro de Cadastro", "E-mail já Cadastrado", "Este e-mail já está cadastrado como Psicólogo.");
+            } else {
+                success = daoPs.inserirPsicologo(psicologo);
+                if (!success) {
+                    mostrarAlerta("Erro de Cadastro", "Falha na Inserção", "Não foi possível cadastrar o Psicólogo. Verifique os dados ou tente novamente.");
+                }
             }
-            return daoPs.inserirPsicologo(psicologo);
         }
+        return success;
     }
 
-    private void mostrarAlerta(String msg) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setContentText(msg);
+    private void mostrarAlerta(String titulo, String cabecalho, String conteudo) {
+        Alert alert;
+        if (titulo.contains("Erro") || titulo.contains("Falha")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(conteudo);
         alert.showAndWait();
     }
+
+
 
     @FXML
     protected void voltarInicio(ActionEvent event) {
@@ -172,11 +284,26 @@ public class CadastroController extends AlunoDAO {
     @FXML
     protected void irParaHome(ActionEvent event) {
         if (inserirUsuario()) {
+            mostrarAlerta("Sucesso", "Sucesso na inserção", "Vá para o Login.");
             try {
-                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/HomeAluno.fxml");
+                ChangeScreen.setScreen(event, "/com/project/project_healtheducation/view/login.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
+                exibirAlerta("Erro ao trocar janela", "Erro de Navegação", "Erro ao carregar tela de login.");
             }
         }
     }
+    private void exibirAlerta(String titulo, String cabecalho, String conteudo) {
+        Alert alert;
+        if (titulo.contains("Erro") || titulo.contains("Falha")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(conteudo);
+        alert.showAndWait();
+    }
+
 }

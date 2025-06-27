@@ -2,117 +2,99 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Professor implements Usuario{
+public class Professor implements Usuario {
 
     private int id;
     private String nome;
     private String email;
     private String senha;
-    private int idade;
-    private String especialidade;
+
     private String tipo;
-    private ArrayList<Turma> turmasLecionadas = new ArrayList<>();
+    private String caminhoImagem;
 
-    public Professor(){
+    // REMOVIDO: private String descricaoProfessor; // Se não estiver em uso ou no banco para Professor
 
-    }
+    // Construtor vazio (essencial para DAOs que usam setters)
+    public Professor() {}
 
-    public Professor(String nome, String email, String senha, int idade, String especialidade, ArrayList<Turma> turmasLecionadas) {
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.idade = idade;
-        this.especialidade = especialidade;
-        this.turmasLecionadas = turmasLecionadas;
-    }
-
-    public Professor(int id, String nome, String email, String senha, int idade, String especialidade, ArrayList<Turma> turmasLecionadas) {
+    // Construtor para criação/busca de Professor com dados do banco
+    // ATENÇÃO: Assegure-se de que a ordem e o tipo dos parâmetros correspondem ao seu DAO.
+    public Professor(int id, String nome, String email, String senha, String tipo, String caminhoImagem) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.idade = idade;
-        this.especialidade = especialidade;
-        this.turmasLecionadas = turmasLecionadas;
+        this.tipo = tipo;
+        this.caminhoImagem = caminhoImagem;
     }
-    public Professor(int id, String nome, String email, int idade, String especialidade, ArrayList<Turma> turmasLecionadas) {
-        this.id = id;
+
+    // Construtor para inserção (sem ID, pois o banco gera)
+    public Professor(String nome, String email, String senha, String tipo, String caminhoImagem) {
         this.nome = nome;
         this.email = email;
-        this.idade = idade;
-        this.especialidade = especialidade;
-        this.turmasLecionadas = turmasLecionadas;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
         this.senha = senha;
+        this.tipo = tipo;
+        this.caminhoImagem = caminhoImagem;
     }
 
-    public int getIdade() {
-        return idade;
+
+    // --- Getters e Setters ---
+    @Override // Marque como @Override se estiver implementando da interface Usuario
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    @Override
+    public String getNome() { return nome; }
+    @Override
+    public void setNome(String nome) { this.nome = nome; }
+
+    @Override
+    public String getEmail() { return email; }
+    @Override
+    public void setEmail(String email) { this.email = email; }
+
+    @Override
+    public String getSenha() { return senha; }
+    @Override
+    public void setSenha(String senha) { this.senha = senha; }
+
+    // REMOVIDO: getIdade() e setIdade() - Não são mais de Professor
+    // REMOVIDO: getEspecialidade() e setEspecialidade() - Não são mais de Professor
+
+    @Override
+    public String getTipo() { return tipo; }
+    @Override
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
+
+    public String getCaminhoImagem() {
+        return caminhoImagem;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
-
-    public void setTurmasLecionadas(ArrayList<Turma> turmasLecionadas) {
-        this.turmasLecionadas = turmasLecionadas;
-    }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public ArrayList<Turma> getTurmasLecionadas() {
-        return turmasLecionadas;
-    }
+    // Se turmasLecionadas for um atributo relevante para o modelo de Professor
+    // e não apenas para o DAO, mantenha. Caso contrário, pode ser movido apenas para o DAO.
+    private ArrayList<Turma> turmasLecionadas = new ArrayList<>(); // Inicialize aqui para evitar NullPointerException
+    public ArrayList<Turma> getTurmasLecionadas() { return turmasLecionadas; }
+    public void setTurmasLecionadas(ArrayList<Turma> turmasLecionadas) { this.turmasLecionadas = turmasLecionadas; }
 
     public void adicionarTurma(Turma novaTurma) {
+        if (this.turmasLecionadas == null) { // Garantia contra null se não inicializado no construtor
+            this.turmasLecionadas = new ArrayList<>();
+        }
         this.turmasLecionadas.add(novaTurma);
     }
 
-    public void removerTurma(Turma turmaRemovida){
-        this.turmasLecionadas.remove(turmaRemovida);
+    public void removerTurma(Turma turmaRemovida) {
+        if (this.turmasLecionadas != null) {
+            this.turmasLecionadas.remove(turmaRemovida);
+        }
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
+    // Se 'descricaoProfessor' não estiver no banco ou em uso, remova.
+    // public String getDescricaoProfessor() { return descricaoProfessor; }
+    // public void setDescricaoProfessor(String descricaoProfessor) { this.descricaoProfessor = descricaoProfessor; }
 }

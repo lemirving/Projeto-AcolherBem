@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1220.0" styleClass="root_pane" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.project_healtheducation.controllers.home.HomeProfessorController">
+   <top>
+      <AnchorPane fx:id="menu_bar" prefHeight="114.0" prefWidth="1223.0" styleClass="cor-primaria" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="pane_menuBar" prefHeight="200.0" prefWidth="200.0" styleClass="cor-primaria" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <AnchorPane layoutX="574.0" layoutY="-33.0" prefHeight="67.0" prefWidth="72.0" styleClass="borda-destaque" stylesheets="@../style/style.css" />
+               </children></Pane>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane fx:id="side_bar" prefHeight="690.0" prefWidth="265.0" styleClass="side_bar" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="75.0" prefHeight="690.0" prefWidth="265.0" styleClass="cor-secundaria" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXButton onAction="#handleTelaPerfil" prefHeight="80.0" prefWidth="265.0" styleClass="font-titulo" stylesheets="@../style/style.css" text="Perfil" />
+                  <JFXButton onAction="#handleTelaListaAlunos" prefHeight="80.0" prefWidth="265.0" styleClass="font-titulo" stylesheets="@../style/style.css" text="Alunos" />
+                  <JFXButton onAction="#handleTelaConfigs" prefHeight="80.0" prefWidth="265.0" styleClass="font-titulo" stylesheets="@../style/style.css" text="Configuraçoes" />
+                  <JFXButton onAction="#handleVoltar" prefHeight="80.0" prefWidth="265.0" styleClass="font-titulo" stylesheets="@../style/style.css" text="Sair" />
+               </children>
+            </VBox>
+         </children></AnchorPane>
+
+   </left>
+   <center>
+      <AnchorPane fx:id="main_anchorPane" prefHeight="500.0" prefWidth="958.0" styleClass="painel-principal-fundo" stylesheets="@../style/style.css" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -2,40 +2,53 @@ package com.project.project_healtheducation.model;
 
 import java.util.ArrayList;
 
-public class Aluno implements Usuario{
+public class Aluno implements Usuario {
     private int id;
     private String nome;
     private String email;
     private String senha;
-    private int idade;
-    private String tipo;
-    private String anoEscolar;
+    private String idade;
     private String nomeTurma;
+    private String tipo;
+    private String matricula;
+    private String humorAtual; // Esta propriedade é preenchida pelo AlunoDAO.listarTodosComUltimoHumor()
+    private String descricaoHumorAtual;
+    private String caminhoImagem;
 
-    private ArrayList<StatusEmocional> registrosEmocionais = new ArrayList<>();
+    // A lista 'humores' que NÃO é preenchida pela query de listarTodosComUltimoHumor()
+    private ArrayList<Humor> humores = new ArrayList<>(); // Mantenha se for usada em outras partes do sistema
+
+    @Override
+    public String getCaminhoImagem() {
+        return caminhoImagem;
+    }
+
+    @Override
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
+    public Aluno(String nome, String email, String senha, String idade, String nomeTurma, String tipo, String matricula) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.idade = idade;
+        this.nomeTurma = nomeTurma;
+        this.tipo = tipo;
+        this.matricula = matricula;
+    }
+
+    // Este setter está correto e é usado pelo AlunoDAO
+    public void setHumorAtual(String humorAtual) {
+        this.humorAtual = humorAtual;
+    }
 
     public Aluno() {}
 
-    public Aluno( String nome, int id,String nomeTurma,
-                 String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-        this.nomeTurma = nomeTurma;
-        this.anoEscolar = anoEscolar;
-        this.idade = idade;
-        this.senha = senha;
-        this.email = email;
+    public Aluno(String nome, String email, String matricula){
         this.nome = nome;
-        this.id = id;
-    }
-    public Aluno( String nome,String nomeTurma,
-                  String anoEscolar, int idade, String senha, String email,ArrayList<StatusEmocional> registrosEmocionais) {
-        this.registrosEmocionais = registrosEmocionais;
-        this.nomeTurma = nomeTurma;
-        this.anoEscolar = anoEscolar;
-        this.idade = idade;
-        this.senha = senha;
         this.email = email;
-        this.nome = nome;
+        this.matricula = matricula;
     }
 
     // Getters e Setters
@@ -51,26 +64,48 @@ public class Aluno implements Usuario{
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
 
-    public int getIdade() { return idade; }
-    public void setIdade(int idade) { this.idade = idade; }
+    public String getIdade() {
+        return idade;
+    }
 
-    public String getAnoEscolar() { return anoEscolar; }
+    public void setIdade(String idade) {
+        this.idade = idade;
+    }
+    public String getDescricaoHumorAtual() {
+        return (this.descricaoHumorAtual != null && !this.descricaoHumorAtual.trim().isEmpty()) ? this.descricaoHumorAtual : "Nenhuma descrição.";
+    }
 
+    public void setDescricaoHumorAtual(String descricaoHumorAtual) {
+        this.descricaoHumorAtual = descricaoHumorAtual;
+    }
     public String getNomeTurma() {
         return nomeTurma;
     }
+    public void setNomeTurma(String nomeTurma) { this.nomeTurma = nomeTurma; }
 
-    public void setNomeTurma(String nomeTurma) {
-        this.nomeTurma = nomeTurma;
+
+    public ArrayList<Humor> getHumores() { return humores; }
+
+    public String getHumorAtual(){
+
+        return (this.humorAtual != null && !this.humorAtual.trim().isEmpty()) ? this.humorAtual : "Sem descrição";
     }
 
-    public void setAnoEscolar(String anoEscolar) { this.anoEscolar = anoEscolar;}
-
-    public String setTipo(String tipo) {
-        return this.tipo = tipo;
+    // Este setter para a lista 'humores' está correto, se a lista for usada em outro lugar
+    public void setHumores(ArrayList<Humor> humores) {
+        this.humores = humores;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getMatricula() {
+        return matricula;
     }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public String getTipo() { return tipo; }
+    public void setTipo(String tipo) { this.tipo = tipo; }
+
+
 }
